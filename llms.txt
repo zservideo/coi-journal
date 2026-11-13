@@ -6,6 +6,11 @@
 
 - [Why we're starting COI Journal](https://coijournal.com/articles/why-coi-journal/index.md): COI Journal is a new publication on construction insurance compliance, published by Forsured. What we'll cover, what we won't, and how we'll earn your trust.
 
+## Reports and white papers (Resource Center, https://coijournal.com/resources/)
+
+- [R-02: Rented, falsified, excluded: what 2026's cases say about trusting a contractor COI](https://coijournal.com/reports/rented-falsified-excluded/index.md): A COI Journal analyst brief on four 2026 fraud and coverage cases, what a certificate could and couldn't have shown in each, and the checks that matter.
+- [R-01: A certificate is not coverage: six ways contractor COIs fail project requirements](https://coijournal.com/reports/certificate-is-not-coverage/index.md): A COI Journal white paper on why contractor certificates of insurance pass a glance and still fail the project, and the six failure modes worth checking.
+
 ## About the publication
 
 - [About COI Journal](https://coijournal.com/about/): COI Journal reports on construction insurance compliance: contractor COIs, endorsements and project requirements. Published by Forsured. Here's why and how.
@@ -16,13 +21,13 @@
 
 ## The COI Dictionary
 
-- [Certificate of insurance (COI)](https://coijournal.com/dictionary/certificate-of-insurance/): A one-page summary of a contractor's insurance at the moment it was issued. In construction it is almost always the ACORD 25, the Certificate of Liability Insurance.
-- [Additional insured (AI)](https://coijournal.com/dictionary/additional-insured/): A person or company added to someone else's liability policy, usually the owner and the general contractor on a trade contractor's policy. Status comes from an endorsement, not from the certificate.
-- [Completed operations](https://coijournal.com/dictionary/completed-operations/): Liability for injury or damage that shows up after a contractor's work is finished, such as a leak or a collapse months after turnover. For an additional insured, it usually needs its own endorsement.
-- [Primary and noncontributory](https://coijournal.com/dictionary/primary-and-noncontributory/): Wording that makes the contractor's policy pay first for the additional insured, without asking the additional insured's own policy to share the loss.
-- [Waiver of subrogation](https://coijournal.com/dictionary/waiver-of-subrogation/): A promise by the contractor's insurer not to sue you to recover what it paid on a claim. Construction contracts usually require it on general liability, auto and workers' compensation.
-- [Per project aggregate](https://coijournal.com/dictionary/per-project-aggregate/): An endorsement that gives each construction project its own general aggregate limit, so claims on one job can't use up the limit for yours.
-- [Notice of cancellation](https://coijournal.com/dictionary/notice-of-cancellation/): Advance notice that a contractor's policy is being cancelled. The certificate itself doesn't promise to tell you.
+- [Certificate of insurance (COI)](https://coijournal.com/dictionary/certificate-of-insurance/index.md): A one-page summary of a contractor's insurance at the moment it was issued. In construction it is almost always the ACORD 25, the Certificate of Liability Insurance.
+- [Additional insured (AI)](https://coijournal.com/dictionary/additional-insured/index.md): A person or company added to someone else's liability policy, usually the owner and the general contractor on a trade contractor's policy. Status comes from an endorsement, not from the certificate.
+- [Completed operations](https://coijournal.com/dictionary/completed-operations/index.md): Liability for injury or damage that shows up after a contractor's work is finished, such as a leak or a collapse months after turnover. For an additional insured, it usually needs its own endorsement.
+- [Primary and noncontributory](https://coijournal.com/dictionary/primary-and-noncontributory/index.md): Wording that makes the contractor's policy pay first for the additional insured, without asking the additional insured's own policy to share the loss.
+- [Waiver of subrogation](https://coijournal.com/dictionary/waiver-of-subrogation/index.md): A promise by the contractor's insurer not to sue you to recover what it paid on a claim. Construction contracts usually require it on general liability, auto and workers' compensation.
+- [Per project aggregate](https://coijournal.com/dictionary/per-project-aggregate/index.md): An endorsement that gives each construction project its own general aggregate limit, so claims on one job can't use up the limit for yours.
+- [Notice of cancellation](https://coijournal.com/dictionary/notice-of-cancellation/index.md): Advance notice that a contractor's policy is being cancelled. The certificate itself doesn't promise to tell you.
 
 ## Masthead
 
