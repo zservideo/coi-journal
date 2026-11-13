@@ -130,16 +130,49 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 .block>.eyebrow{display:block}
 .block>h2{font-family:var(--serif);font-weight:400;font-size:30px;line-height:1.2;letter-spacing:-.015em;margin-top:6px}
 .block>p{color:var(--ink2);margin-top:8px;max-width:68ch}
-.nums{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:22px;border-top:1px solid var(--rule)}
-.num{padding:18px 24px 6px 0}
-.num+.num{padding-left:24px;border-left:1px solid var(--rule)}
-.num .k{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute)}
-.num .v{font-family:var(--serif);font-variation-settings:'opsz' 144;font-size:52px;line-height:1;color:var(--rule2);margin-top:10px}
-.num h3{font-family:var(--serif);font-weight:600;font-size:20px;margin-top:12px}
-.num p{font-size:14.5px;color:var(--ink2);margin-top:6px}
-.secs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));margin-top:22px;border-top:1px solid var(--rule)}
-.sec{padding:16px 18px 4px 0}
-.sec+.sec{padding-left:18px;border-left:1px solid var(--rule)}
+.panel{margin-top:56px;background:var(--ink);color:#E9E4DA;border-radius:4px;padding:36px 36px 28px}
+.panel .eyebrow{color:#F59A6C}
+.panel h2{font-family:var(--serif);font-weight:400;font-size:clamp(26px,3vw,36px);line-height:1.15;letter-spacing:-.015em;color:#fff;margin-top:8px;max-width:22ch}
+.panel>p{font-size:15px;color:#C9C3B8;margin-top:10px;max-width:62ch}
+.panel>p a{color:#fff;text-decoration-color:var(--f)}
+.nums{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:26px}
+.num{display:flex;flex-direction:column;gap:8px;padding:18px 20px;background:#2A2B26;border:1px solid #3A3B35;border-left:3px solid var(--f);border-radius:4px}
+.num .k{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:#F59A6C}
+.num h3{font-family:var(--serif);font-weight:600;font-size:24px;line-height:1.15;color:#fff}
+.num p{font-size:14.5px;color:#D6D0C5}
+.num .src{margin-top:auto;padding-top:10px;border-top:1px solid #3A3B35;font-size:13px;color:#B5AFA4}
+.num .src b{display:block;font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#ADA79C;margin-bottom:2px}
+.chip{align-self:flex-start;display:inline-flex;align-items:center;gap:7px;padding:3px 9px;border:1px solid #4A4B45;border-radius:4px;font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:#E9E4DA}
+.chip::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--f)}
+.gapline{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;margin-top:28px}
+.gapline span{display:flex;flex-direction:column;align-items:center;gap:8px}
+.gapline i{display:block;width:100%;height:2px;background:var(--f)}
+.gapline b{font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#B5AFA4}
+.gapline.light b{color:var(--mute)}
+/* Specimen certificate: drawn like a COI on file, flagged the way the Forsured product flags it */
+.spec{margin-top:24px}
+.spec-doc{background:#fff;border:1px solid var(--rule2);border-radius:4px;padding:18px 20px 16px;color:var(--ink)}
+.spec-top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-bottom:10px;border-bottom:2px solid var(--ink);font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase}
+.spec-tag{padding:2px 8px;border:1px solid var(--f);color:var(--fdk);border-radius:3px;transform:rotate(-2deg)}
+.spec-meta{display:flex;flex-wrap:wrap;gap:6px 28px;margin-top:10px;font-size:13px}
+.spec-meta dt{display:inline;color:var(--mute);margin-right:6px}
+.spec-meta dd{display:inline;font-weight:500}
+.spec-scroll{overflow-x:auto;margin-top:12px}
+.spec table{width:100%;border-collapse:collapse;font-size:13.5px;line-height:1.4;min-width:520px}
+.spec th,.spec td{text-align:left;padding:8px 10px 8px 0;border-bottom:1px solid var(--rule);vertical-align:top}
+.spec thead th{font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.spec tbody th{font-weight:600}
+.spec tr.gap td:nth-child(3){color:var(--fdk)}
+.flag{display:inline-flex;align-items:center;gap:6px;font-weight:600;color:var(--fdk);white-space:nowrap}
+.flag::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--f);flex:none}
+.meets{display:inline-flex;align-items:center;gap:6px;color:#2D7A4C;font-weight:600}
+.meets::before{content:'';width:7px;height:7px;border-radius:50%;background:#2D7A4C}
+.spec-foot{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin-top:14px;font-family:var(--serif);font-style:italic;font-size:15px;color:var(--ink2)}
+.spec-score{font-family:var(--mono);font-style:normal;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;padding:5px 10px;background:var(--fdk);color:#fff;border-radius:3px}
+.spec figcaption{font-size:12.5px;color:var(--mute);margin-top:8px}
+.sec{border-top:2px solid var(--f)}
+.secs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0 16px;margin-top:22px}
+.sec{padding:14px 0 4px}
 .sec h3{font-family:var(--serif);font-weight:600;font-size:18px;line-height:1.25}
 .sec p{font-size:14px;color:var(--ink2);margin-top:8px}
 .lib{columns:2;column-gap:48px;margin-top:18px;list-style:none}
@@ -219,15 +252,15 @@ footer{margin-top:64px;border-top:3px double var(--ink);padding:32px 0 28px}
 .fbot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:28px;padding-top:14px;border-top:1px solid var(--rule);font-size:12px;color:var(--mute)}
 .fbot a{color:var(--ink2)}
 .fbot p{max-width:760px}
-@media(max-width:980px){.secs{grid-template-columns:repeat(2,minmax(0,1fr))}.sec:nth-child(odd){padding-left:0;border-left:0}.sec{border-top:1px solid var(--rule)}.sec:nth-child(-n+2){border-top:0}}
+@media(max-width:980px){.secs{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 16px}}
 @media(max-width:860px){
   .wrap{padding:0 16px}
-  .front{grid-template-columns:1fr}
+  .front{grid-template-columns:minmax(0,1fr)}
   .front>:first-child{padding-right:0}
   .front>*+*{border-left:0;padding-left:0;margin-top:36px;padding-top:20px;border-top:2px solid var(--ink)}
-  .nums{grid-template-columns:1fr}
-  .num,.num+.num{padding:16px 0 4px;border-left:0}
-  .num+.num{border-top:1px solid var(--rule)}
+  .nums,.gapline{grid-template-columns:1fr}
+  .gapline{gap:12px}
+  .panel{padding:26px 18px 22px;margin-left:-16px;margin-right:-16px;border-radius:0}
   .lib{columns:1}
   .house .wrap{grid-template-columns:1fr}
   .house .btns{justify-content:flex-start}
@@ -237,7 +270,7 @@ footer{margin-top:64px;border-top:3px double var(--ink);padding:32px 0 28px}
   .secnav{justify-content:flex-start;gap:0 18px}
   .prose{font-size:18px}
 }
-@media(max-width:520px){.secs{grid-template-columns:1fr}.sec,.sec+.sec{padding-left:0;border-left:0;border-top:1px solid var(--rule)}.sec:first-child{border-top:0}}
+@media(max-width:520px){.secs{grid-template-columns:1fr}}
 @media print{.strip,.secnav,.house,footer,.sub,form{display:none}}</style>
 </head>
 <body>
@@ -261,6 +294,18 @@ footer{margin-top:64px;border-top:3px double var(--ink);padding:32px 0 28px}
       <h2><a href="/articles/why-coi-journal/">Why we're starting COI Journal</a></h2>
       <p class="dek">Contractor certificates of insurance decide who pays when a job goes wrong. Almost nobody reports on them. We're going to.</p>
       <p class="by">By The editors · <time datetime="2026-11-13T09:00:00-05:00">November 13, 2026</time></p>
+      <figure class="spec" aria-labelledby="spec-cap">
+  <div class="spec-doc">
+    <div class="spec-top"><span>Certificate of liability insurance</span><span class="spec-tag">Specimen</span></div>
+    <dl class="spec-meta"><div><dt>Insured</dt><dd>Sample Electric Co.</dd></div><div><dt>Project</dt><dd>Sample mid-rise, 2026 to 2027</dd></div></dl>
+    <div class="spec-scroll" tabindex="0" role="region" aria-label="Specimen certificate checked against project requirements"><table>
+      <thead><tr><th scope="col">Coverage</th><th scope="col">Project requires</th><th scope="col">Certificate shows</th><th scope="col">Check</th></tr></thead>
+      <tbody><tr><th scope="row">General liability</th><td>$1M / $2M</td><td>$1M / $2M</td><td><span class="meets">Meets</span></td></tr><tr class="gap"><th scope="row">Additional insured</th><td>CG 20 10 + CG 20 37</td><td>Box checked, no endorsement</td><td><span class="flag">No endorsement attached</span></td></tr><tr class="gap"><th scope="row">Umbrella</th><td>$10M</td><td>$5M</td><td><span class="flag">$5M short</span></td></tr><tr class="gap"><th scope="row">Workers' comp</th><td>Statutory + waiver</td><td>Statutory, no waiver</td><td><span class="flag">Waiver missing</span></td></tr><tr class="gap"><th scope="row">Policy term</th><td>Through Aug 2027</td><td>Expires Mar 2027</td><td><span class="flag">Lapses mid-project</span></td></tr></tbody>
+    </table></div>
+    <div class="spec-foot"><span class="spec-score">4 of 5 checks fail</span><span>The certificate says covered. The policy doesn't.</span></div>
+  </div>
+  <figcaption id="spec-cap">Specimen. Sample data, not a real contractor. This is the gap COI Journal covers.</figcaption>
+</figure>
       <ul><li>COI Journal covers construction insurance compliance: contractor COIs, endorsements, project requirements and what happens when coverage fails.</li><li>It is published by Forsured, which makes COI compliance software. We say so on every page and every email.</li><li>We don't rank or review software vendors, including Forsured. Original reporting, public records and research only.</li><li>The weekly email, The COI Digest, goes out Tuesday mornings.</li></ul>
       <a class="more" href="/articles/why-coi-journal/">Read the editors' note</a>
     </article>
@@ -290,11 +335,12 @@ footer{margin-top:64px;border-top:3px double var(--ink);padding:32px 0 28px}
     </aside>
   </div>
 
-  <section class="block" aria-labelledby="nums-h">
-    <span class="eyebrow">The COI Gap Index</span>
-    <h2 id="nums-h">Three numbers we're building</h2>
-    <p>We'll publish each one only when the sample clears our <a href="/methodology/">rules</a>. Until then, the slot stays empty.</p>
-    <div class="nums"><div class="num"><div class="k">No. 1 · In progress</div><div class="v" aria-hidden="true">?%</div><h3>Gap rate</h3><p>Share of contractor COIs that fail at least one project requirement, and the top reasons.</p></div><div class="num"><div class="k">No. 2 · In progress</div><div class="v" aria-hidden="true">?%</div><h3>Broker view</h3><p>What construction brokers see breaking most often, and how long fixes take.</p></div><div class="num"><div class="k">No. 3 · In progress</div><div class="v" aria-hidden="true">?%</div><h3>Owner rules</h3><p>What public owners actually require, compared state by state.</p></div></div>
+  <section class="panel" aria-labelledby="nums-h">
+    <span class="eyebrow">The COI Gap Index · First edition 2027</span>
+    <h2 id="nums-h">Three numbers nobody in construction publishes. We're building them.</h2>
+    <p>Each one runs only when its sample clears our <a href="/methodology/">rules</a>, with the sample size printed next to it.</p>
+    <div class="nums"><div class="num"><div class="k">Headline number 1</div><h3>Gap rate</h3><p>Share of contractor COIs that fail at least one project requirement, and the top reasons why.</p><span class="chip">Not yet published</span><div class="src"><b>Built from</b>Shared GC archives and free COI risk checks, anonymized</div></div><div class="num"><div class="k">Headline number 2</div><h3>Broker view</h3><p>What construction brokers see breaking most often, and how long a fix takes.</p><span class="chip">Not yet published</span><div class="src"><b>Built from</b>A standing quarterly panel of construction brokers</div></div><div class="num"><div class="k">Headline number 3</div><h3>Owner rules</h3><p>What public owners actually require from contractors, compared state by state.</p><span class="chip">Not yet published</span><div class="src"><b>Built from</b>Insurance sections of public bid documents</div></div></div>
+    <div class="gapline" aria-hidden="true"><span><i></i><b>Collect the data</b></span><span><i></i><b>Clear the sample rules</b></span><span><i></i><b>Publish with sample size</b></span></div>
   </section>
 
   <section class="block" aria-labelledby="secs-h">
@@ -316,7 +362,7 @@ footer{margin-top:64px;border-top:3px double var(--ink);padding:32px 0 28px}
     <h2 id="house-h">Check a contractor COI against your project requirements, free.</h2>
     <p>Forsured, which publishes COI Journal, will read one project's requirements and a contractor COI or two, and show you every gap it finds.</p>
   </div>
-  <div class="btns"><a class="btn f" href="https://forsured.ai/?utm_source=coijournal&utm_medium=referral&utm_campaign=front#demo">Get a free COI risk check</a><a class="btn o" href="https://forsured.ai/?utm_source=coijournal&utm_medium=referral&utm_campaign=front">About Forsured</a></div>
+  <div class="btns"><a class="btn f" href="https://forsured.ai/?utm_source=coijournal&utm_medium=referral&utm_campaign=front#demo">Get a free COI risk check →</a><a class="btn o" href="https://forsured.ai/?utm_source=coijournal&utm_medium=referral&utm_campaign=front">About Forsured</a></div>
 </div></section>
 <footer><div class="wrap">
   <div class="fgrid">
