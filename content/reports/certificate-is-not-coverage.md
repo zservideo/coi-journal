@@ -6,7 +6,7 @@
   "dek": "The certificate is the one document everyone collects and almost nobody can rely on by itself. Here is where it breaks, in the order we would check it.",
   "kind": "White paper",
   "number": "R-01",
-  "date": "2026-11-13T12:00:00-05:00",
+  "date": "2026-11-13T00:00:00-05:00",
   "byline": "The editors",
   "docket": "COIJ-26-0002",
   "about": ["certificate-of-insurance", "additional-insured", "completed-operations", "per-project-aggregate", "primary-and-noncontributory", "waiver-of-subrogation", "notice-of-cancellation"],

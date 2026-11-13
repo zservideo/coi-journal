@@ -6,7 +6,7 @@
   "dek": "Four cases from this year's reporting, read for one question: what would a general contractor have needed to see, beyond the certificate, to know the coverage was real?",
   "kind": "Analyst brief",
   "number": "R-02",
-  "date": "2026-11-13T12:30:00-05:00",
+  "date": "2026-11-13T00:00:00-05:00",
   "byline": "The editors",
   "docket": "COIJ-26-0003",
   "about": ["certificate-of-insurance", "additional-insured", "waiver-of-subrogation"],
