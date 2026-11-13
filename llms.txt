@@ -14,6 +14,24 @@
 - [Methodology and the COI Gap Index](https://coijournal.com/methodology/): How COI Journal research is built: where the data comes from, how it's anonymized, and the minimum sample sizes behind every number we publish.
 - [Publishing principles](https://coijournal.com/principles/): How COI Journal reports: ownership disclosure, sourcing, corrections, how we cover competitors, and the line between editorial and Forsured's business.
 
+## The COI Dictionary
+
+- [Certificate of insurance (COI)](https://coijournal.com/dictionary/certificate-of-insurance/): A one-page summary of a contractor's insurance at the moment it was issued. In construction it is almost always the ACORD 25, the Certificate of Liability Insurance.
+- [Additional insured (AI)](https://coijournal.com/dictionary/additional-insured/): A person or company added to someone else's liability policy, usually the owner and the general contractor on a trade contractor's policy. Status comes from an endorsement, not from the certificate.
+- [Completed operations](https://coijournal.com/dictionary/completed-operations/): Liability for injury or damage that shows up after a contractor's work is finished, such as a leak or a collapse months after turnover. For an additional insured, it usually needs its own endorsement.
+- [Primary and noncontributory](https://coijournal.com/dictionary/primary-and-noncontributory/): Wording that makes the contractor's policy pay first for the additional insured, without asking the additional insured's own policy to share the loss.
+- [Waiver of subrogation](https://coijournal.com/dictionary/waiver-of-subrogation/): A promise by the contractor's insurer not to sue you to recover what it paid on a claim. Construction contracts usually require it on general liability, auto and workers' compensation.
+- [Per project aggregate](https://coijournal.com/dictionary/per-project-aggregate/): An endorsement that gives each construction project its own general aggregate limit, so claims on one job can't use up the limit for yours.
+- [Notice of cancellation](https://coijournal.com/dictionary/notice-of-cancellation/): Advance notice that a contractor's policy is being cancelled. The certificate itself doesn't promise to tell you.
+
+## Masthead
+
+- [Zach Servideo](https://coijournal.com/people/zach-servideo/), Editor. Zach is an executive at Forsured, which publishes COI Journal.
+- [Colby Galipeau](https://coijournal.com/people/colby-galipeau/), Associate Editor. Colby works for Forsured, which publishes COI Journal.
+- [Steve Massei](https://coijournal.com/people/steve-massei/), Contributing editor, construction. Steve is part of the Forsured team. Massei Construction uses Forsured.
+- [Stephanie Massei](https://coijournal.com/people/stephanie-massei/), Contributing editor, operations. Stephanie is part of the Forsured team. Milestone Construction Group uses Forsured.
+- [Erik Wenstone](https://coijournal.com/people/erik-wenstone/), Contributing editor, brokerage. Erik is part of the Forsured team. CMR Risk & Insurance Services is a Forsured partner.
+
 ## Reference explainers (on the publisher's site)
 
 - [A COI on file isn't proof of coverage](https://forsured.ai/blog/compliance-isnt-coverage/)
