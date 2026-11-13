@@ -44,6 +44,69 @@
       },
       "hasPart": [
         {
+          "@id": "https://coijournal.com/reports/cost-of-manual-coi-tracking/#report"
+        },
+        {
+          "@id": "https://coijournal.com/reports/certificate-fraud-regulators/#report"
+        },
+        {
+          "@id": "https://coijournal.com/reports/wrap-ups-and-cois/#report"
+        },
+        {
+          "@id": "https://coijournal.com/reports/public-owner-requirements-compared/#report"
+        },
+        {
+          "@id": "https://coijournal.com/reports/iso-additional-insured-editions/#report"
+        },
+        {
+          "@id": "https://coijournal.com/reports/workers-comp-premium-fraud/#report"
+        },
+        {
+          "@id": "https://coijournal.com/reports/workers-comp-coverage-lookups/#report"
+        },
+        {
+          "@id": "https://coijournal.com/reports/naic-ai-bulletin-and-coi-review/#report"
+        },
+        {
+          "@id": "https://coijournal.com/reports/construction-insurance-market-q3-2026/#report"
+        },
+        {
+          "@id": "https://coijournal.com/reports/acord-25-limits-wording/#report"
+        },
+        {
+          "@id": "https://coijournal.com/reports/coi-tool-specification/#report"
+        },
+        {
+          "@id": "https://coijournal.com/reports/fixing-gaps-brokers-gcs/#report"
+        },
+        {
+          "@id": "https://coijournal.com/reports/per-project-requirements-and-renewals/#report"
+        },
+        {
+          "@id": "https://coijournal.com/reports/can-ai-review-a-coi/#report"
+        },
+        {
+          "@id": "https://coijournal.com/reports/spreadsheet-service-software/#report"
+        },
+        {
+          "@id": "https://coijournal.com/reports/broker-coi-request-load/#report"
+        },
+        {
+          "@id": "https://coijournal.com/reports/subcontract-insurance-requirements/#report"
+        },
+        {
+          "@id": "https://coijournal.com/reports/coverage-lapse-mid-project/#report"
+        },
+        {
+          "@id": "https://coijournal.com/reports/additional-insured-endorsements/#report"
+        },
+        {
+          "@id": "https://coijournal.com/reports/reading-a-coi-against-requirements/#report"
+        },
+        {
+          "@id": "https://coijournal.com/reports/why-contractors-send-certificates/#report"
+        },
+        {
           "@id": "https://coijournal.com/reports/rented-falsified-excluded/#report"
         },
         {
@@ -242,6 +305,19 @@ p,li{text-wrap:pretty}
   .hx-dim::before{top:0}.hx-dim::after{bottom:0;right:auto}
   .hx-key{grid-template-columns:minmax(0,1fr);gap:14px}
 }
+/* Report lists */
+.rq{margin-top:22px;padding:14px 18px;border:1px solid var(--rule);border-left:4px solid var(--ink);background:var(--card);border-radius:4px;font-family:var(--serif);font-size:19px;line-height:1.45}
+.rq b{display:block;font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--cy2);margin-bottom:4px}
+.rrows{list-style:none;margin-top:14px;border-top:1px solid var(--rule)}
+.rrows li{border-bottom:1px solid var(--rule)}
+.rrows a{display:grid;grid-template-columns:64px minmax(0,1fr);gap:2px 16px;padding:14px 0;text-decoration:none}
+.rrows a:hover strong{text-decoration:underline;text-decoration-color:var(--cy2);text-underline-offset:4px}
+.rrows .rn{grid-row:span 3;align-self:start;justify-self:start;font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.06em;padding:2px 7px;background:var(--ink);color:var(--o);border-radius:2px}
+.rrows strong{font-family:var(--serif);font-weight:600;font-size:19px;line-height:1.3}
+.rrows .rd{font-size:14.5px;color:var(--ink2)}
+.rrows .rm{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute)}
+.rk-h{font-family:var(--serif);font-weight:600;font-size:22px;margin-top:32px}
+.rk-h span{font-family:var(--mono);font-size:12px;font-weight:500;color:var(--mute);margin-left:6px}
 /* Resource Center tiles */
 .rc-tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-top:20px}
 .rc-tile{display:flex;flex-direction:column;gap:8px;padding:18px 20px;background:var(--card);border:1px solid var(--rule);border-top:3px solid var(--o);border-radius:4px;text-decoration:none}
@@ -536,16 +612,22 @@ input[aria-invalid=true]{border-color:#B03A2E;box-shadow:0 0 0 1px #B03A2E}</sty
       <p class="dek">Long-form analysis of how contractor certificates fail, built from public documents and published reporting. Every claim is sourced. When a question needs data we don't have yet, we say so.</p>
     </div>
     <div class="rgrid"><div class="rcover">
-  <p class="rk"><b>R-02</b><span>Analyst brief</span><span>Resource Center</span></p>
-  <h3><a href="/reports/rented-falsified-excluded/">Rented, falsified, excluded: what 2026's cases say about trusting a contractor COI</a></h3>
-  <p class="rdek">Four cases from this year's reporting, read for one question: what would a general contractor have needed to see, beyond the certificate, to know the coverage was real?</p>
-  <p class="rmeta"><span>Docket COIJ-26-0003</span><span>November 13, 2026</span><span>4 min read</span></p>
+  <p class="rk"><b>R-13</b><span>White paper</span><span>Resource Center</span></p>
+  <h3><a href="/reports/coi-tool-specification/">What to require from any COI tool: a vendor-neutral specification</a></h3>
+  <p class="rdek">We don't rank software. But we can tell you what to ask for. This is a specification any COI tool, service or spreadsheet process can be measured against, with a way to test each line yourself.</p>
+  <p class="rmeta"><span>Docket COIJ-26-0014</span><span>November 13, 2026</span><span>2 min read</span></p>
 </div><div class="rcover">
-  <p class="rk"><b>R-01</b><span>White paper</span><span>Resource Center</span></p>
-  <h3><a href="/reports/certificate-is-not-coverage/">A certificate is not coverage: six ways contractor COIs fail project requirements</a></h3>
-  <p class="rdek">The certificate is the one document everyone collects and almost nobody can rely on by itself. Here is where it breaks, in the order we would check it.</p>
-  <p class="rmeta"><span>Docket COIJ-26-0002</span><span>November 13, 2026</span><span>6 min read</span></p>
+  <p class="rk"><b>R-23</b><span>Analyst brief</span><span>Resource Center</span></p>
+  <h3><a href="/reports/cost-of-manual-coi-tracking/">What does manual COI tracking cost? Reading the one published estimate</a></h3>
+  <p class="rdek">Ask what COI compliance costs and you'll find mostly vendor marketing. We found one estimate with its math shown. Here's how it's built, what it misses, and a worksheet for your own number.</p>
+  <p class="rmeta"><span>Docket COIJ-26-0024</span><span>November 13, 2026</span><span>1 min read</span></p>
+</div><div class="rcover">
+  <p class="rk"><b>R-22</b><span>Analyst brief</span><span>Resource Center</span></p>
+  <h3><a href="/reports/certificate-fraud-regulators/">Fake certificates and phantom insurers: what state regulators have warned</a></h3>
+  <p class="rdek">Regulators don't publish a count of fake certificates. They do publish warnings, and in one state, a law. Read together, the advice is consistent: verify independently, and never trust the contact details on the document you're checking.</p>
+  <p class="rmeta"><span>Docket COIJ-26-0023</span><span>November 13, 2026</span><span>2 min read</span></p>
 </div></div>
+    <section class="block" aria-labelledby="k-white-paper"><span class="eyebrow">12 white papers</span><h2 id="k-white-paper">White papers</h2><p>A problem and a way to check for it, step by step.</p><ul class="rrows"><li><a href="/reports/certificate-is-not-coverage/"><span class="rn">R-01</span><strong>A certificate is not coverage: six ways contractor COIs fail project requirements</strong><span class="rd">The certificate is the one document everyone collects and almost nobody can rely on by itself. Here is where it breaks, in the order we would check it.</span><span class="rm">White paper · November 13, 2026 · 6 min read</span></a></li><li><a href="/reports/why-contractors-send-certificates/"><span class="rn">R-03</span><strong>Why every trade sends a certificate: the COI's job in construction risk transfer</strong><span class="rd">General contractors pass risk down the contract chain to the trades doing the work. The certificate is the receipt for that handoff. Here is how the system works, and where the receipt stops being proof.</span><span class="rm">White paper · November 13, 2026 · 3 min read</span></a></li><li><a href="/reports/reading-a-coi-against-requirements/"><span class="rn">R-04</span><strong>How to read a COI against contract requirements, line by line</strong><span class="rd">Most certificate reviews check whether boxes are filled in. A real review checks each box against what the contract asked for. Here is the method, box by box.</span><span class="rm">White paper · November 13, 2026 · 3 min read</span></a></li><li><a href="/reports/additional-insured-endorsements/"><span class="rn">R-05</span><strong>Additional insured endorsements, explained: CG 20 10, CG 20 37 and the automatic forms</strong><span class="rd">Additional insured status is the single most requested, and most often missing, piece of a contractor's coverage. This is what the endorsements do, which ones matter on a construction job, and how to tell them apart.</span><span class="rm">White paper · November 13, 2026 · 3 min read</span></a></li><li><a href="/reports/coverage-lapse-mid-project/"><span class="rn">R-06</span><strong>When a contractor's coverage lapses mid-project: the exposure and the playbook</strong><span class="rd">Policies expire, get cancelled for nonpayment, or come back at renewal without the endorsements you asked for. The certificate in your file won't tell you. Here is what's at stake and what to do.</span><span class="rm">White paper · November 13, 2026 · 2 min read</span></a></li><li><a href="/reports/subcontract-insurance-requirements/"><span class="rn">R-07</span><strong>What goes into subcontract insurance requirements: a field guide for GCs and brokers</strong><span class="rd">Every subcontract insurance exhibit is built from the same parts. This guide walks through each one, what it's for, and how two public owners actually wrote theirs.</span><span class="rm">White paper · November 13, 2026 · 3 min read</span></a></li><li><a href="/reports/broker-coi-request-load/"><span class="rn">R-08</span><strong>The broker's side of the COI: why requests pile up and how to answer deficiency notices</strong><span class="rd">For a construction broker, every new job a client wins means another round of certificates, endorsements and deficiency notices. Most of the load is predictable. Here is where it comes from and how to get ahead of it.</span><span class="rm">White paper · November 13, 2026 · 2 min read</span></a></li><li><a href="/reports/spreadsheet-service-software/"><span class="rn">R-09</span><strong>Spreadsheet, service or software: a vendor-neutral way to choose how to manage contractor COIs</strong><span class="rd">There are three ways to run a certificate program. Each one works for some companies and fails others. This paper sets out what each does well, where each breaks, and how to score them for your own company.</span><span class="rm">White paper · November 13, 2026 · 2 min read</span></a></li><li><a href="/reports/can-ai-review-a-coi/"><span class="rn">R-10</span><strong>Can AI review a COI? What machines do well, and where people stay in the loop</strong><span class="rd">AI is good at reading documents and comparing them with rules. Certificate review is mostly that. But some calls need a person, and some questions can't be answered from the documents at all.</span><span class="rm">White paper · November 13, 2026 · 2 min read</span></a></li><li><a href="/reports/per-project-requirements-and-renewals/"><span class="rn">R-11</span><strong>One set of rules per project: tracking requirements and renewals across active jobs</strong><span class="rd">A GC with a school job, a hospital job and a tenant fit-out is running three sets of insurance rules at once, for dozens of trades, with policies expiring all year. Here is a structure that holds up.</span><span class="rm">White paper · November 13, 2026 · 2 min read</span></a></li><li><a href="/reports/fixing-gaps-brokers-gcs/"><span class="rn">R-12</span><strong>Closing a coverage gap without the email chain: a deficiency workflow for GCs and brokers</strong><span class="rd">Most coverage gaps take weeks to close not because they're hard, but because the request is vague, goes to the wrong person, or arrives without the requirement it's measured against. Here is a workflow that fixes that.</span><span class="rm">White paper · November 13, 2026 · 2 min read</span></a></li><li><a href="/reports/coi-tool-specification/"><span class="rn">R-13</span><strong>What to require from any COI tool: a vendor-neutral specification</strong><span class="rd">We don't rank software. But we can tell you what to ask for. This is a specification any COI tool, service or spreadsheet process can be measured against, with a way to test each line yourself.</span><span class="rm">White paper · November 13, 2026 · 2 min read</span></a></li></ul></section><section class="block" aria-labelledby="k-analyst-brief"><span class="eyebrow">11 analyst briefs</span><h2 id="k-analyst-brief">Analyst briefs</h2><p>A set of real cases, documents or data, read for one question.</p><ul class="rrows"><li><a href="/reports/rented-falsified-excluded/"><span class="rn">R-02</span><strong>Rented, falsified, excluded: what 2026's cases say about trusting a contractor COI</strong><span class="rd">Four cases from this year's reporting, read for one question: what would a general contractor have needed to see, beyond the certificate, to know the coverage was real?</span><span class="rm">Analyst brief · November 13, 2026 · 4 min read</span></a></li><li><a href="/reports/acord-25-limits-wording/"><span class="rn">R-14</span><strong>The ACORD 25's new limits sentence: what changed in the 2025/12 edition, and what GCs should do</strong><span class="rd">The newest edition of the standard certificate adds one sentence about limits. It means the number on a certificate may be the number you asked for, not what the policy carries.</span><span class="rm">Analyst brief · November 13, 2026 · 2 min read</span></a></li><li><a href="/reports/construction-insurance-market-q3-2026/"><span class="rn">R-15</span><strong>The Q3 2026 insurance market for contractors: casualty up, property down, and what it means for endorsements</strong><span class="rd">Commercial rates fell again in the third quarter, but not on the lines contractors' certificates are built from. US casualty rose, led by auto and umbrella. Here's the picture and what it means for your requirements.</span><span class="rm">Analyst brief · November 13, 2026 · 1 min read</span></a></li><li><a href="/reports/naic-ai-bulletin-and-coi-review/"><span class="rn">R-16</span><strong>What insurance regulators say about AI, and what it means for AI-assisted COI review</strong><span class="rd">Regulators have spent three years building rules for how insurers use AI. Those rules don't apply to a GC's software. But they're a ready-made checklist for anyone deciding whether to trust an AI review.</span><span class="rm">Analyst brief · November 13, 2026 · 2 min read</span></a></li><li><a href="/reports/workers-comp-coverage-lookups/"><span class="rn">R-17</span><strong>Checking workers' comp yourself: what public proof of coverage lookups can and can't tell you</strong><span class="rd">Several states let anyone look up whether an employer has workers' comp on file. It's one of the few checks a GC can run without asking the trade or its broker. Here's what we found, and where the lookups fall short.</span><span class="rm">Analyst brief · November 13, 2026 · 2 min read</span></a></li><li><a href="/reports/workers-comp-premium-fraud/"><span class="rn">R-18</span><strong>Underreported payroll: what six construction workers' comp fraud cases show GCs</strong><span class="rd">In case after case, the pattern is the same: a contractor buys a policy for a tiny payroll and runs a much bigger crew. The certificate looks fine. Here are six cases and what they suggest a GC should check.</span><span class="rm">Analyst brief · November 13, 2026 · 2 min read</span></a></li><li><a href="/reports/iso-additional-insured-editions/"><span class="rn">R-19</span><strong>How the ISO additional insured endorsements changed: 2004, 2013 and 2019</strong><span class="rd">An endorsement's edition date isn't trivia. The same form number has meant different coverage in different decades. Here are the three changes that matter most on construction jobs.</span><span class="rm">Analyst brief · November 13, 2026 · 2 min read</span></a></li><li><a href="/reports/public-owner-requirements-compared/"><span class="rn">R-20</span><strong>Two public owners, two insurance exhibits: Oregon DOT and Sonoma County compared</strong><span class="rd">Public owners publish their insurance requirements, which makes them a rare window into how requirements are actually written. We read two side by side.</span><span class="rm">Analyst brief · November 13, 2026 · 2 min read</span></a></li><li><a href="/reports/wrap-ups-and-cois/"><span class="rn">R-21</span><strong>Wrap-ups and certificates: what changes for contractor COIs on an OCIP or CCIP</strong><span class="rd">On a wrap-up, the sponsor buys the project's core insurance for everyone enrolled. It's tempting to think certificates stop mattering. They don't. They change.</span><span class="rm">Analyst brief · November 13, 2026 · 2 min read</span></a></li><li><a href="/reports/certificate-fraud-regulators/"><span class="rn">R-22</span><strong>Fake certificates and phantom insurers: what state regulators have warned</strong><span class="rd">Regulators don't publish a count of fake certificates. They do publish warnings, and in one state, a law. Read together, the advice is consistent: verify independently, and never trust the contact details on the document you're checking.</span><span class="rm">Analyst brief · November 13, 2026 · 2 min read</span></a></li><li><a href="/reports/cost-of-manual-coi-tracking/"><span class="rn">R-23</span><strong>What does manual COI tracking cost? Reading the one published estimate</strong><span class="rd">Ask what COI compliance costs and you'll find mostly vendor marketing. We found one estimate with its math shown. Here's how it's built, what it misses, and a worksheet for your own number.</span><span class="rm">Analyst brief · November 13, 2026 · 1 min read</span></a></li></ul></section>
     <div class="col">
       <section class="method" aria-labelledby="rules-h"><h2 id="rules-h">How our reports work</h2><p>White papers set out a problem and a way to check for it. Analyst briefs read a set of real cases for one question. Both are qualitative: no survey numbers until a sample clears our <a href="/methodology/">methodology</a>. Each report gets a number and a docket, and corrections are dated on the page. Have a topic we should take on? <a href="mailto:hello@forsured.ai?subject=COI%20Journal%20report%20idea">Send it to us</a>.</p></section>
       <div class="boxed"><section class="sub" aria-labelledby="sub-reps" data-form="digest" data-placement="reports">

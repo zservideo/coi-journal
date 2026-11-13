@@ -425,6 +425,19 @@ p,li{text-wrap:pretty}
   .hx-dim::before{top:0}.hx-dim::after{bottom:0;right:auto}
   .hx-key{grid-template-columns:minmax(0,1fr);gap:14px}
 }
+/* Report lists */
+.rq{margin-top:22px;padding:14px 18px;border:1px solid var(--rule);border-left:4px solid var(--ink);background:var(--card);border-radius:4px;font-family:var(--serif);font-size:19px;line-height:1.45}
+.rq b{display:block;font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--cy2);margin-bottom:4px}
+.rrows{list-style:none;margin-top:14px;border-top:1px solid var(--rule)}
+.rrows li{border-bottom:1px solid var(--rule)}
+.rrows a{display:grid;grid-template-columns:64px minmax(0,1fr);gap:2px 16px;padding:14px 0;text-decoration:none}
+.rrows a:hover strong{text-decoration:underline;text-decoration-color:var(--cy2);text-underline-offset:4px}
+.rrows .rn{grid-row:span 3;align-self:start;justify-self:start;font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.06em;padding:2px 7px;background:var(--ink);color:var(--o);border-radius:2px}
+.rrows strong{font-family:var(--serif);font-weight:600;font-size:19px;line-height:1.3}
+.rrows .rd{font-size:14.5px;color:var(--ink2)}
+.rrows .rm{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute)}
+.rk-h{font-family:var(--serif);font-weight:600;font-size:22px;margin-top:32px}
+.rk-h span{font-family:var(--mono);font-size:12px;font-weight:500;color:var(--mute);margin-left:6px}
 /* Resource Center tiles */
 .rc-tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-top:20px}
 .rc-tile{display:flex;flex-direction:column;gap:8px;padding:18px 20px;background:var(--card);border:1px solid var(--rule);border-top:3px solid var(--o);border-radius:4px;text-decoration:none}
@@ -960,7 +973,8 @@ ${masthead('/')}
     <h2 id="rep-h">The deeper dives</h2>
     <p>Long-form, sourced analysis of where contractor COIs break and the checks that catch it.</p></div>
     <a class="btn o" href="/resources/">Open the Resource Center</a></div>
-    <div class="rgrid">${reps.map((r) => rcover(r)).join('')}</div>
+    <div class="rgrid">${featured(reps).map((r) => rcover(r)).join('')}</div>
+    <a class="more" href="/reports/">All ${reps.length} reports and white papers</a>
   </section>` : ''}
 
   ${theNumber()}
@@ -1311,6 +1325,10 @@ const rcover = (r, { h = 'h3', link = true } = {}) => `<div class="rcover">
   <p class="rmeta"><span>Docket ${esc(r.docket)}</span><span>${human(r.date)}</span><span>${r.minutes} min read</span></p>
 </div>`;
 
+const rrow = (r) => `<li><a href="${r.url}"><span class="rn">${esc(r.number)}</span><strong>${esc(r.title)}</strong><span class="rd">${esc(r.dek)}</span><span class="rm">${esc(r.kind)} · ${human(r.date)} · ${r.minutes} min read</span></a></li>`;
+const byKind = (list) => ['White paper', 'Analyst brief'].map((k) => [k, list.filter((r) => r.kind === k)]).filter(([, l]) => l.length);
+const featured = (list) => { const w = list.filter((r) => r.kind === 'White paper'); const b = list.filter((r) => r.kind === 'Analyst brief'); return [...w.slice(0, 1), ...b.slice(0, 2)].slice(0, 3); };
+
 const reportLd = (r) => ({
   '@type': 'Report',
   '@id': `${SITE}${r.url}#report`,
@@ -1335,7 +1353,8 @@ const reportLd = (r) => ({
 });
 
 function reportPage(r, all, y) {
-  const others = all.filter((x) => x !== r);
+  const overlap = (x) => (x.about || []).filter((t) => (r.about || []).includes(t)).length + (x.kind !== r.kind ? 0.5 : 0);
+  const others = all.filter((x) => x !== r).sort((a, b) => overlap(b) - overlap(a) || (a.number < b.number ? 1 : -1)).slice(0, 3);
   return `${head({ title: `${r.short}: ${r.kind} | COI Journal`, description: r.description, url: r.url, type: 'article', jsonld: [reportLd(r), PUBLISHER, WEBSITE, crumbs([['Resource Center', '/resources/'], ['Reports', '/reports/'], [r.short, r.url]])], published: r.date, modified: r.updated, md: true })}
 ${masthead(r.url, true)}
 <main id="main" class="wrap">
@@ -1344,6 +1363,7 @@ ${masthead(r.url, true)}
       <p class="eyebrow"><a href="/resources/">Resource Center</a> · <a href="/reports/">Reports</a></p>
       <div style="margin-top:14px">${rcover(r, { h: 'h1', link: false })}</div>
       <p class="byl">By ${esc(r.byline)}, COI Journal · <time datetime="${r.date}">${human(r.date)}</time>${r.updated !== r.date ? ` · Updated <time datetime="${r.updated}">${human(r.updated)}</time>` : ''}</p>
+      ${r.question ? `<p class="rq"><b>The question</b>${esc(r.question)}</p>` : ''}
       <section class="findings" aria-labelledby="kf-h"><h2 id="kf-h">Key findings</h2><ol>${r.takeaways.map((t) => `<li>${inline(t)}</li>`).join('')}</ol></section>
       <nav class="toc" aria-labelledby="toc-h"><h2 id="toc-h">In this ${esc(r.kind.toLowerCase())}</h2><ol>${r.toc.map((t) => `<li><a href="#${slugify(t)}">${inline(t)}</a></li>`).join('')}</ol></nav>
       <div class="prose">
@@ -1377,7 +1397,8 @@ function reportsIndex(list, y) {
       <h1>Reports and white papers</h1>
       <p class="dek">Long-form analysis of how contractor certificates fail, built from public documents and published reporting. Every claim is sourced. When a question needs data we don't have yet, we say so.</p>
     </div>
-    <div class="rgrid">${list.map((r) => rcover(r)).join('')}</div>
+    <div class="rgrid">${featured(list).map((r) => rcover(r)).join('')}</div>
+    ${byKind(list).map(([k, l]) => `<section class="block" aria-labelledby="k-${slugify(k)}"><span class="eyebrow">${l.length} ${esc(k.toLowerCase())}s</span><h2 id="k-${slugify(k)}">${k === 'White paper' ? 'White papers' : 'Analyst briefs'}</h2><p>${k === 'White paper' ? 'A problem and a way to check for it, step by step.' : 'A set of real cases, documents or data, read for one question.'}</p><ul class="rrows">${l.slice().sort((a, b) => (a.number > b.number ? 1 : -1)).map(rrow).join('')}</ul></section>`).join('')}
     <div class="col">
       <section class="method" aria-labelledby="rules-h"><h2 id="rules-h">How our reports work</h2><p>White papers set out a problem and a way to check for it. Analyst briefs read a set of real cases for one question. Both are qualitative: no survey numbers until a sample clears our <a href="/methodology/">methodology</a>. Each report gets a number and a docket, and corrections are dated on the page. Have a topic we should take on? <a href="mailto:${CONTACT}?subject=COI%20Journal%20report%20idea">Send it to us</a>.</p></section>
       <div class="boxed">${signup('sub-reps', 'reports').replace('The weekly email', 'New reports in The COI Digest')}</div>
@@ -1402,7 +1423,8 @@ function resourcesPage(list, reading, y) {
       <p class="dek">Reports and white papers, reference, tools and research on contractor certificates of insurance. Bookmark this page. It's where the Journal's lasting work lives.</p>
     </div>
     <section class="block" aria-labelledby="rc-rep"><span class="eyebrow">Reports and white papers</span><h2 id="rc-rep">The deeper dives</h2><p>Long-form, sourced analysis of where contractor COIs break and the checks that catch it.</p>
-      <div class="rgrid">${list.map((r) => rcover(r)).join('')}</div>
+      <div class="rgrid">${featured(list).map((r) => rcover(r)).join('')}</div>
+      ${byKind(list).map(([k, l]) => `<h3 class="rk-h">${k === 'White paper' ? 'White papers' : 'Analyst briefs'} <span>${l.length}</span></h3><ul class="rrows">${l.slice().sort((a, b) => (a.number > b.number ? 1 : -1)).map(rrow).join('')}</ul>`).join('')}
       <a class="more" href="/reports/">All reports</a>
     </section>
     <section class="block" aria-labelledby="rc-tools"><span class="eyebrow">Reference, tools and research</span><h2 id="rc-tools">Look it up, try it, measure it</h2>
@@ -1450,11 +1472,95 @@ function sitemap(arts, pgs, reps) {
 const robots = () => `User-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`;
 
 function llms(arts, pgs, reps) {
-  return `# COI Journal\n\n> A publication about construction insurance compliance: contractor certificates of insurance (COIs), endorsements, project requirements and who pays when coverage fails. Published by Forsured (${FORSURED}), a construction insurance compliance software company. COI Journal does not rank or review software vendors.\n\n## Articles\n\n${arts.map((a) => `- [${a.title}](${SITE}${a.url}index.md): ${a.description}`).join('\n')}\n\n## Reports and white papers (Resource Center, ${SITE}/resources/)\n\n${reps.map((r) => `- [${r.number}: ${r.title}](${SITE}${r.url}index.md): ${r.description}`).join('\n')}\n\n## About the publication\n\n${pgs.map((p) => `- [${p.title}](${SITE}${p.url}): ${p.description}`).join('\n')}\n\n## The COI Dictionary\n\n${TERMS.map((t) => `- [${t.term}](${SITE}/dictionary/${t.slug}/index.md): ${t.def}`).join('\n')}\n\n## Masthead\n\n${PEOPLE.map((p) => `- [${p.name}](${SITE}/people/${p.slug}/), ${p.role}. ${p.disclose}`).join('\n')}\n\n## Reference explainers (on the publisher's site)\n\n${LIBRARY.map(([p, t]) => `- [${t}](${FORSURED}${p})`).join('\n')}\n`;
+  return `# COI Journal\n\n> A publication about construction insurance compliance: contractor certificates of insurance (COIs), endorsements, project requirements and who pays when coverage fails. Published by Forsured (${FORSURED}), a construction insurance compliance software company. COI Journal does not rank or review software vendors.\n\n## Articles\n\n${arts.map((a) => `- [${a.title}](${SITE}${a.url}index.md): ${a.description}`).join('\n')}\n\n## Reports and white papers (Resource Center, ${SITE}/resources/)\n\n${reps.map((r) => `- [${r.number}: ${r.title}](${SITE}${r.url}index.md): ${r.description}`).join('\n')}\n\n## About the publication\n\n${pgs.map((p) => `- [${p.title}](${SITE}${p.url}): ${p.description}`).join('\n')}\n\n## The COI Dictionary\n\n${TERMS.map((t) => `- [${t.term}](${SITE}/dictionary/${t.slug}/index.md): ${t.def}`).join('\n')}\n\n## Masthead\n\n${PEOPLE.map((p) => `- [${p.name}](${SITE}/people/${p.slug}/), ${p.role}. ${p.disclose}`).join('\n')}\n\n## For AI agents\n\n- [COI review skill (SKILL.md)](${SITE}/resources/agents/skill/coi-review/SKILL.md): teaches an agent to check a contractor COI and endorsements against project requirements. Zip: ${SITE}/resources/agents/skill/coi-review.zip\n\n## Reference explainers (on the publisher's site)\n\n${LIBRARY.map(([p, t]) => `- [${t}](${FORSURED}${p})`).join('\n')}\n`;
 }
 
-const reportMd = (r) => `# ${r.title}\n\n${r.kind} ${r.number}, COI Journal Resource Center. ${r.dek}\n\nBy ${r.byline}, COI Journal. ${human(r.date)}. Docket ${r.docket}. Published by Forsured.\n\n## Key findings\n\n${r.takeaways.map((t) => `- ${plain(t)}`).join('\n')}\n\n${r.body.replace(/\]\(\//g, `](${SITE}/`)}\n\n## How we wrote this\n\n${r.method}\n\n## Sources\n\n${r.sources.map((s) => `- [${s.title}](${s.url})${s.publisher ? `, ${s.publisher}` : ''}${s.date ? `, ${s.date}` : ''}`).join('\n')}\n`;
+const reportMd = (r) => `# ${r.title}\n\n${r.kind} ${r.number}, COI Journal Resource Center. ${r.dek}\n\n${r.question ? `Question: ${r.question}\n\n` : ''}By ${r.byline}, COI Journal. ${human(r.date)}. Docket ${r.docket}. Published by Forsured.\n\n## Key findings\n\n${r.takeaways.map((t) => `- ${plain(t)}`).join('\n')}\n\n${r.body.replace(/\]\(\//g, `](${SITE}/`)}\n\n## How we wrote this\n\n${r.method}\n\n## Sources\n\n${r.sources.map((s) => `- [${s.title}](${s.url})${s.publisher ? `, ${s.publisher}` : ''}${s.date ? `, ${s.date}` : ''}`).join('\n')}\n`;
 const termMd = (t) => `# ${t.term}\n\nCOI Journal, The COI Dictionary. Published by Forsured. Reference only, not legal or insurance advice.\n\nForms: ${t.forms.join(', ')}\n\n## Definition\n\n${t.def}\n\n${t.sections.map(([h, b]) => `## ${h}\n\n${b}`).join('\n\n')}\n\n## Related\n\n${t.related.map((r) => `- [${term(r).term}](${SITE}/dictionary/${r}/index.md)`).join('\n')}\n\nSource page: ${SITE}/dictionary/${t.slug}/\n`;
+
+// The COI review skill pack: an Agent Skills folder (SKILL.md plus reference files) that teaches an AI
+// agent to check a contractor certificate and its endorsements against a project's requirements. Reference
+// only: the agent reports gaps, people decide. Built from the Dictionary and the reports, so it stays in sync.
+const SKILL_DIR = 'resources/agents/skill/coi-review';
+function skillFiles(reps) {
+  const r01 = reps.find((r) => r.number === 'R-01');
+  const files = {};
+  files['SKILL.md'] = `---
+name: coi-review
+description: Check a contractor certificate of insurance (ACORD 25) and its endorsements against a construction project's insurance requirements, and report every gap with the document that would fix it. Use when asked to review a COI, check contractor insurance compliance, or draft a deficiency notice.
+---
+
+# COI review
+
+From COI Journal (${SITE}), published by Forsured. Version ${EDITION}. Reference only, not legal or insurance advice.
+
+## Your role
+
+You help a compliance team find gaps between what a project requires and what a contractor's documents prove. You do not decide coverage, accept shortfalls or take action on a contract. People do. Say so if asked to.
+
+## Inputs you need
+
+1. The project's insurance requirements, per trade (from the subcontract or its insurance exhibit).
+2. The contractor's certificate of insurance, usually ACORD 25.
+3. Every endorsement the requirements call for (additional insured, primary and noncontributory, waiver of subrogation, per project aggregate, completed operations).
+
+If any input is missing, say which, and treat every requirement that depends on it as not yet proven.
+
+## Rules
+
+- A certificate confers no rights on its holder (ACORD 25 says so on its face). A Y in ADDL INSD or SUBR WVD is a claim, not proof. Ask for the endorsement.
+- Never infer that an endorsement exists. No document, no pass.
+- Check ongoing and completed operations separately.
+- The ACORD 25 (2025/12) lets limits shown equal the amount the holder requested. A limit at or above the requirement passes; do not treat it as the policy's ceiling.
+- Check that the named insured is the company that signed the subcontract.
+- Carrier forms that are not ISO forms need a person (usually the broker) to confirm equivalence. Flag them.
+- Quote the requirement you are checking. Do not paraphrase contract language into something stronger or weaker.
+
+## Procedure
+
+1. List the requirements as rows.
+2. For each row, find the evidence in the documents and record: present (yes/no), sufficient (yes/no), current until (date).
+3. Mark each failure as a paper fix (coverage likely exists, proof missing) or a coverage fix (policy must change).
+4. Name the document that would fix each failure, with form numbers where they apply.
+5. Note every expiration date for the renewal diary.
+
+## Output
+
+A table with columns: Requirement | Evidence found | Present | Sufficient | Current until | Fix (document) | Fix type. Then a one-pass deficiency notice addressed to the contractor's broker (the producer on the certificate), listing every gap with the requirement quoted and a due date left blank for the team to fill in.
+
+## References
+
+- references/failure-modes.md: the six ways certificates fail project requirements.
+- references/checking-order.md: the order to check, and the renewal diary.
+- references/dictionary/: one file per term, with form numbers.
+
+## Where this fits
+
+Agents read the reference and do the first pass. A system of record holds the certificates, endorsements, requirements and audit trail; COI Journal's publisher, Forsured (${FORSURED}), makes one. People make the coverage calls.
+`;
+  files['references/failure-modes.md'] = `# Six ways contractor COIs fail project requirements\n\nFrom COI Journal ${r01 ? r01.number : ''}: ${SITE}${r01 ? r01.url : '/reports/'}\n\n${r01 ? r01.body.split('\n## A checking order that works')[0].replace(/\]\(\//g, `](${SITE}/`) : ''}\n`;
+  files['references/checking-order.md'] = `# Checking order and renewal diary\n\n1. Write the project requirements down, per trade, before collecting anything.\n2. Read each certificate against those requirements, line by line.\n3. Ask for the endorsements behind every requirement the certificate claims to meet.\n4. Check the carrier's license (state insurance department or NAIC Consumer Insurance Search, https://content.naic.org/cis_consumer_information.htm) and the named insured.\n5. Diary every expiration date; request renewals with endorsements 30 days before.\n6. Check again at renewal, at substantial completion and before final payment.\n\nSee ${SITE}/reports/reading-a-coi-against-requirements/ and ${SITE}/reports/fixing-gaps-brokers-gcs/\n`;
+  for (const t of TERMS) files[`references/dictionary/${t.slug}.md`] = termMd(t);
+  files['README.md'] = `# COI review skill\n\nAn Agent Skills folder from COI Journal. Install it in any agent that reads SKILL.md files, or load SKILL.md and the references as context.\n\nTerms of use: free to use and adapt. Please credit COI Journal (${SITE}). Reference only, not legal or insurance advice, and not a coverage decision.\n`;
+  return files;
+}
+
+// A stored (uncompressed) zip with fixed timestamps, so the build stays byte-for-byte reproducible.
+function zip(entries) {
+  const zlib = require('zlib');
+  const chunks = [], central = [];
+  let offset = 0;
+  const T = 0, D = (2026 - 1980) << 9 | 11 << 5 | 13;
+  for (const [name, text] of entries) {
+    const data = Buffer.from(text, 'utf8'), nm = Buffer.from(name, 'utf8'), crc = zlib.crc32(data);
+    const h = Buffer.alloc(30); h.writeUInt32LE(0x04034b50, 0); h.writeUInt16LE(20, 4); h.writeUInt16LE(0x0800, 6); h.writeUInt16LE(0, 8); h.writeUInt16LE(T, 10); h.writeUInt16LE(D, 12); h.writeUInt32LE(crc, 14); h.writeUInt32LE(data.length, 18); h.writeUInt32LE(data.length, 22); h.writeUInt16LE(nm.length, 26); h.writeUInt16LE(0, 28);
+    const c = Buffer.alloc(46); c.writeUInt32LE(0x02014b50, 0); c.writeUInt16LE(20, 4); c.writeUInt16LE(20, 6); c.writeUInt16LE(0x0800, 8); c.writeUInt16LE(0, 10); c.writeUInt16LE(T, 12); c.writeUInt16LE(D, 14); c.writeUInt32LE(crc, 16); c.writeUInt32LE(data.length, 20); c.writeUInt32LE(data.length, 24); c.writeUInt16LE(nm.length, 28); c.writeUInt32LE(offset, 42);
+    chunks.push(h, nm, data); central.push(c, nm); offset += 30 + nm.length + data.length;
+  }
+  const cd = Buffer.concat(central), e = Buffer.alloc(22);
+  e.writeUInt32LE(0x06054b50, 0); e.writeUInt16LE(entries.length, 8); e.writeUInt16LE(entries.length, 10); e.writeUInt32LE(cd.length, 12); e.writeUInt32LE(offset, 16);
+  return Buffer.concat([...chunks, cd, e]);
+}
 
 // For AI agents: what we publish as markdown, and the terms of use. Reference only; the checking
 // itself belongs in a system of record (our publisher's product), never in a file an agent reads.
@@ -1473,6 +1579,9 @@ function agentsPage(reps, arts, y) {
     <p class="dek">Compliance teams are starting to work alongside AI agents. Agents need reference they can trust. Everything in our Resource Center is published as clean markdown, free, with sources attached.</p>
     <div class="findings"><h2>How it fits together</h2><ol><li><strong>Agents read the reference.</strong> Terms, form numbers, failure modes and the order to check them, from these files.</li><li><strong>A system of record does the checking.</strong> The certificates, endorsements, project requirements and audit trail live in software built for it, like <a href="${fsLink('/', 'agents')}">Forsured</a>, our publisher.</li><li><strong>People make the call.</strong> Coverage decisions stay with your team and your broker.</li></ol></div>
     <div class="prose">
+      <h2 id="skill">The COI review skill</h2>
+      <p>A ready-made skill that teaches an AI agent to check a contractor certificate and its endorsements against a project's requirements, and to draft a one-pass deficiency notice for the trade's broker. It follows the Agent Skills format: a SKILL.md file plus reference files, built from our Dictionary and reports. It works with Claude and other agents that read skill files.</p>
+      <p><a class="btn" href="/${SKILL_DIR}.zip" download>Download the skill (.zip)</a> <a class="btn o" href="/${SKILL_DIR}/SKILL.md">Read SKILL.md</a></p>
       <h2 id="start-here">Start here</h2>
       <p><a href="/llms.txt">llms.txt</a> lists every file below with a one-line description. Point your agent at it first.</p>
       <h2 id="reports">Reports and white papers</h2>
@@ -1540,6 +1649,7 @@ function build() {
   const reps = reports();
   if (!arts.length) throw new Error('need at least one article');
   const y = year(arts[0].updated);
+  binaries = {};
   const files = {
     'index.html': frontPage(arts, reading, reps),
     '404.html': notFound(y),
@@ -1569,14 +1679,24 @@ function build() {
   if (reps.length) files['reports/index.html'] = reportsIndex(reps, y);
   files['resources/index.html'] = resourcesPage(reps, reading, y);
   files['resources/agents/index.html'] = agentsPage(reps, arts, y);
+  const skill = skillFiles(reps);
+  for (const [k, v] of Object.entries(skill)) files[`${SKILL_DIR}/${k}`] = v;
+  binaries[`${SKILL_DIR}.zip`] = zip(Object.entries(skill).sort(([a], [b]) => (a < b ? -1 : 1)).map(([k, v]) => [`coi-review/${k}`, v]));
   if (reading.length) files['worth-reading/index.html'] = readingPage(reading, y);
   if (reading.length >= 4) files['digest/issue-0/index.html'] = issuePage(reading, y);
   for (const f of Object.keys(files)) if (/—/.test(files[f])) throw new Error(`${f}: contains an em dash`);
   return files;
 }
 
+let binaries = {};
 const files = build();
 let stale = [];
+for (const [rel, buf] of Object.entries(binaries)) {
+  const out = path.join(ROOT, rel);
+  if (fs.existsSync(out) && fs.readFileSync(out).equals(buf)) continue;
+  if (CHECK) stale.push(rel);
+  else { fs.mkdirSync(path.dirname(out), { recursive: true }); fs.writeFileSync(out, buf); console.log('wrote', rel); }
+}
 for (const [rel, content] of Object.entries(files)) {
   const out = path.join(ROOT, rel);
   const now = fs.existsSync(out) ? fs.readFileSync(out, 'utf8') : null;
