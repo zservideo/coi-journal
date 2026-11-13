@@ -1,0 +1,14 @@
+# GitHub Pages publishes everything in the repo except what's listed here.
+exclude:
+  - tests
+  - tools
+  - content
+  - package.json
+  - package-lock.json
+  - playwright.config.js
+  - node_modules
+  - test-results
+  - playwright-report
+  - README.md
+# Articles ship a plain Markdown copy (articles/<slug>/index.md) for AI answer engines; keep Jekyll from converting it.
+markdown_ext: markdown
