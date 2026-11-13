@@ -56,10 +56,39 @@ const SECTIONS = [
 ];
 
 const NUMBERS = [
-  ['Gap rate', 'Share of contractor COIs that fail at least one project requirement, and the top reasons.'],
-  ['Broker view', 'What construction brokers see breaking most often, and how long fixes take.'],
-  ['Owner rules', 'What public owners actually require, compared state by state.'],
+  ['Gap rate', 'Share of contractor COIs that fail at least one project requirement, and the top reasons why.', 'Shared GC archives and free COI risk checks, anonymized'],
+  ['Broker view', 'What construction brokers see breaking most often, and how long a fix takes.', 'A standing quarterly panel of construction brokers'],
+  ['Owner rules', 'What public owners actually require from contractors, compared state by state.', 'Insurance sections of public bid documents'],
 ];
+
+// The specimen certificate on the front page: sample data drawn in the Forsured product style,
+// never a real contractor. [coverage, required, on the certificate, null for meets or the gap reason]
+const SPECIMEN = [
+  ['General liability', '$1M / $2M', '$1M / $2M', null],
+  ['Additional insured', 'CG 20 10 + CG 20 37', 'Box checked, no endorsement', 'No endorsement attached'],
+  ['Umbrella', '$10M', '$5M', '$5M short'],
+  ['Workers\' comp', 'Statutory + waiver', 'Statutory, no waiver', 'Waiver missing'],
+  ['Policy term', 'Through Aug 2027', 'Expires Mar 2027', 'Lapses mid-project'],
+];
+
+function specimen() {
+  const fails = SPECIMEN.filter((r) => r[3]).length;
+  return `<figure class="spec" aria-labelledby="spec-cap">
+  <div class="spec-doc">
+    <div class="spec-top"><span>Certificate of liability insurance</span><span class="spec-tag">Specimen</span></div>
+    <dl class="spec-meta"><div><dt>Insured</dt><dd>Sample Electric Co.</dd></div><div><dt>Project</dt><dd>Sample mid-rise, 2026 to 2027</dd></div></dl>
+    <div class="spec-scroll" tabindex="0" role="region" aria-label="Specimen certificate checked against project requirements"><table>
+      <thead><tr><th scope="col">Coverage</th><th scope="col">Project requires</th><th scope="col">Certificate shows</th><th scope="col">Check</th></tr></thead>
+      <tbody>${SPECIMEN.map(([c, r, o, g]) => `<tr${g ? ' class="gap"' : ''}><th scope="row">${esc(c)}</th><td>${esc(r)}</td><td>${esc(o)}</td><td>${g ? `<span class="flag">${esc(g)}</span>` : '<span class="meets">Meets</span>'}</td></tr>`).join('')}</tbody>
+    </table></div>
+    <div class="spec-foot"><span class="spec-score">${fails} of ${SPECIMEN.length} checks fail</span><span>The certificate says covered. The policy doesn't.</span></div>
+  </div>
+  <figcaption id="spec-cap">Specimen. Sample data, not a real contractor. This is the gap COI Journal covers.</figcaption>
+</figure>`;
+}
+
+// The deck's gap line: orange segments with small labels, read left to right.
+const gapline = (labels) => `<div class="gapline" aria-hidden="true">${labels.map((l) => `<span><i></i><b>${l}</b></span>`).join('')}</div>`;
 
 // ---------- reading content ----------
 
@@ -205,16 +234,49 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 .block>.eyebrow{display:block}
 .block>h2{font-family:var(--serif);font-weight:400;font-size:30px;line-height:1.2;letter-spacing:-.015em;margin-top:6px}
 .block>p{color:var(--ink2);margin-top:8px;max-width:68ch}
-.nums{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:22px;border-top:1px solid var(--rule)}
-.num{padding:18px 24px 6px 0}
-.num+.num{padding-left:24px;border-left:1px solid var(--rule)}
-.num .k{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute)}
-.num .v{font-family:var(--serif);font-variation-settings:'opsz' 144;font-size:52px;line-height:1;color:var(--rule2);margin-top:10px}
-.num h3{font-family:var(--serif);font-weight:600;font-size:20px;margin-top:12px}
-.num p{font-size:14.5px;color:var(--ink2);margin-top:6px}
-.secs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));margin-top:22px;border-top:1px solid var(--rule)}
-.sec{padding:16px 18px 4px 0}
-.sec+.sec{padding-left:18px;border-left:1px solid var(--rule)}
+.panel{margin-top:56px;background:var(--ink);color:#E9E4DA;border-radius:4px;padding:36px 36px 28px}
+.panel .eyebrow{color:#F59A6C}
+.panel h2{font-family:var(--serif);font-weight:400;font-size:clamp(26px,3vw,36px);line-height:1.15;letter-spacing:-.015em;color:#fff;margin-top:8px;max-width:22ch}
+.panel>p{font-size:15px;color:#C9C3B8;margin-top:10px;max-width:62ch}
+.panel>p a{color:#fff;text-decoration-color:var(--f)}
+.nums{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:26px}
+.num{display:flex;flex-direction:column;gap:8px;padding:18px 20px;background:#2A2B26;border:1px solid #3A3B35;border-left:3px solid var(--f);border-radius:4px}
+.num .k{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:#F59A6C}
+.num h3{font-family:var(--serif);font-weight:600;font-size:24px;line-height:1.15;color:#fff}
+.num p{font-size:14.5px;color:#D6D0C5}
+.num .src{margin-top:auto;padding-top:10px;border-top:1px solid #3A3B35;font-size:13px;color:#B5AFA4}
+.num .src b{display:block;font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#ADA79C;margin-bottom:2px}
+.chip{align-self:flex-start;display:inline-flex;align-items:center;gap:7px;padding:3px 9px;border:1px solid #4A4B45;border-radius:4px;font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:#E9E4DA}
+.chip::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--f)}
+.gapline{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;margin-top:28px}
+.gapline span{display:flex;flex-direction:column;align-items:center;gap:8px}
+.gapline i{display:block;width:100%;height:2px;background:var(--f)}
+.gapline b{font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#B5AFA4}
+.gapline.light b{color:var(--mute)}
+/* Specimen certificate: drawn like a COI on file, flagged the way the Forsured product flags it */
+.spec{margin-top:24px}
+.spec-doc{background:#fff;border:1px solid var(--rule2);border-radius:4px;padding:18px 20px 16px;color:var(--ink)}
+.spec-top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-bottom:10px;border-bottom:2px solid var(--ink);font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase}
+.spec-tag{padding:2px 8px;border:1px solid var(--f);color:var(--fdk);border-radius:3px;transform:rotate(-2deg)}
+.spec-meta{display:flex;flex-wrap:wrap;gap:6px 28px;margin-top:10px;font-size:13px}
+.spec-meta dt{display:inline;color:var(--mute);margin-right:6px}
+.spec-meta dd{display:inline;font-weight:500}
+.spec-scroll{overflow-x:auto;margin-top:12px}
+.spec table{width:100%;border-collapse:collapse;font-size:13.5px;line-height:1.4;min-width:520px}
+.spec th,.spec td{text-align:left;padding:8px 10px 8px 0;border-bottom:1px solid var(--rule);vertical-align:top}
+.spec thead th{font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.spec tbody th{font-weight:600}
+.spec tr.gap td:nth-child(3){color:var(--fdk)}
+.flag{display:inline-flex;align-items:center;gap:6px;font-weight:600;color:var(--fdk);white-space:nowrap}
+.flag::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--f);flex:none}
+.meets{display:inline-flex;align-items:center;gap:6px;color:#2D7A4C;font-weight:600}
+.meets::before{content:'';width:7px;height:7px;border-radius:50%;background:#2D7A4C}
+.spec-foot{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin-top:14px;font-family:var(--serif);font-style:italic;font-size:15px;color:var(--ink2)}
+.spec-score{font-family:var(--mono);font-style:normal;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;padding:5px 10px;background:var(--fdk);color:#fff;border-radius:3px}
+.spec figcaption{font-size:12.5px;color:var(--mute);margin-top:8px}
+.sec{border-top:2px solid var(--f)}
+.secs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0 16px;margin-top:22px}
+.sec{padding:14px 0 4px}
 .sec h3{font-family:var(--serif);font-weight:600;font-size:18px;line-height:1.25}
 .sec p{font-size:14px;color:var(--ink2);margin-top:8px}
 .lib{columns:2;column-gap:48px;margin-top:18px;list-style:none}
@@ -294,15 +356,15 @@ footer{margin-top:64px;border-top:3px double var(--ink);padding:32px 0 28px}
 .fbot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:28px;padding-top:14px;border-top:1px solid var(--rule);font-size:12px;color:var(--mute)}
 .fbot a{color:var(--ink2)}
 .fbot p{max-width:760px}
-@media(max-width:980px){.secs{grid-template-columns:repeat(2,minmax(0,1fr))}.sec:nth-child(odd){padding-left:0;border-left:0}.sec{border-top:1px solid var(--rule)}.sec:nth-child(-n+2){border-top:0}}
+@media(max-width:980px){.secs{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 16px}}
 @media(max-width:860px){
   .wrap{padding:0 16px}
-  .front{grid-template-columns:1fr}
+  .front{grid-template-columns:minmax(0,1fr)}
   .front>:first-child{padding-right:0}
   .front>*+*{border-left:0;padding-left:0;margin-top:36px;padding-top:20px;border-top:2px solid var(--ink)}
-  .nums{grid-template-columns:1fr}
-  .num,.num+.num{padding:16px 0 4px;border-left:0}
-  .num+.num{border-top:1px solid var(--rule)}
+  .nums,.gapline{grid-template-columns:1fr}
+  .gapline{gap:12px}
+  .panel{padding:26px 18px 22px;margin-left:-16px;margin-right:-16px;border-radius:0}
   .lib{columns:1}
   .house .wrap{grid-template-columns:1fr}
   .house .btns{justify-content:flex-start}
@@ -312,7 +374,7 @@ footer{margin-top:64px;border-top:3px double var(--ink);padding:32px 0 28px}
   .secnav{justify-content:flex-start;gap:0 18px}
   .prose{font-size:18px}
 }
-@media(max-width:520px){.secs{grid-template-columns:1fr}.sec,.sec+.sec{padding-left:0;border-left:0;border-top:1px solid var(--rule)}.sec:first-child{border-top:0}}
+@media(max-width:520px){.secs{grid-template-columns:1fr}}
 @media print{.strip,.secnav,.house,footer,.sub,form{display:none}}
 `.trim();
 
@@ -384,7 +446,7 @@ const HOUSE = (campaign) => `<section class="house" aria-labelledby="house-h"><d
     <h2 id="house-h">Check a contractor COI against your project requirements, free.</h2>
     <p>Forsured, which publishes COI Journal, will read one project's requirements and a contractor COI or two, and show you every gap it finds.</p>
   </div>
-  <div class="btns"><a class="btn f" href="${cta(campaign)}">Get a free COI risk check</a><a class="btn o" href="${fsLink('/', campaign)}">About Forsured</a></div>
+  <div class="btns"><a class="btn f" href="${cta(campaign)}">Get a free COI risk check →</a><a class="btn o" href="${fsLink('/', campaign)}">About Forsured</a></div>
 </div></section>`;
 
 const LEGAL = `<a href="https://app.forsured.com/terms">Terms of Service</a> and <a href="https://app.forsured.com/privacy">Privacy Policy</a>`;
@@ -506,6 +568,7 @@ ${masthead('/')}
       <h2><a href="${lead.url}">${esc(lead.title)}</a></h2>
       <p class="dek">${esc(lead.dek)}</p>
       <p class="by">By ${esc(lead.byline)} · <time datetime="${lead.date}">${human(lead.date)}</time></p>
+      ${specimen()}
       <ul>${lead.takeaways.map((t) => `<li>${inline(t)}</li>`).join('')}</ul>
       <a class="more" href="${lead.url}">Read the editors' note</a>
     </article>
@@ -520,11 +583,12 @@ ${masthead('/')}
     </aside>
   </div>
 
-  <section class="block" aria-labelledby="nums-h">
-    <span class="eyebrow">The COI Gap Index</span>
-    <h2 id="nums-h">Three numbers we're building</h2>
-    <p>We'll publish each one only when the sample clears our <a href="/methodology/">rules</a>. Until then, the slot stays empty.</p>
-    <div class="nums">${NUMBERS.map(([k, d], i) => `<div class="num"><div class="k">No. ${i + 1} · In progress</div><div class="v" aria-hidden="true">?%</div><h3>${k}</h3><p>${d}</p></div>`).join('')}</div>
+  <section class="panel" aria-labelledby="nums-h">
+    <span class="eyebrow">The COI Gap Index · First edition 2027</span>
+    <h2 id="nums-h">Three numbers nobody in construction publishes. We're building them.</h2>
+    <p>Each one runs only when its sample clears our <a href="/methodology/">rules</a>, with the sample size printed next to it.</p>
+    <div class="nums">${NUMBERS.map(([k, d, src], i) => `<div class="num"><div class="k">Headline number ${i + 1}</div><h3>${k}</h3><p>${d}</p><span class="chip">Not yet published</span><div class="src"><b>Built from</b>${src}</div></div>`).join('')}</div>
+    ${gapline(['Collect the data', 'Clear the sample rules', 'Publish with sample size'])}
   </section>
 
   <section class="block" aria-labelledby="secs-h">
