@@ -14,4 +14,4 @@
 - **One term.** An entry from [the COI Dictionary](/dictionary/), in plain English.
 - **One gap.** A new round of [Spot the Gap](/spot-the-gap/), or a reader's Gap of the Month.
 
-Five minutes to read. Unsubscribe from any email. The COI Digest is published by Forsured, and each issue says so.
+Want to see one first? [Read the preview issue](/digest/issue-0/). Five minutes to read. Unsubscribe from any email. The COI Digest is published by Forsured, and each issue says so.

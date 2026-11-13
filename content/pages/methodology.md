@@ -3,7 +3,8 @@
   "title": "Methodology and the COI Gap Index",
   "description": "How COI Journal research is built: where the data comes from, how it's anonymized, and the minimum sample sizes behind every number we publish.",
   "dek": "How our numbers are built, and the sample rules every number has to clear before it runs.",
-  "url": "/methodology/"
+  "url": "/methodology/",
+  "panelForm": true
 }
 ---
 ## The COI Gap Index
@@ -31,3 +32,9 @@ Before analysis, shared COIs are stripped of contractor names, policy numbers an
 - Every number shows its sample size and date range.
 
 These are our working rules for the first edition. If we change them, we'll say so here with the date.
+
+## How to take part
+
+- **Brokers:** join the quarterly panel below. Four short questions, answered anonymously.
+- **General contractors:** run a [free COI risk check](https://forsured.ai/?utm_source=coijournal&utm_medium=referral&utm_campaign=methodology#demo) on one project. With your written permission, the anonymized result counts toward the Gap Index sample.
+- **Everyone:** send a gap that caught you out through [Gap of the Month](/gap-of-the-month/).
