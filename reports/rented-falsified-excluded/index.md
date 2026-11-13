@@ -2,7 +2,7 @@
 
 Analyst brief R-02, COI Journal Resource Center. Four cases from this year's reporting, read for one question: what would a general contractor have needed to see, beyond the certificate, to know the coverage was real?
 
-By The editors, COI Journal. November 13, 2026. Docket COIJ-26-0003. Published by Forsured.
+By COI Journal News Staff. November 13, 2026. Docket COIJ-26-0003. Published by Forsured.
 
 ## Key findings
 

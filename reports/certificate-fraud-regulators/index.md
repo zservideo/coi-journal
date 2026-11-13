@@ -4,7 +4,7 @@ Analyst brief R-22, COI Journal Resource Center. Regulators don't publish a coun
 
 Question: How common are fake certificates of insurance, and what do state regulators advise contractors and GCs to do?
 
-By The editors, COI Journal. November 13, 2026. Docket COIJ-26-0023. Published by Forsured.
+By COI Journal News Staff. November 13, 2026. Docket COIJ-26-0023. Published by Forsured.
 
 ## Key findings
 

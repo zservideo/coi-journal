@@ -4,7 +4,7 @@
   "description": "COI Journal is a new publication on construction insurance compliance, published by Forsured. What we'll cover, what we won't, and how we'll earn your trust.",
   "dek": "Contractor certificates of insurance decide who pays when a job goes wrong. Almost nobody reports on them. We're going to.",
   "date": "2026-11-13T09:00:00-05:00",
-  "section": "From the editors",
+  "section": "From the publisher",
   "byline": "Zach Servideo",
   "author": "zach-servideo",
   "docket": "COIJ-26-0001",

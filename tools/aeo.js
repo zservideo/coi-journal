@@ -7,8 +7,8 @@
 // H2s (S2), a captioned table (S5), 5 to 8 FAQs that match FAQPage (S6), links (L1 to L3), JSON-LD rules
 // (J5, J6), the copy rules (W1 to W6) and the not-advice line (W9). What doesn't: word targets and keyword
 // counts (S4, S9), the Forsured paragraph (S7; the Journal is vendor neutral) and the ranking rules (R2).
-// The named author (S8, J1) waits until the editor has approved their name and title; until then the byline
-// stays "The editors".
+// The named author (S8, J1) waits for a firmer editorial plan and the editor's approval of their name and
+// title; until then the byline is "COI Journal News Staff".
 const fs = require('fs');
 const path = require('path');
 

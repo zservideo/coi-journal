@@ -4,7 +4,7 @@ White paper R-04, COI Journal Resource Center. Most certificate reviews check wh
 
 Question: How do I read a certificate of insurance to check whether a contractor's coverage meets our contract requirements?
 
-By The editors, COI Journal. November 13, 2026. Docket COIJ-26-0005. Published by Forsured.
+By COI Journal News Staff. November 13, 2026. Docket COIJ-26-0005. Published by Forsured.
 
 ## Key findings
 

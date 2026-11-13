@@ -4,7 +4,7 @@ Analyst brief R-20, COI Journal Resource Center. Public owners publish their ins
 
 Question: What insurance requirements do public owners put on construction contractors, and how much do they differ?
 
-By The editors, COI Journal. November 13, 2026. Docket COIJ-26-0021. Published by Forsured.
+By COI Journal News Staff. November 13, 2026. Docket COIJ-26-0021. Published by Forsured.
 
 ## Key findings
 

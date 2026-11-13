@@ -11,14 +11,14 @@ const PEOPLE = [
   {
     slug: 'zach-servideo',
     name: 'Zach Servideo',
-    role: 'Editor',
+    role: 'Publisher',
     initials: 'ZS',
     line: 'Chief Growth Officer, Forsured',
     bio: [
-      'Zach edits COI Journal and is the Chief Growth Officer of Forsured, the company that publishes it.',
+      'Zach publishes COI Journal and is the Chief Growth Officer of Forsured, the company that publishes it.',
       'A Built In columnist on portfolio careers and a former contributing editor at the Boston Business Journal, Zach set up COI Journal because the people who live with contractor certificates of insurance had almost nothing written for them.',
     ],
-    covers: ['Editorial direction', 'The COI Gap Index', 'Publishing principles'],
+    covers: ['Publishing', 'The COI Gap Index', 'Publishing principles'],
     disclose: 'Zach is an executive at Forsured, which publishes COI Journal.',
   },
   {

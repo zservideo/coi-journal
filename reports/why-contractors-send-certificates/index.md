@@ -4,7 +4,7 @@ White paper R-03, COI Journal Resource Center. General contractors pass risk dow
 
 Question: What is a certificate of insurance, and why do general contractors require one from every trade contractor?
 
-By The editors, COI Journal. November 13, 2026. Docket COIJ-26-0004. Published by Forsured.
+By COI Journal News Staff. November 13, 2026. Docket COIJ-26-0004. Published by Forsured.
 
 ## Key findings
 

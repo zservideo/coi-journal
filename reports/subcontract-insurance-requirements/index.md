@@ -4,7 +4,7 @@ White paper R-07, COI Journal Resource Center. Every subcontract insurance exhib
 
 Question: What insurance requirements do general contractors typically put in subcontract agreements?
 
-By The editors, COI Journal. November 13, 2026. Docket COIJ-26-0008. Published by Forsured.
+By COI Journal News Staff. November 13, 2026. Docket COIJ-26-0008. Published by Forsured.
 
 ## Key findings
 

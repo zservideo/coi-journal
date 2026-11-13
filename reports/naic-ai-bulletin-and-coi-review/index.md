@@ -4,7 +4,7 @@ Analyst brief R-16, COI Journal Resource Center. Regulators have spent three yea
 
 Question: How are insurance regulators approaching AI, and what should GCs ask before trusting AI to review COIs?
 
-By The editors, COI Journal. November 13, 2026. Docket COIJ-26-0017. Published by Forsured.
+By COI Journal News Staff. November 13, 2026. Docket COIJ-26-0017. Published by Forsured.
 
 ## Key findings
 

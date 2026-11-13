@@ -831,7 +831,9 @@ function masthead(current, small) {
 </header>`;
 }
 
-// The byline: monogram, linked name, role. Falls back to plain text for "The editors".
+// A staff byline already names the Journal; anything else gets ", COI Journal" added.
+const staffName = (b) => (/COI Journal/.test(b) ? b : `${b}, COI Journal`);
+// The byline: monogram, linked name, role. Falls back to plain text for a staff byline ("COI Journal News Staff").
 function byline(a) {
   const p = person(a.author);
   const when = `<time datetime="${a.date}">${human(a.date)}</time>${a.updated !== a.date ? ` · Updated <time datetime="${a.updated}">${human(a.updated)}</time>` : ''}`;
@@ -996,7 +998,7 @@ ${masthead('/')}
       ${byline(lead)}
       ${blueprint({ sheet: lead.sheet || 'A-001', title: lead.title, docket: lead.docket, date: lead.date, motif: lead.art || 'gap' })}
       <ul>${lead.takeaways.map((t) => `<li>${inline(t)}</li>`).join('')}</ul>
-      <a class="more" href="${lead.url}">Read the editors' note</a>
+      <a class="more" href="${lead.url}">Read the publisher's note</a>
     </article>
     <aside class="side" aria-label="Subscribe and submit">
       ${signup('sub-front', 'front')}
@@ -1009,7 +1011,7 @@ ${masthead('/')}
       <div class="clip">
         <span class="eyebrow">The masthead</span>
         <h3>Written by people who sign, issue and chase COIs</h3>
-        <p>A GC owner, a contractor operator, a construction broker and two editors.</p>
+        <p>A GC owner, a contractor operator, a construction broker, an associate editor and our publisher.</p>
         <a href="/masthead/">Meet the masthead</a>
       </div>
     </aside>
@@ -1096,7 +1098,7 @@ function articlePage(a, arts) {
       image: [`${SITE}/assets/og.png`],
       datePublished: a.date,
       dateModified: a.updated,
-      author: person(a.author) ? { '@id': personLd(person(a.author))['@id'] } : { '@type': 'Organization', name: `COI Journal (${a.byline})`, url: `${SITE}/about/` },
+      author: person(a.author) ? { '@id': personLd(person(a.author))['@id'] } : { '@type': 'Organization', name: staffName(a.byline), url: `${SITE}/about/` },
       identifier: a.docket,
       publisher: { '@id': PUBLISHER['@id'] },
       mainEntityOfPage: `${SITE}${a.url}`,
@@ -1176,7 +1178,7 @@ const crumbs = (items) => ({ '@type': 'BreadcrumbList', itemListElement: [['COI 
 function mastheadPage(y) {
   return shell({
     title: 'Masthead | COI Journal',
-    description: 'Who writes and edits COI Journal: a GC owner, a contractor operator, a construction broker and two editors. Every connection to Forsured is disclosed.',
+    description: 'Who writes COI Journal: a GC owner, a contractor operator, a construction broker, an associate editor and our publisher. Every Forsured connection is disclosed.',
     url: '/masthead/',
     campaign: 'masthead',
     y,
@@ -1397,7 +1399,7 @@ const reportLd = (r) => ({
   datePublished: r.date,
   dateModified: r.updated,
   wordCount: r.words,
-  author: { '@type': 'Organization', name: `COI Journal (${r.byline})`, url: `${SITE}/masthead/` },
+  author: { '@type': 'Organization', name: staffName(r.byline), url: `${SITE}/masthead/` },
   publisher: { '@id': PUBLISHER['@id'] },
   isPartOf: { '@id': WEBSITE['@id'] },
   mainEntityOfPage: `${SITE}${r.url}`,
@@ -1421,7 +1423,7 @@ ${masthead(r.url, true)}
     <div class="col">
       <p class="eyebrow"><a href="/resources/">Resource Center</a> · <a href="/reports/">Reports</a></p>
       <div style="margin-top:14px">${rcover(r, { h: 'h1', link: false })}</div>
-      <p class="byl">By ${esc(r.byline)}, COI Journal · <time datetime="${r.date}">${human(r.date)}</time>${r.updated !== r.date ? ` · Updated <time datetime="${r.updated}">${human(r.updated)}</time>` : ''}</p>
+      <p class="byl">By ${esc(staffName(r.byline))} · <time datetime="${r.date}">${human(r.date)}</time>${r.updated !== r.date ? ` · Updated <time datetime="${r.updated}">${human(r.updated)}</time>` : ''}</p>
       ${r.answer ? `<p class="answer">${inline(r.answer)}</p>` : ''}
       ${r.question ? `<p class="rq"><b>The question</b>${esc(r.question)}</p>` : ''}
       <section class="findings" aria-labelledby="kf-h"><h2 id="kf-h">Key findings</h2><ol>${r.takeaways.map((t) => `<li>${inline(t)}</li>`).join('')}</ol></section>
@@ -1558,7 +1560,7 @@ function llms(arts, pgs, reps) {
   return `# COI Journal\n\n> A publication about construction insurance compliance: contractor certificates of insurance (COIs), endorsements, project requirements and who pays when coverage fails. Published by Forsured (${FORSURED}), a construction insurance compliance software company. COI Journal does not rank or review software vendors.\n\n## Articles\n\n${arts.map((a) => `- [${a.title}](${SITE}${a.url}index.md): ${a.description}`).join('\n')}\n\n## Reports and white papers (Resource Center, ${SITE}/resources/)\n\n${reps.map((r) => `- [${r.number}: ${r.title}](${SITE}${r.url}index.md): ${r.description}`).join('\n')}\n\n## About the publication\n\n${pgs.map((p) => `- [${p.title}](${SITE}${p.url}): ${p.description}`).join('\n')}\n\n## The COI Dictionary\n\n${TERMS.map((t) => `- [${t.term}](${SITE}/dictionary/${t.slug}/index.md): ${t.def}`).join('\n')}\n\n## Masthead\n\n${PEOPLE.map((p) => `- [${p.name}](${SITE}/people/${p.slug}/), ${p.role}. ${p.disclose}`).join('\n')}\n\n## For AI agents\n\n- [COI review skill (SKILL.md)](${SITE}/resources/agents/skill/coi-review/SKILL.md): teaches an agent to check a contractor COI and endorsements against project requirements. Zip: ${SITE}/resources/agents/skill/coi-review.zip\n\n## Reference explainers (on the publisher's site)\n\n${LIBRARY.map(([p, t]) => `- [${t}](${FORSURED}${p})`).join('\n')}\n`;
 }
 
-const reportMd = (r) => `# ${r.title}\n\n${r.kind} ${r.number}, COI Journal Resource Center. ${r.dek}\n\n${r.answer ? `${plain(r.answer)}\n\n` : ''}${r.question ? `Question: ${r.question}\n\n` : ''}By ${r.byline}, COI Journal. ${human(r.date)}. Docket ${r.docket}. Published by Forsured.\n\n## Key findings\n\n${r.takeaways.map((t) => `- ${plain(t)}`).join('\n')}\n\n${r.body.replace(/^Table: (.+)$/gm, '*$1*').replace(/\]\(\//g, `](${SITE}/`)}\n\n${r.faq && r.faq.length ? `## Common questions\n\n${r.faq.map((f) => `### ${f.q}\n\n${f.a.replace(/\]\(\//g, `](${SITE}/`)}`).join('\n\n')}\n\n` : ''}## How we wrote this\n\n${r.method}\n\n## Sources\n\n${r.sources.map((s) => `- [${s.title}](${s.url})${s.publisher ? `, ${s.publisher}` : ''}${s.date ? `, ${s.date}` : ''}`).join('\n')}\n`;
+const reportMd = (r) => `# ${r.title}\n\n${r.kind} ${r.number}, COI Journal Resource Center. ${r.dek}\n\n${r.answer ? `${plain(r.answer)}\n\n` : ''}${r.question ? `Question: ${r.question}\n\n` : ''}By ${staffName(r.byline)}. ${human(r.date)}. Docket ${r.docket}. Published by Forsured.\n\n## Key findings\n\n${r.takeaways.map((t) => `- ${plain(t)}`).join('\n')}\n\n${r.body.replace(/^Table: (.+)$/gm, '*$1*').replace(/\]\(\//g, `](${SITE}/`)}\n\n${r.faq && r.faq.length ? `## Common questions\n\n${r.faq.map((f) => `### ${f.q}\n\n${f.a.replace(/\]\(\//g, `](${SITE}/`)}`).join('\n\n')}\n\n` : ''}## How we wrote this\n\n${r.method}\n\n## Sources\n\n${r.sources.map((s) => `- [${s.title}](${s.url})${s.publisher ? `, ${s.publisher}` : ''}${s.date ? `, ${s.date}` : ''}`).join('\n')}\n`;
 const termMd = (t) => `# ${t.term}\n\nCOI Journal, The COI Dictionary. Published by Forsured. Reference only, not legal or insurance advice.\n\nForms: ${t.forms.join(', ')}\n\n## Definition\n\n${t.def}\n\n${t.sections.map(([h, b]) => `## ${h}\n\n${b}`).join('\n\n')}\n\n## Related\n\n${t.related.map((r) => `- [${term(r).term}](${SITE}/dictionary/${r}/index.md)`).join('\n')}\n\nSource page: ${SITE}/dictionary/${t.slug}/\n`;
 
 // The COI review skill pack: an Agent Skills folder (SKILL.md plus reference files) that teaches an AI
@@ -1682,7 +1684,7 @@ function agentsPage(reps, arts, y) {
   </article>`,
   });
 }
-const articleMd = (a) => `# ${a.title}\n\n${a.dek}\n\nBy ${a.byline}, COI Journal. ${human(a.date)}. Published by Forsured.\n\n## The short version\n\n${a.takeaways.map((t) => `- ${plain(t)}`).join('\n')}\n\n${a.body.replace(/\]\(\//g, `](${SITE}/`)}\n`;
+const articleMd = (a) => `# ${a.title}\n\n${a.dek}\n\nBy ${staffName(a.byline)}. ${human(a.date)}. Published by Forsured.\n\n## The short version\n\n${a.takeaways.map((t) => `- ${plain(t)}`).join('\n')}\n\n${a.body.replace(/\]\(\//g, `](${SITE}/`)}\n`;
 
 // The welcome email the Make scenario sends each new Digest subscriber (fetched at send time).
 // Table layout and inline styles only, because email clients drop most CSS.

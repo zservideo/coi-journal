@@ -4,7 +4,7 @@ White paper R-08, COI Journal Resource Center. For a construction broker, every 
 
 Question: As an insurance broker, how do I handle constant COI and endorsement requests and deficiency notices from contractor clients on construction jobs?
 
-By The editors, COI Journal. November 13, 2026. Docket COIJ-26-0009. Published by Forsured.
+By COI Journal News Staff. November 13, 2026. Docket COIJ-26-0009. Published by Forsured.
 
 ## Key findings
 

@@ -43,7 +43,7 @@ can't fail on its release morning. A report is gated when it has a brief or is d
 - Minified JSON-LD, no HTML comments, `dateModified` equal to the visible Updated date.
 - Copy rules W1 to W6 (also run on Worth Reading picks) and the not-advice line.
 - Not carried over: word and keyword counts, the Forsured paragraph and ranking rules. The byline stays
-  "The editors" until the editor approves their name and title.
+  "COI Journal News Staff" until the editorial plan is set and the editor approves their name and title.
 
 ## Wiring
 

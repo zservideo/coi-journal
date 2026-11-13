@@ -9,7 +9,7 @@
   "kind": "White paper",
   "number": "R-37",
   "date": "2026-11-19T06:30:00-05:00",
-  "byline": "The editors",
+  "byline": "COI Journal News Staff",
   "docket": "COIJ-26-0038",
   "about": [
     "certificate-of-insurance",

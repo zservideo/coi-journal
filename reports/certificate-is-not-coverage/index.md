@@ -2,7 +2,7 @@
 
 White paper R-01, COI Journal Resource Center. The certificate is the one document everyone collects and almost nobody can rely on by itself. Here is where it breaks, in the order we would check it.
 
-By The editors, COI Journal. November 13, 2026. Docket COIJ-26-0002. Published by Forsured.
+By COI Journal News Staff. November 13, 2026. Docket COIJ-26-0002. Published by Forsured.
 
 ## Key findings
 

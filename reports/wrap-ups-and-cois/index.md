@@ -4,7 +4,7 @@ Analyst brief R-21, COI Journal Resource Center. On a wrap-up, the sponsor buys 
 
 Question: On a wrap-up project with an OCIP or CCIP, what insurance do contractors still need to carry and prove?
 
-By The editors, COI Journal. November 13, 2026. Docket COIJ-26-0022. Published by Forsured.
+By COI Journal News Staff. November 13, 2026. Docket COIJ-26-0022. Published by Forsured.
 
 ## Key findings
 

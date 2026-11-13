@@ -8,7 +8,7 @@
   "kind": "White paper",
   "number": "R-04",
   "date": "2026-11-13T00:00:00-05:00",
-  "byline": "The editors",
+  "byline": "COI Journal News Staff",
   "docket": "COIJ-26-0005",
   "about": ["certificate-of-insurance", "additional-insured", "per-project-aggregate", "notice-of-cancellation"],
   "takeaways": [
