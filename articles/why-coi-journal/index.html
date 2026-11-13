@@ -303,6 +303,19 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 .answers li+li{margin-top:8px}
 .answers a{font-weight:600;text-decoration-color:var(--f)}
 .tease .spec table{min-width:0}
+.pick-card{margin-top:18px;padding:18px 20px;background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--cy2);border-radius:4px}
+.pick-card h3{font-family:var(--serif);font-weight:600;font-size:21px;line-height:1.3;margin-top:6px}
+.pick-card h3 a{text-decoration:none}.pick-card h3 a:hover{text-decoration:underline;text-decoration-color:var(--f)}
+.pick-card p{font-size:15.5px;color:var(--ink2);margin-top:8px}
+.pick-card .src-line{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute)!important;margin-top:0!important}
+.outlet{color:var(--cy2);font-weight:500}
+.why{padding-top:8px;border-top:1px dashed var(--rule2)}
+.why b{display:block;font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--fdk);margin-bottom:2px}
+.out{display:inline-block;margin-top:10px;font-size:14px;font-weight:600;text-decoration-color:var(--f)}
+.week{margin-top:32px}
+.picks3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.picks3 .pick-card{margin-top:18px}
+@media(max-width:860px){.picks3{grid-template-columns:1fr}}
 /* Video */
 .video{position:relative;margin-top:24px;aspect-ratio:9/16;max-width:360px;background:var(--cy);border-radius:4px;overflow:hidden}
 .video button{position:absolute;inset:0;border:0;background:transparent;color:#fff;font:600 16px var(--sans);cursor:pointer}
@@ -417,7 +430,7 @@ footer{margin-top:64px;border-top:3px double var(--ink);padding:32px 0 28px}
     </div>
     <div class="dateline"><span><b>Vol. 1 · No. 0</b></span><span>Contractor COIs · Endorsements · Project requirements</span><span>Launching December 2026</span></div>
   </div></div>
-  <nav class="secnav wrap" aria-label="Sections"><a href="/">Front page</a><a href="/spot-the-gap/">Spot the Gap</a><a href="/dictionary/">The Dictionary</a><a href="/methodology/">Data desk</a><a href="/digest/">The COI Digest</a><a href="/masthead/">Masthead</a><a href="/about/">About</a></nav>
+  <nav class="secnav wrap" aria-label="Sections"><a href="/">Front page</a><a href="/spot-the-gap/">Spot the Gap</a><a href="/dictionary/">The Dictionary</a><a href="/worth-reading/">Worth Reading</a><a href="/methodology/">Data desk</a><a href="/digest/">The COI Digest</a><a href="/masthead/">Masthead</a><a href="/about/">About</a></nav>
 </header>
 <main id="main" class="wrap">
   <article class="col art">
@@ -444,7 +457,7 @@ footer{margin-top:64px;border-top:3px double var(--ink);padding:32px 0 28px}
 <p>Every construction project runs on a stack of paper that most people only read when something breaks. The certificate of insurance says a contractor is covered. The endorsements say who else is covered and how. The project requirements say what everyone agreed to. When those three don't line up, the gap shows up later, usually after an injury, a claim or a denied tender.</p>
 <p>That gap is our beat.</p>
 <h2 id="what-we-ll-publish">What we'll publish</h2>
-<ul><li><strong>The data desk.</strong> The COI Gap Index, our flagship research on what share of contractor COIs fail project requirements and why. It launches once the sample is big enough to be honest; our <a href="/methodology/">methodology</a> explains the rules. Until then, <strong>The Number</strong> runs one sourced figure at a time, with the arithmetic behind it and our read on who produced it.</li><li><strong><a href="/dictionary/">The COI Dictionary</a>.</strong> One term at a time, with the form numbers: additional insured, primary and noncontributory, waiver of subrogation, per project aggregate.</li><li><strong><a href="/spot-the-gap/">Spot the Gap</a>.</strong> A specimen certificate next to a set of project requirements. Find what fails before we tell you.</li><li><strong>COI Watch.</strong> A running log of new endorsement forms, state rule changes and carrier rating moves, in The COI Digest.</li><li><strong>Plain Speak.</strong> Short videos with <a href="/people/steve-massei/">Steve Massei</a>, a general contractor who explains one insurance idea at a time in plain English.</li></ul>
+<ul><li><strong>The data desk.</strong> The COI Gap Index, our flagship research on what share of contractor COIs fail project requirements and why. It launches once the sample is big enough to be honest; our <a href="/methodology/">methodology</a> explains the rules. Until then, <strong>The Number</strong> runs one sourced figure at a time, with the arithmetic behind it and our read on who produced it.</li><li><strong><a href="/dictionary/">The COI Dictionary</a>.</strong> One term at a time, with the form numbers: additional insured, primary and noncontributory, waiver of subrogation, per project aggregate.</li><li><strong><a href="/spot-the-gap/">Spot the Gap</a>.</strong> A specimen certificate next to a set of project requirements. Find what fails before we tell you.</li><li><strong><a href="/worth-reading/">Worth Reading</a>.</strong> The best construction insurance reporting from other outlets each week, summarized in a few lines with a link to the full story.</li><li><strong>Plain Speak.</strong> Short videos with <a href="/people/steve-massei/">Steve Massei</a>, a general contractor who explains one insurance idea at a time in plain English.</li></ul>
 <h2 id="who-publishes-it">Who publishes it</h2>
 <p>COI Journal is published by <a href="https://forsured.ai/?utm_source=coijournal&amp;utm_medium=referral&amp;utm_campaign=launch-note">Forsured</a>, a construction insurance compliance software company. We're not hiding that, and we never will. You'll see &quot;Published by Forsured&quot; at the top of every page and the bottom of every email.</p>
 <p>Because we sell software in this category, we hold ourselves to a few rules. We don't rank, grade or review software vendors here, ours included. We don't publish Forsured company news here. We cite every fact we didn't produce ourselves, and we fix mistakes in the open. The full list is in our <a href="/principles/">publishing principles</a>.</p>
@@ -484,7 +497,7 @@ footer{margin-top:64px;border-top:3px double var(--ink);padding:32px 0 28px}
       <a class="fname" href="/">COI Journal</a>
       <p data-disclosure>Published by <a href="https://forsured.ai/?utm_source=coijournal&utm_medium=referral&utm_campaign=footer">Forsured</a>, a construction insurance compliance software company. We don't rank or review software vendors. <a href="/principles/">Our principles</a>.</p>
     </div>
-    <div><h2>Read</h2><nav aria-label="Footer, read"><a href="/">Front page</a><a href="/spot-the-gap/">Spot the Gap</a><a href="/dictionary/">The COI Dictionary</a><a href="/methodology/">The COI Gap Index</a><a href="/digest/">The COI Digest</a><a href="/feed.xml">RSS feed</a></nav></div>
+    <div><h2>Read</h2><nav aria-label="Footer, read"><a href="/">Front page</a><a href="/spot-the-gap/">Spot the Gap</a><a href="/dictionary/">The COI Dictionary</a><a href="/worth-reading/">Worth Reading</a><a href="/methodology/">The COI Gap Index</a><a href="/digest/">The COI Digest</a><a href="/feed.xml">RSS feed</a></nav></div>
     <div><h2>The Journal</h2><nav aria-label="Footer, the Journal"><a href="/about/">About</a><a href="/masthead/">Masthead</a><a href="/principles/">Publishing principles</a><a href="/gap-of-the-month/">Gap of the Month</a><a href="mailto:hello@forsured.ai">Contact</a></nav></div>
   </div>
   <div class="fbot">

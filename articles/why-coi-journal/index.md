@@ -20,7 +20,7 @@ That gap is our beat.
 - **The data desk.** The COI Gap Index, our flagship research on what share of contractor COIs fail project requirements and why. It launches once the sample is big enough to be honest; our [methodology](https://coijournal.com/methodology/) explains the rules. Until then, **The Number** runs one sourced figure at a time, with the arithmetic behind it and our read on who produced it.
 - **[The COI Dictionary](https://coijournal.com/dictionary/).** One term at a time, with the form numbers: additional insured, primary and noncontributory, waiver of subrogation, per project aggregate.
 - **[Spot the Gap](https://coijournal.com/spot-the-gap/).** A specimen certificate next to a set of project requirements. Find what fails before we tell you.
-- **COI Watch.** A running log of new endorsement forms, state rule changes and carrier rating moves, in The COI Digest.
+- **[Worth Reading](https://coijournal.com/worth-reading/).** The best construction insurance reporting from other outlets each week, summarized in a few lines with a link to the full story.
 - **Plain Speak.** Short videos with [Steve Massei](https://coijournal.com/people/steve-massei/), a general contractor who explains one insurance idea at a time in plain English.
 
 ## Who publishes it

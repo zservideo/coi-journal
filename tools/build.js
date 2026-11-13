@@ -58,7 +58,7 @@ const SECTIONS = [
   ['The data desk', 'The COI Gap Index and The Number: how often contractor COIs fail, and what it costs.', '/methodology/'],
   ['The Dictionary', 'One term at a time, with the form numbers: additional insured, waiver of subrogation, per project aggregate.', '/dictionary/'],
   ['Spot the Gap', 'A specimen certificate and a set of project requirements. Find what fails before we tell you.', '/spot-the-gap/'],
-  ['COI Watch', 'A running log of new endorsement forms, state rule changes and carrier rating moves.', '/digest/'],
+  ['Worth Reading', 'The best construction insurance reporting from other outlets, summarized in a few lines and linked to the full story.', '/worth-reading/'],
   ['Plain Speak', 'Steve Massei, a GC owner, explains one insurance idea at a time in plain English, on video.', '/people/steve-massei/'],
 ];
 
@@ -173,6 +173,18 @@ const articles = () =>
     .map((a) => ({ ...a, url: `/articles/${a.slug}/`, updated: a.updated || a.date }))
     .sort((a, b) => (a.date < b.date ? 1 : -1));
 const pages = () => readDir('pages', ['title', 'description', 'dek', 'url']);
+// Worth Reading: curated picks from other outlets. Each one is a short summary in our words, one line of
+// commentary and a link to the full story. Never republished, never sponsored, never a vendor blog.
+const picks = () => {
+  const list = JSON.parse(fs.readFileSync(path.join(ROOT, 'content', 'worth-reading.json'), 'utf8'));
+  for (const k of list) {
+    for (const f of ['title', 'url', 'publisher', 'date', 'summary', 'why', 'picked']) if (!k[f]) throw new Error(`worth-reading.json: "${k.title || '?'}" needs "${f}"`);
+    const words = k.summary.split(/\s+/).length;
+    if (words > 60) throw new Error(`worth-reading.json: "${k.title}" summary is ${words} words, keep it to 60`);
+    if (/\/spons\//.test(k.url)) throw new Error(`worth-reading.json: "${k.title}" is sponsored content`);
+  }
+  return list.sort((a, b) => (a.picked < b.picked ? 1 : a.picked > b.picked ? -1 : a.date < b.date ? 1 : -1));
+};
 
 // ---------- a small Markdown subset (same as forsured.ai's blog) ----------
 // Blocks: ## and ### headings, paragraphs, - and 1. lists, > quotes. Inline: **bold**, *italic*, [text](url), `code`.
@@ -414,6 +426,19 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 .answers li+li{margin-top:8px}
 .answers a{font-weight:600;text-decoration-color:var(--f)}
 .tease .spec table{min-width:0}
+.pick-card{margin-top:18px;padding:18px 20px;background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--cy2);border-radius:4px}
+.pick-card h3{font-family:var(--serif);font-weight:600;font-size:21px;line-height:1.3;margin-top:6px}
+.pick-card h3 a{text-decoration:none}.pick-card h3 a:hover{text-decoration:underline;text-decoration-color:var(--f)}
+.pick-card p{font-size:15.5px;color:var(--ink2);margin-top:8px}
+.pick-card .src-line{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute)!important;margin-top:0!important}
+.outlet{color:var(--cy2);font-weight:500}
+.why{padding-top:8px;border-top:1px dashed var(--rule2)}
+.why b{display:block;font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--fdk);margin-bottom:2px}
+.out{display:inline-block;margin-top:10px;font-size:14px;font-weight:600;text-decoration-color:var(--f)}
+.week{margin-top:32px}
+.picks3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.picks3 .pick-card{margin-top:18px}
+@media(max-width:860px){.picks3{grid-template-columns:1fr}}
 /* Video */
 .video{position:relative;margin-top:24px;aspect-ratio:9/16;max-width:360px;background:var(--cy);border-radius:4px;overflow:hidden}
 .video button{position:absolute;inset:0;border:0;background:transparent;color:#fff;font:600 16px var(--sans);cursor:pointer}
@@ -561,6 +586,7 @@ const NAV = [
   ['/', 'Front page'],
   ['/spot-the-gap/', 'Spot the Gap'],
   ['/dictionary/', 'The Dictionary'],
+  ['/worth-reading/', 'Worth Reading'],
   ['/methodology/', 'Data desk'],
   ['/digest/', 'The COI Digest'],
   ['/masthead/', 'Masthead'],
@@ -606,7 +632,7 @@ const FOOTER = (y) => `<footer><div class="wrap">
       <a class="fname" href="/">COI Journal</a>
       <p data-disclosure>Published by <a href="${fsLink('/', 'footer')}">Forsured</a>, a construction insurance compliance software company. We don't rank or review software vendors. <a href="/principles/">Our principles</a>.</p>
     </div>
-    <div><h2>Read</h2><nav aria-label="Footer, read"><a href="/">Front page</a><a href="/spot-the-gap/">Spot the Gap</a><a href="/dictionary/">The COI Dictionary</a><a href="/methodology/">The COI Gap Index</a><a href="/digest/">The COI Digest</a><a href="/feed.xml">RSS feed</a></nav></div>
+    <div><h2>Read</h2><nav aria-label="Footer, read"><a href="/">Front page</a><a href="/spot-the-gap/">Spot the Gap</a><a href="/dictionary/">The COI Dictionary</a><a href="/worth-reading/">Worth Reading</a><a href="/methodology/">The COI Gap Index</a><a href="/digest/">The COI Digest</a><a href="/feed.xml">RSS feed</a></nav></div>
     <div><h2>The Journal</h2><nav aria-label="Footer, the Journal"><a href="/about/">About</a><a href="/masthead/">Masthead</a><a href="/principles/">Publishing principles</a><a href="/gap-of-the-month/">Gap of the Month</a><a href="mailto:${CONTACT}">Contact</a></nav></div>
   </div>
   <div class="fbot">
@@ -707,7 +733,7 @@ const video = (a) => `<figure class="video" data-yt="${esc(a.video.youtube)}"><b
 <script>document.querySelectorAll('.video[data-yt]').forEach((f)=>f.querySelector('button').addEventListener('click',()=>{f.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+f.dataset.yt+'?autoplay=1" title="Plain Speak video" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>';}));</script>`;
 const videoLd = (a) => ({ '@type': 'VideoObject', name: a.title, description: a.description, uploadDate: a.video.uploadDate, duration: a.video.duration, thumbnailUrl: `https://i.ytimg.com/vi/${a.video.youtube}/hqdefault.jpg`, embedUrl: `https://www.youtube-nocookie.com/embed/${a.video.youtube}`, transcript: a.video.transcript, publisher: { '@id': PUBLISHER['@id'] } });
 
-function frontPage(arts) {
+function frontPage(arts, reading) {
   const lead = arts[0];
   const y = year(lead.date);
   return `${head({
@@ -759,6 +785,13 @@ ${masthead('/')}
       ${specimen()}
     </div>
   </section>
+
+  ${reading.length ? `<section class="block" aria-labelledby="wr-h">
+    <span class="eyebrow">Worth Reading · Picked the week of ${human(reading[0].picked)}</span>
+    <h2 id="wr-h">The best COI reporting elsewhere this week</h2>
+    <div class="picks3">${reading.slice(0, 3).map(pickCard).join('')}</div>
+    <a class="more" href="/worth-reading/">All Worth Reading picks</a>
+  </section>` : ''}
 
   <section class="panel" aria-labelledby="nums-h">
     <span class="eyebrow">The COI Gap Index · First edition 2027</span>
@@ -1025,6 +1058,33 @@ function spotPage(y) {
   });
 }
 
+const pickCard = (k) => `<article class="pick-card">
+  <p class="src-line"><span class="outlet">${esc(k.publisher)}</span>${k.author ? ` · ${esc(k.author)}` : ''} · <time datetime="${k.date}">${human(k.date)}</time></p>
+  <h3><a href="${esc(k.url)}" rel="noopener">${esc(k.title)}</a></h3>
+  <p>${esc(k.summary)}</p>
+  <p class="why"><b>Why it matters</b>${esc(k.why)}</p>
+  <a class="out" href="${esc(k.url)}" rel="noopener">Read the full story at ${esc(k.publisher)} ↗</a>
+</article>`;
+
+function readingPage(list, y) {
+  const weeks = [...new Set(list.map((k) => k.picked))];
+  return shell({
+    title: 'Worth Reading: the best COI reporting elsewhere | COI Journal',
+    description: 'Worth Reading: the week\'s best construction insurance reporting from other outlets, summarized in a few lines by COI Journal with a link to the full story.',
+    url: '/worth-reading/',
+    campaign: 'worth-reading',
+    y,
+    jsonld: [{ '@type': 'CollectionPage', '@id': `${SITE}/worth-reading/#webpage`, url: `${SITE}/worth-reading/`, name: 'Worth Reading', isPartOf: { '@id': WEBSITE['@id'] }, citation: list.map((k) => ({ '@type': 'NewsArticle', headline: k.title, url: k.url, datePublished: k.date, publisher: { '@type': 'Organization', name: k.publisher }, ...(k.author ? { author: { '@type': 'Person', name: k.author } } : {}) })) }, crumbs([['Worth Reading', '/worth-reading/']])],
+    body: `  <article class="col art">
+    <span class="eyebrow">Worth Reading</span>
+    <h1>The best COI reporting, wherever it runs</h1>
+    <p class="dek">Each week we pick the construction insurance stories worth your time from other outlets. A few lines in our own words, why it matters, and a link to the full piece. Read theirs.</p>
+    ${weeks.map((w) => `<section class="week" aria-labelledby="w-${w}"><h2 id="w-${w}" class="eyebrow">Picked the week of ${human(w)}</h2>${list.filter((k) => k.picked === w).map(pickCard).join('')}</section>`).join('')}
+    <p class="disclose">Summaries are COI Journal's own. We link to the original and don't republish it. We're not affiliated with these outlets, and we never take payment for a pick. Know a story we missed? <a href="mailto:${CONTACT}">Send it to us</a>.</p>
+  </article>`,
+  });
+}
+
 function notFound(y) {
   return `${head({ title: 'Page not found | COI Journal', description: "That page isn't here. It may have moved. Start from the COI Journal front page or the publishing principles.", url: '/404.html', jsonld: [PUBLISHER, WEBSITE] }).replace('index, follow, max-image-preview:large, max-snippet:-1', 'noindex')}
 ${masthead('', true)}
@@ -1042,7 +1102,7 @@ function feed(arts) {
   return `<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n<channel>\n  <title>COI Journal</title>\n  <link>${SITE}/</link>\n  <atom:link href="${SITE}/feed.xml" rel="self" type="application/rss+xml"/>\n  <description>Construction insurance compliance, reported. Published by Forsured.</description>\n  <language>en-us</language>\n  <lastBuildDate>${new Date(arts[0].updated).toUTCString()}</lastBuildDate>\n${items}\n</channel>\n</rss>\n`;
 }
 
-const DESK_URLS = ['/masthead/', ...PEOPLE.map((p) => `/people/${p.slug}/`), '/dictionary/', ...TERMS.map((t) => `/dictionary/${t.slug}/`), '/spot-the-gap/'];
+const DESK_URLS = ['/masthead/', ...PEOPLE.map((p) => `/people/${p.slug}/`), '/dictionary/', ...TERMS.map((t) => `/dictionary/${t.slug}/`), '/spot-the-gap/', '/worth-reading/'];
 
 function sitemap(arts, pgs) {
   const urls = [['/', arts[0].updated], ...arts.map((a) => [a.url, a.updated]), ...pgs.map((p) => [p.url, p.updated || arts[0].updated]), ...DESK_URLS.map((u) => [u, arts[0].updated])];
@@ -1068,25 +1128,26 @@ function welcome() {
 <body style="margin:0;padding:0;background-color:#F7F4EE">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" bgcolor="#F7F4EE"><tr><td align="center" style="padding:24px 12px">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px" bgcolor="#FFFDF9">
-<tr><td style="padding:28px 32px 12px;border-bottom:3px double #1F201C;text-align:center">
-<div style="font:600 34px/1 Georgia,'Times New Roman',serif;color:#1F201C;letter-spacing:-.5px">The COI Digest</div>
-<div style="font:12px/1.4 Arial,sans-serif;color:#76726A;margin-top:8px;text-transform:uppercase;letter-spacing:1px">From COI Journal · Published by Forsured</div>
+<tr><td bgcolor="#16365F" style="padding:28px 32px 18px;text-align:center;border-bottom:3px solid #FB612A">
+<div style="font:600 34px/1 Georgia,'Times New Roman',serif;color:#F4F7FB;letter-spacing:-.5px">The COI Digest</div>
+<div style="font:12px/1.4 'Courier New',monospace;color:#DCE7F4;margin-top:10px;text-transform:uppercase;letter-spacing:1.5px">From COI Journal · ${EDITION} · Published by Forsured</div>
 </td></tr>
 <tr><td style="padding:28px 32px 8px">
 ${p('Thanks for subscribing.')}
-${p('The COI Digest goes out Tuesday mornings: the week\'s construction insurance compliance news, one explainer and one gap worth knowing. Five minutes to read.')}
-${p(`While you wait for the first issue, three good places to start:`)}
+${p('The COI Digest lands Tuesday mornings. Five minutes, four parts:')}
 <ul style="margin:0 0 16px;padding-left:20px;font:16px/1.6 Georgia,'Times New Roman',serif;color:#1F201C">
-<li>${a(ut(`${FORSURED}/blog/compliance-isnt-coverage/`), "A COI on file isn't proof of coverage")}</li>
-<li>${a(ut(`${FORSURED}/blog/how-to-check-a-contractor-coi/`), 'How to check a contractor COI against your project requirements')}</li>
-<li>${a(ut(`${FORSURED}/blog/completed-operations-additional-insured/`), 'Does additional insured status cover you after the job is done?')}</li>
+<li><strong>The week in COI.</strong> Rule, court and carrier changes that change what you check.</li>
+<li><strong>Worth reading.</strong> The best construction insurance stories of the week from other publications, summarized in a few lines, with a link to the full piece.</li>
+<li><strong>One term.</strong> An entry from the COI Dictionary, in plain English.</li>
+<li><strong>One gap.</strong> A new round of Spot the Gap.</li>
 </ul>
+${p(`While you wait for the first issue, try ${a(ut(`${SITE}/spot-the-gap/`), 'Spot the Gap')}: a specimen certificate, a set of project requirements, and two rounds to find what fails. Or start with the ${a(ut(`${SITE}/dictionary/`), 'COI Dictionary')}.`)}
 ${p(`Had a coverage gap catch you out? ${a(ut(`${SITE}/gap-of-the-month/`), 'Tell us about it')}. We pick one each month.`)}
 </td></tr>
 <tr><td style="padding:8px 32px 28px">
 <table role="presentation" cellpadding="0" cellspacing="0"><tr><td bgcolor="#FB612A" style="border-radius:6px"><a href="${ut(`${FORSURED}/`)}#demo" style="display:inline-block;padding:12px 18px;font:600 15px/1 Arial,sans-serif;color:#ffffff;text-decoration:none">Get a free COI risk check from Forsured</a></td></tr></table>
 </td></tr>
-<tr><td style="padding:16px 32px 24px;border-top:1px solid #D9D3C7;font:12px/1.6 Arial,sans-serif;color:#76726A">
+<tr><td style="padding:16px 32px 24px;border-top:1px solid #D9D3C7;font:12px/1.6 Arial,sans-serif;color:#67635B">
 COI Journal and The COI Digest are published by Forsured, a construction insurance compliance software company. Reply "stop" to unsubscribe. ${a('https://app.forsured.com/privacy', 'Privacy Policy')}
 </td></tr>
 </table></td></tr></table>
@@ -1099,10 +1160,11 @@ COI Journal and The COI Digest are published by Forsured, a construction insuran
 function build() {
   const arts = articles();
   const pgs = pages();
+  const reading = picks();
   if (!arts.length) throw new Error('need at least one article');
   const y = year(arts[0].updated);
   const files = {
-    'index.html': frontPage(arts),
+    'index.html': frontPage(arts, reading),
     '404.html': notFound(y),
     'feed.xml': feed(arts),
     'sitemap.xml': sitemap(arts, pgs),
@@ -1120,6 +1182,7 @@ function build() {
   files['dictionary/index.html'] = dictionaryPage(y);
   for (const t of TERMS) files[`dictionary/${t.slug}/index.html`] = termPage(t, y);
   files['spot-the-gap/index.html'] = spotPage(y);
+  if (reading.length) files['worth-reading/index.html'] = readingPage(reading, y);
   for (const f of Object.keys(files)) if (/—/.test(files[f])) throw new Error(`${f}: contains an em dash`);
   return files;
 }
