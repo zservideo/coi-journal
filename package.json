@@ -1,0 +1,13 @@
+{
+  "name": "coi-journal",
+  "private": true,
+  "scripts": {
+    "build": "node tools/build.js",
+    "test": "playwright test",
+    "serve": "node tests/server.js"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.13.0",
+    "@playwright/test": "1.63.0"
+  }
+}

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>COI Journal</title>
+  <link>https://coijournal.com/</link>
+  <atom:link href="https://coijournal.com/feed.xml" rel="self" type="application/rss+xml"/>
+  <description>Construction insurance compliance, reported. Published by Forsured.</description>
+  <language>en-us</language>
+  <lastBuildDate>Fri, 13 Nov 2026 14:00:00 GMT</lastBuildDate>
+  <item>
+    <title>Why we're starting COI Journal</title>
+    <link>https://coijournal.com/articles/why-coi-journal/</link>
+    <guid isPermaLink="true">https://coijournal.com/articles/why-coi-journal/</guid>
+    <pubDate>Fri, 13 Nov 2026 14:00:00 GMT</pubDate>
+    <category>From the editors</category>
+    <description>COI Journal is a new publication on construction insurance compliance, published by Forsured. What we'll cover, what we won't, and how we'll earn your trust.</description>
+  </item>
+</channel>
+</rss>
