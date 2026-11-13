@@ -30,8 +30,14 @@ const CONTACT = 'hello@forsured.ai';
 const WEB3FORMS_KEY = '9f256d7f-4b10-4b26-8502-bf23abe8455d';
 // Make webhook for "COI Journal: Digest signups" (Attio list coi_digest_subscribers + welcome email).
 // Empty until the Make scenario exists; the forms then post to Web3Forms only.
-const MAKE_WEBHOOK = '';
+// Scenario 7020965 in Make; posting here is harmless while the scenario is inactive.
+const MAKE_WEBHOOK = 'https://hook.us2.make.com/98whleoxclod0c7xauzmuxxgqmxo5mpp';
 const LAUNCH = 'Launching December 2026';
+// The edition line. No. 0 is the pre-launch issue; No. 1 is the first issue of The COI Digest.
+const EDITION = 'Vol. 1 · No. 0';
+const { PEOPLE, TERMS, ROUNDS, THE_NUMBER } = require('./desk');
+const person = (slug) => PEOPLE.find((p) => p.slug === slug) || null;
+const term = (slug) => TERMS.find((t) => t.slug === slug);
 
 const cta = (campaign) => `${FORSURED}/?utm_source=coijournal&utm_medium=referral&utm_campaign=${campaign}#demo`;
 const fsLink = (p, campaign) => `${FORSURED}${p}?utm_source=coijournal&utm_medium=referral&utm_campaign=${campaign}`;
@@ -47,12 +53,13 @@ const LIBRARY = [
   ['/blog/completed-operations-additional-insured/', 'Does additional insured status cover you after the job is done?'],
 ];
 
+// [desk, what it publishes, where it lives today]
 const SECTIONS = [
-  ['News desk', 'Carrier, state and court changes that change what a GC or broker has to check.'],
-  ['COI 101', 'One term at a time: additional insured, waiver of subrogation, per project aggregate.'],
-  ['COI Watch', 'A running log of rating changes, new endorsement forms, rule changes and big project awards.'],
-  ['The Claim File', 'One case a month from public records: what the COI said, what the policy said, who paid.'],
-  ['The COI Gap Index', 'Our flagship research on how often contractor COIs fail project requirements, and why.'],
+  ['The data desk', 'The COI Gap Index and The Number: how often contractor COIs fail, and what it costs.', '/methodology/'],
+  ['The Dictionary', 'One term at a time, with the form numbers: additional insured, waiver of subrogation, per project aggregate.', '/dictionary/'],
+  ['Spot the Gap', 'A specimen certificate and a set of project requirements. Find what fails before we tell you.', '/spot-the-gap/'],
+  ['COI Watch', 'A running log of new endorsement forms, state rule changes and carrier rating moves.', '/digest/'],
+  ['Plain Speak', 'Steve Massei, a GC owner, explains one insurance idea at a time in plain English, on video.', '/people/steve-massei/'],
 ];
 
 const NUMBERS = [
@@ -61,30 +68,76 @@ const NUMBERS = [
   ['Owner rules', 'What public owners actually require from contractors, compared state by state.', 'Insurance sections of public bid documents'],
 ];
 
-// The specimen certificate on the front page: sample data drawn in the Forsured product style,
-// never a real contractor. [coverage, required, on the certificate, null for meets or the gap reason]
-const SPECIMEN = [
-  ['General liability', '$1M / $2M', '$1M / $2M', null],
-  ['Additional insured', 'CG 20 10 + CG 20 37', 'Box checked, no endorsement', 'No endorsement attached'],
-  ['Umbrella', '$10M', '$5M', '$5M short'],
-  ['Workers\' comp', 'Statutory + waiver', 'Statutory, no waiver', 'Waiver missing'],
-  ['Policy term', 'Through Aug 2027', 'Expires Mar 2027', 'Lapses mid-project'],
-];
-
-function specimen() {
-  const fails = SPECIMEN.filter((r) => r[3]).length;
-  return `<figure class="spec" aria-labelledby="spec-cap">
+// A specimen certificate: sample data drawn in the Forsured product style, never a real contractor.
+// Round 1 of Spot the Gap doubles as the front-page specimen.
+function specimen(round = ROUNDS[0], { caption = true } = {}) {
+  const fails = round.rows.filter((r) => r[3]).length;
+  return `<figure class="spec">
   <div class="spec-doc">
     <div class="spec-top"><span>Certificate of liability insurance</span><span class="spec-tag">Specimen</span></div>
-    <dl class="spec-meta"><div><dt>Insured</dt><dd>Sample Electric Co.</dd></div><div><dt>Project</dt><dd>Sample mid-rise, 2026 to 2027</dd></div></dl>
+    <dl class="spec-meta"><div><dt>Insured</dt><dd>${esc(round.insured)}</dd></div><div><dt>Project</dt><dd>${esc(round.project)}</dd></div></dl>
     <div class="spec-scroll" tabindex="0" role="region" aria-label="Specimen certificate checked against project requirements"><table>
       <thead><tr><th scope="col">Coverage</th><th scope="col">Project requires</th><th scope="col">Certificate shows</th><th scope="col">Check</th></tr></thead>
-      <tbody>${SPECIMEN.map(([c, r, o, g]) => `<tr${g ? ' class="gap"' : ''}><th scope="row">${esc(c)}</th><td>${esc(r)}</td><td>${esc(o)}</td><td>${g ? `<span class="flag">${esc(g)}</span>` : '<span class="meets">Meets</span>'}</td></tr>`).join('')}</tbody>
+      <tbody>${round.rows.map(([c, r, o, g]) => `<tr${g ? ' class="gap"' : ''}><th scope="row">${esc(c)}</th><td>${esc(r)}</td><td>${esc(o)}</td><td>${g ? '<span class="flag">Fails</span>' : '<span class="meets">Meets</span>'}</td></tr>`).join('')}</tbody>
     </table></div>
-    <div class="spec-foot"><span class="spec-score">${fails} of ${SPECIMEN.length} checks fail</span><span>The certificate says covered. The policy doesn't.</span></div>
+    <div class="spec-foot"><span class="spec-score">${fails} of ${round.rows.length} checks fail</span><span>The certificate says covered. The policy doesn't.</span></div>
   </div>
-  <figcaption id="spec-cap">Specimen. Sample data, not a real contractor. This is the gap COI Journal covers.</figcaption>
+  ${caption ? '<figcaption>Specimen. Sample data, not a real contractor.</figcaption>' : ''}
 </figure>`;
+}
+
+// Docket numbers: every published piece gets one, stamped like a filed document.
+const stamp = (docket, date) => `<span class="stamp" aria-label="Docket ${esc(docket)}"><b>Docket</b>${esc(docket)}${date ? `<i>Filed ${human(date)}</i>` : ''}</span>`;
+
+// Cyanotype monogram: our stand-in for headshots until we have photography.
+const monogram = (p, size = 72) => `<svg class="mono" width="${size}" height="${size}" viewBox="0 0 72 72" role="img" aria-label="${esc(p.name)} monogram"><circle cx="36" cy="36" r="35" fill="#16365F"/><circle cx="36" cy="36" r="29" fill="none" stroke="#9DB8D9" stroke-width=".8" stroke-dasharray="2 3"/><path d="M8 52h56M12 58h48" stroke="#2C5A8E" stroke-width=".8"/><text x="36" y="44" text-anchor="middle" font-family="Roboto Serif,Georgia,serif" font-weight="600" font-size="24" fill="#F4F7FB" letter-spacing="1">${esc(p.initials)}</text></svg>`;
+
+// Original blueprint art: a certificate and the policy behind it, drawn on a cyanotype sheet with a
+// title block, the way a set of construction drawings is. The orange dimension line is the gap.
+function blueprint({ sheet, title, docket, date, motif = 'gap' }) {
+  const grid = `<defs><pattern id="g-${sheet}" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#2C5A8E" stroke-width=".6"/></pattern><pattern id="G-${sheet}" width="120" height="120" patternUnits="userSpaceOnUse"><path d="M120 0H0V120" fill="none" stroke="#3B6CA3" stroke-width="1"/></pattern></defs><rect width="960" height="440" fill="#16365F"/><rect width="960" height="440" fill="url(#g-${sheet})"/><rect width="960" height="440" fill="url(#G-${sheet})"/>`;
+  const line = 'fill="none" stroke="#DCE7F4" stroke-width="1.6"';
+  const thin = 'fill="none" stroke="#9DB8D9" stroke-width="1"';
+  const lab = (x, y, t, anchor = 'start', fill = '#DCE7F4') => `<text x="${x}" y="${y}" text-anchor="${anchor}" font-family="JetBrains Mono,ui-monospace,monospace" font-size="11" letter-spacing="1.5" fill="${fill}">${t}</text>`;
+  const ruled = (x, y, w, n, gap = 18) => Array.from({ length: n }, (_, i) => `<path d="M${x} ${y + i * gap}h${w - (i % 3 === 2 ? 60 : 0)}" ${thin}/>`).join('');
+  const drawings = {
+    gap: `
+    <rect x="70" y="70" width="250" height="310" ${line}/><path d="M70 104h250" ${line}/>${lab(84, 92, 'ACORD 25 · SPECIMEN')}${ruled(88, 132, 214, 7)}
+    <rect x="88" y="270" width="16" height="16" ${line}/><path d="M91 273l10 10M101 273l-10 10" stroke="#FB612A" stroke-width="2"/>${lab(112, 283, 'ADDL INSD  Y')}
+    <rect x="430" y="70" width="250" height="310" ${line} stroke-dasharray="6 5"/><path d="M430 104h250" ${line} stroke-dasharray="6 5"/>${lab(444, 92, 'POLICY + ENDORSEMENTS')}${ruled(448, 132, 214, 5)}
+    <rect x="448" y="250" width="214" height="56" fill="none" stroke="#FB612A" stroke-width="1.6" stroke-dasharray="3 4"/>${lab(555, 283, 'NO ENDORSEMENT', 'middle', '#FFB08F')}
+    <path d="M320 278H430" stroke="#FB612A" stroke-width="2"/><path d="M320 270v16M430 270v16" stroke="#FB612A" stroke-width="2"/>${lab(375, 262, 'THE GAP', 'middle', '#FFB08F')}
+    ${lab(195, 404, 'WHAT IT SAYS', 'middle')}${lab(555, 404, 'WHAT IT COVERS', 'middle')}`,
+    stack: `
+    ${[0, 1, 2, 3].map((i) => `<rect x="${90 + i * 26}" y="${60 + i * 22}" width="230" height="290" fill="#16365F" ${line}/>`).join('')}${ruled(184, 200, 180, 6)}
+    ${lab(206, 182, 'COI · TRADE 04')}<path d="M440 120h220M440 160h220M440 200h220M440 240h220" ${thin}/>
+    ${['GL', 'AI', 'UMB', 'WC'].map((t, i) => `${lab(440, 112 + i * 40, t)}<circle cx="${i === 1 || i === 3 ? 652 : 652}" cy="${108 + i * 40}" r="5" fill="${i === 1 || i === 3 ? '#FB612A' : '#9DB8D9'}"/>`).join('')}
+    <path d="M440 300h220" stroke="#FB612A" stroke-width="2"/><path d="M440 292v16M660 292v16" stroke="#FB612A" stroke-width="2"/>${lab(550, 330, '2 OF 4 FAIL', 'middle', '#FFB08F')}`,
+  };
+  return `<figure class="bp">
+  <svg viewBox="0 0 960 440" role="img" aria-label="Blueprint-style drawing: ${esc(title)}">${grid}
+    <rect x="12" y="12" width="936" height="416" fill="none" stroke="#9DB8D9" stroke-width="1"/>${drawings[motif]}
+    <g transform="translate(696 296)"><rect width="240" height="120" fill="#16365F" stroke="#DCE7F4" stroke-width="1.2"/><path d="M0 34h240M0 64h240M0 92h240M110 92v28" stroke="#9DB8D9"/>
+      <text x="12" y="23" font-family="Roboto Serif,Georgia,serif" font-weight="600" font-size="17" fill="#F4F7FB">COI Journal</text>
+      ${lab(12, 54, 'DATA DESK · ' + EDITION.toUpperCase().replace('·', '/'))}${lab(12, 83, 'DOCKET ' + docket)}${lab(12, 111, 'SHEET ' + sheet)}${lab(122, 111, date ? human(date).toUpperCase().replace(',', '').replace(/^(\w{3})\w*/, '$1') : '')}</g>
+  </svg>
+</figure>`;
+}
+
+// The Number: one sourced figure, its arithmetic and our markup of it.
+function theNumber() {
+  const n = THE_NUMBER;
+  return `<section class="panel number" aria-labelledby="num-h">
+  <span class="eyebrow">The Number · Data desk</span>
+  <div class="num-grid">
+    <div>
+      <p class="big" id="num-h">${esc(n.figure)} <small>${esc(n.unit)}</small></p>
+      <p class="what">${esc(n.what)}</p>
+      <div class="math" aria-label="How the number is built">${n.math.map(([v, l]) => `<span class="chipbox"><b>${esc(v)}</b>${esc(l)}</span>`).join('<i aria-hidden="true">→</i>')}</div>
+    </div>
+    <aside class="markup"><span class="k">The markup</span><p>${esc(n.markup)}</p><p class="src">Source: <a href="${esc(n.source.url)}">${esc(n.source.title)}</a>, ${esc(n.source.publisher)}, ${esc(n.source.date)}.</p></aside>
+  </div>
+</section>`;
 }
 
 // The deck's gap line: orange segments with small labels, read left to right.
@@ -116,7 +169,7 @@ function readDir(dir, required) {
 }
 
 const articles = () =>
-  readDir('articles', ['title', 'description', 'dek', 'date', 'section', 'byline', 'takeaways', 'sources'])
+  readDir('articles', ['title', 'description', 'dek', 'date', 'section', 'byline', 'docket', 'takeaways', 'sources'])
     .map((a) => ({ ...a, url: `/articles/${a.slug}/`, updated: a.updated || a.date }))
     .sort((a, b) => (a.date < b.date ? 1 : -1));
 const pages = () => readDir('pages', ['title', 'description', 'dek', 'url']);
@@ -190,7 +243,7 @@ const WEBSITE = { '@type': 'WebSite', '@id': `${SITE}/#website`, name: 'COI Jour
 
 const CSS = `
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--paper:#F7F4EE;--card:#FFFDF9;--ink:#1F201C;--ink2:#4A4843;--mute:#67635B;--rule:#D9D3C7;--rule2:#BDB5A6;--f:#FB612A;--fdk:#B4461A;--serif:'Roboto Serif',Georgia,'Times New Roman',serif;--sans:'Inter',Arial,sans-serif;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace}
+:root{--paper:#F7F4EE;--card:#FFFDF9;--ink:#1F201C;--ink2:#4A4843;--mute:#67635B;--rule:#D9D3C7;--rule2:#BDB5A6;--f:#FB612A;--fdk:#B4461A;--cy:#16365F;--cy2:#1F4F86;--cylt:#DCE7F4;--cymid:#9DB8D9;--serif:'Roboto Serif',Georgia,'Times New Roman',serif;--sans:'Inter',Arial,sans-serif;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace}
 html{scroll-behavior:smooth}
 body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit}
@@ -198,7 +251,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 .skip{position:absolute;left:-9999px}.skip:focus{left:16px;top:8px;z-index:10;background:var(--card);padding:8px 12px}
 .wrap{max-width:1160px;margin:0 auto;padding:0 32px}
 .col{max-width:700px;margin:0 auto}
-.eyebrow{font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--fdk)}
+.eyebrow{font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--cy2)}
 /* Top strip: the ownership line, on every page */
 .strip{background:var(--ink);color:#E9E4DA;font-size:12.5px}
 .strip .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:36px}
@@ -206,17 +259,31 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 .strip a:hover{text-decoration:underline}
 .pub{display:inline-flex;align-items:center;gap:8px}
 .fmark{display:inline-grid;place-items:center;width:16px;height:16px;border-radius:3px;background:var(--f);color:#fff;font:700 11px/1 var(--sans)}
-/* Masthead */
-.mast{padding:28px 0 0;text-align:center}
-.mast .name{display:inline-block;font-family:var(--serif);font-variation-settings:'opsz' 144;font-weight:600;font-size:clamp(46px,8.4vw,92px);line-height:1;letter-spacing:-.025em;text-decoration:none}
-.mast .tag{font-family:var(--serif);font-style:italic;font-size:16px;color:var(--ink2);margin-top:10px}
-.mast.small{padding:18px 0 0}
+/* Masthead: the cyanotype band, the one color that is COI Journal's alone */
+.band{background-color:var(--cy);background-image:linear-gradient(#2C5A8E 1px,transparent 1px),linear-gradient(90deg,#2C5A8E 1px,transparent 1px),linear-gradient(#24507F .5px,transparent .5px),linear-gradient(90deg,#24507F .5px,transparent .5px);background-size:120px 120px,120px 120px,24px 24px,24px 24px;color:var(--cylt);border-bottom:3px solid var(--f)}
+.mast{padding:30px 0 0;text-align:center}
+.mast .name{display:inline-block;font-family:var(--serif);font-variation-settings:'opsz' 144;font-weight:600;font-size:clamp(46px,8.4vw,92px);line-height:1;letter-spacing:-.025em;text-decoration:none;color:#F4F7FB}
+.mast .tag{font-family:var(--serif);font-style:italic;font-size:16px;color:#C9D8EA;margin-top:10px}
+.mast.small{padding:16px 0 0}
 .mast.small .name{font-size:clamp(34px,5vw,48px)}
 .mast.small .tag{display:none}
-.dateline{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:20px;padding:8px 0;border-top:3px double var(--ink);border-bottom:1px solid var(--ink);font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2)}
+.dateline{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:20px;padding:8px 0;border-top:1px solid var(--cymid);font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--cylt)}
+.dateline b{font-weight:500;color:#fff}
 .secnav{display:flex;justify-content:center;flex-wrap:wrap;gap:4px 28px;padding:10px 0;border-bottom:1px solid var(--rule)}
 .secnav a{font-size:14px;font-weight:500;text-decoration:none;color:var(--ink2);line-height:28px}
 .secnav a:hover,.secnav a[aria-current]{color:var(--ink);text-decoration:underline;text-decoration-color:var(--f);text-underline-offset:5px}
+/* Docket stamp, blueprint art, monograms */
+.stamp{display:inline-flex;flex-direction:column;gap:1px;padding:5px 10px 4px;border:2px solid var(--cy2);border-radius:3px;color:var(--cy2);font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.06em;transform:rotate(-1.5deg);background:rgba(220,231,244,.35)}
+.stamp b{font-size:9.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase}
+.stamp i{font-style:normal;font-size:10px;letter-spacing:.04em;opacity:.85}
+.kick{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.bp{margin-top:24px}
+.bp svg{display:block;width:100%;height:auto;border-radius:4px}
+.mono{flex:none;display:block}
+.byl{display:flex;align-items:center;gap:10px;margin-top:16px;font-size:13.5px;color:var(--mute)}
+.byl a{color:var(--ink);font-weight:600;text-decoration:none}
+.byl a:hover{text-decoration:underline;text-decoration-color:var(--f)}
+.formno{display:inline-block;font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.03em;padding:1px 7px;border:1px solid var(--cy2);border-radius:3px;color:var(--cy2);white-space:nowrap}
 /* Front page */
 .front{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:0;margin-top:32px}
 .front>*+*{border-left:1px solid var(--rule);padding-left:32px}
@@ -278,12 +345,79 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 .secs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0 16px;margin-top:22px}
 .sec{padding:14px 0 4px}
 .sec h3{font-family:var(--serif);font-weight:600;font-size:18px;line-height:1.25}
+.sec h3 a{text-decoration:none}.sec h3 a:hover{text-decoration:underline;text-decoration-color:var(--f)}
 .sec p{font-size:14px;color:var(--ink2);margin-top:8px}
 .lib{columns:2;column-gap:48px;margin-top:18px;list-style:none}
 .lib li{break-inside:avoid;padding:12px 0;border-bottom:1px solid var(--rule)}
 .lib a{font-family:var(--serif);font-size:18px;line-height:1.35;text-decoration:none}
 .lib a:hover{text-decoration:underline;text-decoration-color:var(--f);text-underline-offset:4px}
 .lib span{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-top:4px}
+/* The Number */
+.number .num-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:32px;margin-top:10px;align-items:start}
+.big{font-family:var(--serif);font-variation-settings:'opsz' 144;font-weight:600;font-size:clamp(64px,10vw,116px);line-height:1;letter-spacing:-.03em;color:var(--f)}
+.big small{font-size:.28em;font-weight:400;letter-spacing:0;color:#E9E4DA}
+.what{font-family:var(--serif);font-size:19px;line-height:1.45;color:#fff;margin-top:12px;max-width:40ch}
+.math{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:20px}
+.math i{font-style:normal;color:var(--f)}
+.chipbox{display:inline-flex;flex-direction:column;padding:6px 11px;border:1px solid #4A4B45;border-radius:4px;background:#2A2B26;font-size:12px;color:#C9C3B8}
+.chipbox b{font-family:var(--mono);font-size:15px;font-weight:500;color:#fff}
+.markup{padding:18px 20px;background:#2A2B26;border:1px solid #3A3B35;border-left:3px solid var(--f);border-radius:4px}
+.markup .k{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:#F59A6C}
+.markup p{font-size:14.5px;color:#D6D0C5;margin-top:8px}
+.markup .src{font-size:13px;color:#B5AFA4;border-top:1px solid #3A3B35;padding-top:10px}
+.markup a{color:#fff;text-decoration-color:var(--f)}
+/* Two-up modules */
+.duo{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:40px;align-items:start}
+.duo h3{font-family:var(--serif);font-weight:400;font-size:28px;line-height:1.2;margin-top:6px}
+.duo p{color:var(--ink2);margin-top:10px}
+.duo .btn{margin-top:18px}
+/* Dictionary */
+.terms{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin-top:20px;list-style:none}
+.terms li{display:flex}
+.terms a{display:flex;flex-direction:column;gap:8px;width:100%;padding:16px 18px;background:var(--card);border:1px solid var(--rule);border-top:3px solid var(--cy2);border-radius:4px;text-decoration:none}
+.terms a:hover{border-color:var(--cy2)}
+.terms strong{font-family:var(--serif);font-weight:600;font-size:18px;line-height:1.25}
+.terms span.d{font-size:14px;color:var(--ink2)}
+.terms .fs{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
+.defbox{margin-top:24px;padding:20px 22px;background:var(--cy);color:#F4F7FB;border-radius:4px;border-left:4px solid var(--f)}
+.defbox .k{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--cymid)}
+.defbox p{font-family:var(--serif);font-size:20px;line-height:1.5;margin-top:6px}
+.defbox .formno{color:#F4F7FB;border-color:var(--cymid);margin:12px 6px 0 0}
+.trio{display:grid;gap:14px;margin-top:24px}
+.trio section{padding:16px 18px;border:1px solid var(--rule);border-left:3px solid var(--f);background:var(--card);border-radius:4px}
+.trio h2{font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--cy2)}
+.trio p{font-family:var(--serif);font-size:18px;line-height:1.6;margin-top:6px}
+.rel{margin-top:24px;font-size:15px}
+.rel a{font-weight:600;text-decoration-color:var(--f)}
+/* People */
+.people{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-top:24px}
+.card{display:flex;gap:16px;padding:18px;background:var(--card);border:1px solid var(--rule);border-radius:4px}
+.card h2,.card h3{font-family:var(--serif);font-weight:600;font-size:20px;line-height:1.2}
+.card h2 a,.card h3 a{text-decoration:none}
+.card h2 a:hover,.card h3 a:hover{text-decoration:underline;text-decoration-color:var(--f)}
+.card .role{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--cy2);margin-top:4px}
+.card p{font-size:14px;color:var(--ink2);margin-top:6px}
+.who{display:flex;gap:20px;align-items:center;margin-top:20px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;list-style:none}
+.tags li{font-size:13px;padding:4px 10px;border:1px solid var(--rule2);border-radius:20px;color:var(--ink2)}
+/* Spot the Gap */
+.round{margin-top:40px}
+.round h2{font-family:var(--serif);font-weight:600;font-size:24px}
+.round .spec-doc{margin-top:12px}
+.pick{min-height:34px;padding:0 12px;border:1px solid var(--rule2);border-radius:6px;background:var(--card);font:inherit;font-size:13px;font-weight:600;color:var(--ink2);cursor:pointer;white-space:nowrap}
+.pick[aria-pressed=true]{background:var(--fdk);border-color:var(--fdk);color:#fff}
+.round .spec tr.hit td:nth-child(3),.round .spec tr.miss td:nth-child(3){color:var(--fdk)}
+.result{margin-top:12px;font-size:15px;font-weight:600}
+.answers{margin-top:12px;padding:14px 16px;border:1px solid var(--rule);border-left:3px solid var(--f);background:var(--card);border-radius:4px}
+.answers summary{cursor:pointer;font-weight:600}
+.answers ol{margin-top:10px;padding-left:20px;font-size:15px}
+.answers li+li{margin-top:8px}
+.answers a{font-weight:600;text-decoration-color:var(--f)}
+.tease .spec table{min-width:0}
+/* Video */
+.video{position:relative;margin-top:24px;aspect-ratio:9/16;max-width:360px;background:var(--cy);border-radius:4px;overflow:hidden}
+.video button{position:absolute;inset:0;border:0;background:transparent;color:#fff;font:600 16px var(--sans);cursor:pointer}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 /* Signup and forms */
 .sub h2{font-family:var(--serif);font-weight:600;font-size:26px;line-height:1.15;margin-top:8px}
 .sub>p{font-size:15px;color:var(--ink2);margin-top:8px}
@@ -298,6 +432,7 @@ textarea{min-height:140px;resize:vertical}
 .btn.f{background:var(--f);border-color:var(--f)}
 .btn.f:hover{background:#D54E21;border-color:#D54E21}
 .hp{display:none}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .fine{font-size:12.5px;line-height:1.5;color:var(--mute)}
 .fine a{color:var(--ink2)}
 .err{font-size:13px;color:#B03A2E}
@@ -362,7 +497,9 @@ footer{margin-top:64px;border-top:3px double var(--ink);padding:32px 0 28px}
   .front{grid-template-columns:minmax(0,1fr)}
   .front>:first-child{padding-right:0}
   .front>*+*{border-left:0;padding-left:0;margin-top:36px;padding-top:20px;border-top:2px solid var(--ink)}
-  .nums,.gapline{grid-template-columns:1fr}
+  .nums,.gapline,.number .num-grid,.duo{grid-template-columns:1fr}
+  .duo{gap:24px}
+  .kick{flex-direction:column}
   .gapline{gap:12px}
   .panel{padding:26px 18px 22px;margin-left:-16px;margin-right:-16px;border-radius:0}
   .lib{columns:1}
@@ -422,23 +559,35 @@ ${JSON.stringify({ '@context': 'https://schema.org', '@graph': jsonld }, null, 2
 
 const NAV = [
   ['/', 'Front page'],
-  ['/articles/why-coi-journal/', 'From the editors'],
-  ['/methodology/', 'Gap Index'],
-  ['/gap-of-the-month/', 'Gap of the Month'],
+  ['/spot-the-gap/', 'Spot the Gap'],
+  ['/dictionary/', 'The Dictionary'],
+  ['/methodology/', 'Data desk'],
   ['/digest/', 'The COI Digest'],
+  ['/masthead/', 'Masthead'],
   ['/about/', 'About'],
 ];
 
 function masthead(current, small) {
-  return `<header class="wrap">
-  <div class="mast${small ? ' small' : ''}">
-    <a class="name" href="/"${current === '/' ? ' aria-current="page"' : ''}>COI Journal</a>
-    <p class="tag">Construction insurance compliance, reported.</p>
-  </div>
-  <div class="dateline"><span>Contractor COIs · Endorsements · Project requirements</span><span>Est. 2026</span><span>${LAUNCH}</span></div>
-  <nav class="secnav" aria-label="Sections">${NAV.map(([h, t]) => `<a href="${h}"${h === current ? ' aria-current="page"' : ''}>${t}</a>`).join('')}</nav>
+  return `<header>
+  <div class="band"><div class="wrap">
+    <div class="mast${small ? ' small' : ''}">
+      <a class="name" href="/"${current === '/' ? ' aria-current="page"' : ''}>COI Journal</a>
+      <p class="tag">Construction insurance compliance, reported. The data desk for contractor COIs.</p>
+    </div>
+    <div class="dateline"><span><b>${EDITION}</b></span><span>Contractor COIs · Endorsements · Project requirements</span><span>${LAUNCH}</span></div>
+  </div></div>
+  <nav class="secnav wrap" aria-label="Sections">${NAV.map(([h, t]) => `<a href="${h}"${h === current ? ' aria-current="page"' : ''}>${t}</a>`).join('')}</nav>
 </header>`;
 }
+
+// The byline: monogram, linked name, role. Falls back to plain text for "The editors".
+function byline(a) {
+  const p = person(a.author);
+  const when = `<time datetime="${a.date}">${human(a.date)}</time>${a.updated !== a.date ? ` · Updated <time datetime="${a.updated}">${human(a.updated)}</time>` : ''}`;
+  if (!p) return `<p class="byl">By ${esc(a.byline)} · ${when}</p>`;
+  return `<div class="byl">${monogram(p, 40)}<span>By <a href="/people/${p.slug}/">${esc(p.name)}</a>, ${esc(p.role)} · ${when}</span></div>`;
+}
+const personLd = (p) => ({ '@type': 'Person', '@id': `${SITE}/people/${p.slug}/#person`, name: p.name, jobTitle: p.role, url: `${SITE}/people/${p.slug}/`, worksFor: { '@id': `${SITE}/#publication` }, description: p.bio[0] });
 
 const HOUSE = (campaign) => `<section class="house" aria-labelledby="house-h"><div class="wrap">
   <div>
@@ -457,8 +606,8 @@ const FOOTER = (y) => `<footer><div class="wrap">
       <a class="fname" href="/">COI Journal</a>
       <p data-disclosure>Published by <a href="${fsLink('/', 'footer')}">Forsured</a>, a construction insurance compliance software company. We don't rank or review software vendors. <a href="/principles/">Our principles</a>.</p>
     </div>
-    <div><h2>Read</h2><nav aria-label="Footer, read"><a href="/">Front page</a><a href="/methodology/">The COI Gap Index</a><a href="/digest/">The COI Digest</a><a href="/feed.xml">RSS feed</a></nav></div>
-    <div><h2>The Journal</h2><nav aria-label="Footer, the Journal"><a href="/about/">About</a><a href="/principles/">Publishing principles</a><a href="/gap-of-the-month/">Gap of the Month</a><a href="mailto:${CONTACT}">Contact</a></nav></div>
+    <div><h2>Read</h2><nav aria-label="Footer, read"><a href="/">Front page</a><a href="/spot-the-gap/">Spot the Gap</a><a href="/dictionary/">The COI Dictionary</a><a href="/methodology/">The COI Gap Index</a><a href="/digest/">The COI Digest</a><a href="/feed.xml">RSS feed</a></nav></div>
+    <div><h2>The Journal</h2><nav aria-label="Footer, the Journal"><a href="/about/">About</a><a href="/masthead/">Masthead</a><a href="/principles/">Publishing principles</a><a href="/gap-of-the-month/">Gap of the Month</a><a href="mailto:${CONTACT}">Contact</a></nav></div>
   </div>
   <div class="fbot">
     <p>General information, not legal or insurance advice. Forsured is not a law firm or a licensed insurance agency. We're not affiliated with the organizations we cite. ${LEGAL.replace(' and ', ' · ')}</p>
@@ -551,6 +700,13 @@ const close = (y, forms) => `${forms ? FORM_JS + '\n' : ''}</body>\n</html>\n`;
 
 // ---------- pages ----------
 
+// Plain Speak video: a click-to-load player (nothing loads from YouTube until the reader asks) and
+// VideoObject markup. Used only when an article's front matter has "video" with a public YouTube id,
+// an upload date and a transcript. No video, no player: we never ship an empty embed.
+const video = (a) => `<figure class="video" data-yt="${esc(a.video.youtube)}"><button type="button" aria-label="Play the video: ${esc(a.title)}">▶ Play</button></figure>
+<script>document.querySelectorAll('.video[data-yt]').forEach((f)=>f.querySelector('button').addEventListener('click',()=>{f.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+f.dataset.yt+'?autoplay=1" title="Plain Speak video" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>';}));</script>`;
+const videoLd = (a) => ({ '@type': 'VideoObject', name: a.title, description: a.description, uploadDate: a.video.uploadDate, duration: a.video.duration, thumbnailUrl: `https://i.ytimg.com/vi/${a.video.youtube}/hqdefault.jpg`, embedUrl: `https://www.youtube-nocookie.com/embed/${a.video.youtube}`, transcript: a.video.transcript, publisher: { '@id': PUBLISHER['@id'] } });
+
 function frontPage(arts) {
   const lead = arts[0];
   const y = year(lead.date);
@@ -564,11 +720,11 @@ ${masthead('/')}
 <main id="main" class="wrap">
   <div class="front">
     <article class="lead">
-      <span class="eyebrow">${esc(lead.section)}</span>
+      <div class="kick"><span class="eyebrow">${esc(lead.section)}</span>${stamp(lead.docket)}</div>
       <h2><a href="${lead.url}">${esc(lead.title)}</a></h2>
       <p class="dek">${esc(lead.dek)}</p>
-      <p class="by">By ${esc(lead.byline)} · <time datetime="${lead.date}">${human(lead.date)}</time></p>
-      ${specimen()}
+      ${byline(lead)}
+      ${blueprint({ sheet: lead.sheet || 'A-001', title: lead.title, docket: lead.docket, date: lead.date, motif: lead.art || 'gap' })}
       <ul>${lead.takeaways.map((t) => `<li>${inline(t)}</li>`).join('')}</ul>
       <a class="more" href="${lead.url}">Read the editors' note</a>
     </article>
@@ -580,8 +736,29 @@ ${masthead('/')}
         <p>Had a coverage gap catch you out? Tell us what happened. We pick one each month and explain the check that would have caught it.</p>
         <a href="/gap-of-the-month/">Send us a gap</a>
       </div>
+      <div class="clip">
+        <span class="eyebrow">The masthead</span>
+        <h3>Written by people who sign, issue and chase COIs</h3>
+        <p>A GC owner, a contractor operator, a construction broker and two editors.</p>
+        <a href="/masthead/">Meet the masthead</a>
+      </div>
     </aside>
   </div>
+
+  ${theNumber()}
+
+  <section class="block tease" aria-labelledby="spot-h">
+    <span class="eyebrow">Spot the Gap · The worked example</span>
+    <div class="duo">
+      <div>
+        <h2 id="spot-h" class="sr">Spot the Gap</h2>
+        <h3>This certificate looks fine. Four of its five lines fail the project.</h3>
+        <p>Here's the worked example, answered. Each round is a specimen certificate checked against a set of project requirements. Rounds 2 and 3 are yours: mark what you think fails, then check your answers.</p>
+        <a class="btn" href="/spot-the-gap/">Play Spot the Gap</a>
+      </div>
+      ${specimen()}
+    </div>
+  </section>
 
   <section class="panel" aria-labelledby="nums-h">
     <span class="eyebrow">The COI Gap Index · First edition 2027</span>
@@ -591,16 +768,23 @@ ${masthead('/')}
     ${gapline(['Collect the data', 'Clear the sample rules', 'Publish with sample size'])}
   </section>
 
+  <section class="block" aria-labelledby="dict-h">
+    <span class="eyebrow">The COI Dictionary</span>
+    <h2 id="dict-h">The words that decide who pays, with the form numbers</h2>
+    <p>Each entry says what the term means, how it shows up on a certificate, what to check and where it usually breaks.</p>
+    ${termCards(TERMS)}
+  </section>
+
   <section class="block" aria-labelledby="secs-h">
     <span class="eyebrow">What we publish</span>
     <h2 id="secs-h">Five desks, one beat</h2>
-    <div class="secs">${SECTIONS.map(([t, d]) => `<div class="sec"><h3>${t}</h3><p>${d}</p></div>`).join('')}</div>
+    <div class="secs">${SECTIONS.map(([t, d, h]) => `<div class="sec"><h3><a href="${h}">${t}</a></h3><p>${d}</p></div>`).join('')}</div>
   </section>
 
   <section class="block" aria-labelledby="lib-h">
     <span class="eyebrow">COI 101 · From our publisher's library</span>
-    <h2 id="lib-h">Start with the basics</h2>
-    <p>Plain-English explainers on the terms that decide who pays. They live on forsured.ai, our publisher's site.</p>
+    <h2 id="lib-h">Go deeper</h2>
+    <p>Longer explainers on the same terms. They live on forsured.ai, our publisher's site.</p>
     <ul class="lib">${LIBRARY.map(([p, t]) => `<li><a href="${fsLink(p, 'library')}">${esc(t)}</a><span>forsured.ai</span></li>`).join('')}</ul>
   </section>
 </main>
@@ -608,6 +792,8 @@ ${HOUSE('front')}
 ${FOOTER(y)}
 ${close(y, true)}`;
 }
+
+const termCards = (list) => `<ul class="terms">${list.map((t) => `<li><a href="/dictionary/${t.slug}/"><strong>${esc(t.term)}</strong><span class="d">${esc(t.def.split('. ')[0].replace(/\.$/, ''))}.</span><span class="fs">${t.forms.map((f) => `<span class="formno">${f}</span>`).join('')}</span></a></li>`).join('')}</ul>`;
 
 function articlePage(a, arts) {
   const y = year(a.date);
@@ -620,7 +806,8 @@ function articlePage(a, arts) {
       image: [`${SITE}/assets/og.png`],
       datePublished: a.date,
       dateModified: a.updated,
-      author: { '@type': 'Organization', name: `COI Journal (${a.byline})`, url: `${SITE}/about/` },
+      author: person(a.author) ? { '@id': personLd(person(a.author))['@id'] } : { '@type': 'Organization', name: `COI Journal (${a.byline})`, url: `${SITE}/about/` },
+      identifier: a.docket,
       publisher: { '@id': PUBLISHER['@id'] },
       mainEntityOfPage: `${SITE}${a.url}`,
       articleSection: a.section,
@@ -628,6 +815,8 @@ function articlePage(a, arts) {
       inLanguage: 'en-US',
       isPartOf: { '@id': WEBSITE['@id'] },
     },
+    ...(person(a.author) ? [personLd(person(a.author))] : []),
+    ...(a.video ? [videoLd(a)] : []),
     PUBLISHER,
     WEBSITE,
     { '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'COI Journal', item: `${SITE}/` }, { '@type': 'ListItem', position: 2, name: a.title, item: `${SITE}${a.url}` }] },
@@ -636,15 +825,16 @@ function articlePage(a, arts) {
 ${masthead(a.url, true)}
 <main id="main" class="wrap">
   <article class="col art">
-    <span class="eyebrow">${esc(a.section)}</span>
+    <div class="kick"><span class="eyebrow">${esc(a.section)}</span>${stamp(a.docket, a.date)}</div>
     <h1>${esc(a.title)}</h1>
     <p class="dek">${esc(a.dek)}</p>
-    <p class="by">By ${esc(a.byline)} · <time datetime="${a.date}">${human(a.date)}</time>${a.updated !== a.date ? ` · Updated <time datetime="${a.updated}">${human(a.updated)}</time>` : ''}</p>
+    ${byline(a)}
+    ${a.video ? video(a) : blueprint({ sheet: a.sheet || 'A-001', title: a.title, docket: a.docket, date: a.date, motif: a.art || 'gap' })}
     <section class="tldr" aria-labelledby="tldr-h"><h2 id="tldr-h">The short version</h2><ul>${a.takeaways.map((t) => `<li>${inline(t)}</li>`).join('')}</ul></section>
     <div class="prose">
 ${markdown(a.body)}
     </div>
-${a.sources.length ? `    <section class="sources" aria-labelledby="src-h"><h2 id="src-h">Sources</h2><ol>${a.sources.map((s) => `<li><a href="${esc(s.url)}">${esc(s.title)}</a>${s.publisher ? `, ${esc(s.publisher)}` : ''}${s.date ? `, ${esc(s.date)}` : ''}</li>`).join('')}</ol></section>\n` : ''}    <p class="disclose" data-disclosure>COI Journal is published by Forsured, which sells construction insurance compliance software. <a href="/principles/">How we keep editorial separate</a>.</p>
+${a.sources.length ? `    <section class="sources" aria-labelledby="src-h"><h2 id="src-h">Sources</h2><ol>${a.sources.map((s) => `<li><a href="${esc(s.url)}">${esc(s.title)}</a>${s.publisher ? `, ${esc(s.publisher)}` : ''}${s.date ? `, ${esc(s.date)}` : ''}</li>`).join('')}</ol></section>\n` : ''}    <p class="disclose" data-disclosure>COI Journal is published by Forsured, which sells construction insurance compliance software.${person(a.author) ? ` ${esc(person(a.author).disclose)}` : ''} <a href="/principles/">How we keep editorial separate</a>.</p>
     <div class="boxed">${signup('sub-art', 'article')}</div>
   </article>
 </main>
@@ -677,6 +867,164 @@ ${FOOTER(y)}
 ${close(y, forms)}`;
 }
 
+// ---------- desk pages: masthead, people, dictionary, Spot the Gap ----------
+
+function shell({ title, description, url, jsonld, body, campaign, y, js = '' }) {
+  return `${head({ title, description, url, jsonld: [...jsonld, PUBLISHER, WEBSITE] })}
+${masthead(url, true)}
+<main id="main" class="wrap">
+${body}
+</main>
+${HOUSE(campaign)}
+${FOOTER(y)}
+${js}</body>
+</html>
+`;
+}
+const crumbs = (items) => ({ '@type': 'BreadcrumbList', itemListElement: [['COI Journal', '/'], ...items].map(([n, u], i) => ({ '@type': 'ListItem', position: i + 1, name: n, item: `${SITE}${u}` })) });
+
+function mastheadPage(y) {
+  return shell({
+    title: 'Masthead | COI Journal',
+    description: 'Who writes and edits COI Journal: a GC owner, a contractor operator, a construction broker and two editors. Every connection to Forsured is disclosed.',
+    url: '/masthead/',
+    campaign: 'masthead',
+    y,
+    jsonld: [{ '@type': 'WebPage', '@id': `${SITE}/masthead/#webpage`, url: `${SITE}/masthead/`, name: 'Masthead', isPartOf: { '@id': WEBSITE['@id'] }, mainEntity: { '@type': 'ItemList', itemListElement: PEOPLE.map((p, i) => ({ '@type': 'ListItem', position: i + 1, item: personLd(p) })) } }, crumbs([['Masthead', '/masthead/']])],
+    body: `  <article class="art">
+    <div class="col">
+      <span class="eyebrow">The masthead</span>
+      <h1>Who makes COI Journal</h1>
+      <p class="dek">People who sign, issue and chase contractor certificates for a living. Everyone here works with Forsured, our publisher, and every byline says how.</p>
+    </div>
+    <div class="people">${PEOPLE.map((p) => `<div class="card">${monogram(p)}<div><h2><a href="/people/${p.slug}/">${esc(p.name)}</a></h2><p class="role">${esc(p.role)}</p><p>${esc(p.line)}</p><p>${esc(p.disclose)}</p></div></div>`).join('')}</div>
+    <div class="col"><p class="disclose" data-disclosure>COI Journal is published by Forsured, which sells construction insurance compliance software. Contributors with a business connection to Forsured say so in their byline. <a href="/principles/">Our principles</a>.</p></div>
+  </article>`,
+  });
+}
+
+function personPage(p, arts, y) {
+  const mine = arts.filter((a) => a.author === p.slug);
+  return shell({
+    title: `${p.name}, ${p.role} | COI Journal`,
+    description: `${p.name} is ${/^[AEIOU]/.test(p.role) ? 'an' : 'a'} ${p.role.toLowerCase()} at COI Journal. ${p.line}. Bio, beats and disclosures.`.slice(0, 168),
+    url: `/people/${p.slug}/`,
+    campaign: 'masthead',
+    y,
+    jsonld: [{ '@type': 'ProfilePage', '@id': `${SITE}/people/${p.slug}/#webpage`, url: `${SITE}/people/${p.slug}/`, name: p.name, isPartOf: { '@id': WEBSITE['@id'] }, mainEntity: personLd(p) }, crumbs([['Masthead', '/masthead/'], [p.name, `/people/${p.slug}/`]])],
+    body: `  <article class="col art">
+    <span class="eyebrow">The masthead</span>
+    <div class="who">${monogram(p, 96)}<div><h1>${esc(p.name)}</h1><p class="role eyebrow">${esc(p.role)}</p></div></div>
+    <p class="dek">${esc(p.line)}</p>
+    <div class="prose">${p.bio.map((b) => `<p>${esc(b)}</p>`).join('')}</div>
+    <ul class="tags" aria-label="Covers">${p.covers.map((c) => `<li>${esc(c)}</li>`).join('')}</ul>
+    ${mine.length ? `<section class="block"><span class="eyebrow">Published</span><ul class="lib">${mine.map((a) => `<li><a href="${a.url}">${esc(a.title)}</a><span>${human(a.date)} · ${esc(a.docket)}</span></li>`).join('')}</ul></section>` : ''}
+    <p class="disclose" data-disclosure>Disclosure: ${esc(p.disclose)} COI Journal is published by Forsured. <a href="/principles/">Our principles</a>.</p>
+    <p class="rel"><a href="/masthead/">The whole masthead</a></p>
+  </article>`,
+  });
+}
+
+function dictionaryPage(y) {
+  return shell({
+    title: 'The COI Dictionary | COI Journal',
+    description: 'Plain-English definitions of the certificate of insurance terms that decide who pays on a construction project, with the ISO and ACORD form numbers.',
+    url: '/dictionary/',
+    campaign: 'dictionary',
+    y,
+    jsonld: [{ '@type': 'DefinedTermSet', '@id': `${SITE}/dictionary/#set`, name: 'The COI Dictionary', url: `${SITE}/dictionary/`, publisher: { '@id': PUBLISHER['@id'] }, hasDefinedTerm: TERMS.map((t) => ({ '@id': `${SITE}/dictionary/${t.slug}/#term` })) }, crumbs([['The COI Dictionary', '/dictionary/']])],
+    body: `  <article class="art">
+    <div class="col">
+      <span class="eyebrow">The COI Dictionary</span>
+      <h1>The words that decide who pays</h1>
+      <p class="dek">One entry per term: what it means, how it shows up on a certificate, what to check and where it usually breaks. Form numbers included.</p>
+    </div>
+    ${termCards(TERMS)}
+    <div class="col"><p class="disclose">General information, not legal or insurance advice. Form numbers refer to ISO and ACORD forms; carriers also use their own versions. Ask your broker what your policies actually carry.</p></div>
+  </article>`,
+  });
+}
+
+function termPage(t, y) {
+  const url = `/dictionary/${t.slug}/`;
+  return shell({
+    title: `${t.short}: what it means on a COI | COI Journal`.length <= 70 ? `${t.short}: what it means on a COI | COI Journal` : `${t.short} | COI Journal`,
+    description: t.def.length <= 170 ? t.def : `${t.def.split('. ')[0].replace(/\.$/, '')}.`,
+    url,
+    campaign: 'dictionary',
+    y,
+    jsonld: [{ '@type': 'DefinedTerm', '@id': `${SITE}${url}#term`, name: t.term, description: t.def, termCode: t.forms.join(', '), url: `${SITE}${url}`, inDefinedTermSet: { '@id': `${SITE}/dictionary/#set` } }, crumbs([['The COI Dictionary', '/dictionary/'], [t.short, url]])],
+    body: `  <article class="col art">
+    <span class="eyebrow">The COI Dictionary</span>
+    <h1>${esc(t.term)}</h1>
+    <div class="defbox"><span class="k">Definition</span><p>${esc(t.def)}</p>${t.forms.map((f) => `<span class="formno">${f}</span>`).join('')}</div>
+    <div class="trio">${t.sections.map(([h, b]) => `<section><h2>${esc(h)}</h2><p>${esc(b)}</p></section>`).join('')}</div>
+    <p class="rel">Go deeper on forsured.ai: <a href="${fsLink(t.lib[0], 'dictionary')}">${esc(t.lib[1])}</a></p>
+    <p class="rel">Related: ${t.related.map((r) => `<a href="/dictionary/${r}/">${esc(term(r).short)}</a>`).join(' · ')} · <a href="/spot-the-gap/">Try Spot the Gap</a></p>
+    <p class="disclose">General information, not legal or insurance advice. Ask your broker what your policies actually carry.</p>
+  </article>`,
+  });
+}
+
+function roundPlay(r, i) {
+  const fails = r.rows.filter((x) => x[3]).length;
+  return `<section class="round" aria-labelledby="r-${r.slug}" data-round>
+  <h2 id="r-${r.slug}">${esc(r.title)}</h2>
+  <p>${esc(r.insured)} · ${esc(r.project)}. Mark every line you think fails the project requirements.</p>
+  <div class="spec"><div class="spec-doc">
+    <div class="spec-top"><span>Certificate of liability insurance</span><span class="spec-tag">Specimen</span></div>
+    <div class="spec-scroll" tabindex="0" role="region" aria-label="${esc(r.title)}"><table>
+      <thead><tr><th scope="col">Coverage</th><th scope="col">Project requires</th><th scope="col">Certificate shows</th><th scope="col">Your call</th></tr></thead>
+      <tbody>${r.rows.map(([c, q, o, g]) => `<tr data-fails="${g ? 1 : 0}"><th scope="row">${esc(c)}</th><td>${esc(q)}</td><td>${esc(o)}</td><td><button type="button" class="pick" aria-pressed="false">Fails?</button></td></tr>`).join('')}</tbody>
+    </table></div>
+    <div class="spec-foot"><button type="button" class="btn" data-check>Check my answers</button><span class="result" role="status"></span></div>
+  </div></div>
+  <details class="answers"><summary>Answers: ${fails} of ${r.rows.length} lines fail</summary><ol>${r.rows.filter((x) => x[3]).map(([c, , , g, slug]) => `<li><strong>${esc(c)}.</strong> ${esc(g)}${slug ? ` <a href="/dictionary/${slug}/">${esc(term(slug).short)}, explained</a>` : ''}</li>`).join('')}</ol></details>
+</section>`;
+}
+
+const SPOT_JS = `<script>
+document.querySelectorAll('[data-round]').forEach((round) => {
+  round.querySelectorAll('.pick').forEach((b) => b.addEventListener('click', () => {
+    const on = b.getAttribute('aria-pressed') !== 'true';
+    b.setAttribute('aria-pressed', on); b.textContent = on ? 'Fails' : 'Fails?';
+  }));
+  round.querySelector('[data-check]').addEventListener('click', () => {
+    let right = 0, missed = 0, wrong = 0;
+    round.querySelectorAll('tbody tr').forEach((tr) => {
+      const fails = tr.dataset.fails === '1', picked = tr.querySelector('.pick').getAttribute('aria-pressed') === 'true';
+      tr.classList.toggle('hit', fails && picked); tr.classList.toggle('miss', fails && !picked);
+      if (fails && picked) right++; else if (fails) missed++; else if (picked) wrong++;
+    });
+    const total = right + missed;
+    round.querySelector('.result').textContent = right === total && !wrong ? 'All ' + total + ' found. Your file is safer than most.' : right + ' of ' + total + ' found' + (wrong ? ', ' + wrong + ' false alarm' + (wrong > 1 ? 's' : '') : '') + '. The answers are below.';
+    round.querySelector('details').open = true;
+  });
+});
+</script>
+`;
+
+function spotPage(y) {
+  return shell({
+    title: 'Spot the Gap: can you find what fails? | COI Journal',
+    description: 'Spot the Gap: a specimen contractor certificate of insurance and a set of project requirements. Find every line that fails, then check your answers.',
+    url: '/spot-the-gap/',
+    campaign: 'spot-the-gap',
+    y,
+    js: SPOT_JS,
+    jsonld: [{ '@type': 'WebPage', '@id': `${SITE}/spot-the-gap/#webpage`, url: `${SITE}/spot-the-gap/`, name: 'Spot the Gap', isPartOf: { '@id': WEBSITE['@id'] }, about: TERMS.map((t) => ({ '@id': `${SITE}/dictionary/${t.slug}/#term` })) }, crumbs([['Spot the Gap', '/spot-the-gap/']])],
+    body: `  <article class="col art">
+    <span class="eyebrow">Spot the Gap</span>
+    <h1>Can you find what fails?</h1>
+    <p class="dek">Every round is a specimen certificate of insurance next to the project's requirements. The certificate always looks fine. Your job is to find the lines that aren't.</p>
+    <section class="round" aria-labelledby="r-worked"><h2 id="r-worked">The worked example</h2><p>Four of five lines fail. Here's what we flag, and why.</p>${specimen(ROUNDS[0], { caption: false })}
+      <details class="answers" open><summary>Why they fail</summary><ol>${ROUNDS[0].rows.filter((x) => x[3]).map(([c, , , g, slug]) => `<li><strong>${esc(c)}.</strong> ${esc(g)}${slug ? ` <a href="/dictionary/${slug}/">${esc(term(slug).short)}, explained</a>` : ''}</li>`).join('')}</ol></details></section>
+    ${ROUNDS.slice(1).map(roundPlay).join('\n')}
+    <p class="disclose">Specimens. Sample data, not real contractors. General information, not legal or insurance advice. New rounds run in The COI Digest. <a href="/digest/">Get it on Tuesdays</a>.</p>
+  </article>`,
+  });
+}
+
 function notFound(y) {
   return `${head({ title: 'Page not found | COI Journal', description: "That page isn't here. It may have moved. Start from the COI Journal front page or the publishing principles.", url: '/404.html', jsonld: [PUBLISHER, WEBSITE] }).replace('index, follow, max-image-preview:large, max-snippet:-1', 'noindex')}
 ${masthead('', true)}
@@ -694,15 +1042,17 @@ function feed(arts) {
   return `<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n<channel>\n  <title>COI Journal</title>\n  <link>${SITE}/</link>\n  <atom:link href="${SITE}/feed.xml" rel="self" type="application/rss+xml"/>\n  <description>Construction insurance compliance, reported. Published by Forsured.</description>\n  <language>en-us</language>\n  <lastBuildDate>${new Date(arts[0].updated).toUTCString()}</lastBuildDate>\n${items}\n</channel>\n</rss>\n`;
 }
 
+const DESK_URLS = ['/masthead/', ...PEOPLE.map((p) => `/people/${p.slug}/`), '/dictionary/', ...TERMS.map((t) => `/dictionary/${t.slug}/`), '/spot-the-gap/'];
+
 function sitemap(arts, pgs) {
-  const urls = [['/', arts[0].updated], ...arts.map((a) => [a.url, a.updated]), ...pgs.map((p) => [p.url, p.updated || arts[0].updated])];
+  const urls = [['/', arts[0].updated], ...arts.map((a) => [a.url, a.updated]), ...pgs.map((p) => [p.url, p.updated || arts[0].updated]), ...DESK_URLS.map((u) => [u, arts[0].updated])];
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(([u, d]) => `  <url><loc>${SITE}${u}</loc><lastmod>${d.slice(0, 10)}</lastmod></url>`).join('\n')}\n</urlset>\n`;
 }
 
 const robots = () => `User-agent: *\nAllow: /\n\nSitemap: ${SITE}/sitemap.xml\n`;
 
 function llms(arts, pgs) {
-  return `# COI Journal\n\n> A publication about construction insurance compliance: contractor certificates of insurance (COIs), endorsements, project requirements and who pays when coverage fails. Published by Forsured (${FORSURED}), a construction insurance compliance software company. COI Journal does not rank or review software vendors.\n\n## Articles\n\n${arts.map((a) => `- [${a.title}](${SITE}${a.url}index.md): ${a.description}`).join('\n')}\n\n## About the publication\n\n${pgs.map((p) => `- [${p.title}](${SITE}${p.url}): ${p.description}`).join('\n')}\n\n## Reference explainers (on the publisher's site)\n\n${LIBRARY.map(([p, t]) => `- [${t}](${FORSURED}${p})`).join('\n')}\n`;
+  return `# COI Journal\n\n> A publication about construction insurance compliance: contractor certificates of insurance (COIs), endorsements, project requirements and who pays when coverage fails. Published by Forsured (${FORSURED}), a construction insurance compliance software company. COI Journal does not rank or review software vendors.\n\n## Articles\n\n${arts.map((a) => `- [${a.title}](${SITE}${a.url}index.md): ${a.description}`).join('\n')}\n\n## About the publication\n\n${pgs.map((p) => `- [${p.title}](${SITE}${p.url}): ${p.description}`).join('\n')}\n\n## The COI Dictionary\n\n${TERMS.map((t) => `- [${t.term}](${SITE}/dictionary/${t.slug}/): ${t.def}`).join('\n')}\n\n## Masthead\n\n${PEOPLE.map((p) => `- [${p.name}](${SITE}/people/${p.slug}/), ${p.role}. ${p.disclose}`).join('\n')}\n\n## Reference explainers (on the publisher's site)\n\n${LIBRARY.map(([p, t]) => `- [${t}](${FORSURED}${p})`).join('\n')}\n`;
 }
 
 const articleMd = (a) => `# ${a.title}\n\n${a.dek}\n\nBy ${a.byline}, COI Journal. ${human(a.date)}. Published by Forsured.\n\n## The short version\n\n${a.takeaways.map((t) => `- ${plain(t)}`).join('\n')}\n\n${a.body.replace(/\]\(\//g, `](${SITE}/`)}\n`;
@@ -765,6 +1115,11 @@ function build() {
     files[`articles/${a.slug}/index.md`] = articleMd(a);
   }
   for (const p of pgs) files[`${p.url.slice(1)}index.html`] = staticPage(p, y);
+  files['masthead/index.html'] = mastheadPage(y);
+  for (const p of PEOPLE) files[`people/${p.slug}/index.html`] = personPage(p, arts, y);
+  files['dictionary/index.html'] = dictionaryPage(y);
+  for (const t of TERMS) files[`dictionary/${t.slug}/index.html`] = termPage(t, y);
+  files['spot-the-gap/index.html'] = spotPage(y);
   for (const f of Object.keys(files)) if (/—/.test(files[f])) throw new Error(`${f}: contains an em dash`);
   return files;
 }

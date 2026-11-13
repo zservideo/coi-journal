@@ -6,7 +6,8 @@ const path = require('path');
 const AxeBuilder = require('@axe-core/playwright').default;
 
 const ROOT = path.resolve(__dirname, '..');
-const PAGES = ['/', '/articles/why-coi-journal/', '/about/', '/principles/', '/methodology/', '/digest/', '/gap-of-the-month/'];
+const { PEOPLE, TERMS } = require('../tools/desk');
+const PAGES = ['/', '/articles/why-coi-journal/', '/about/', '/principles/', '/methodology/', '/digest/', '/gap-of-the-month/', '/masthead/', ...PEOPLE.map((p) => `/people/${p.slug}/`), '/dictionary/', ...TERMS.map((t) => `/dictionary/${t.slug}/`), '/spot-the-gap/'];
 
 test('built files match the content (run node tools/build.js)', () => {
   execFileSync('node', ['tools/build.js', '--check'], { cwd: ROOT, stdio: 'pipe' });
@@ -124,4 +125,39 @@ test('unknown paths get the 404 page', async ({ request }) => {
   const r = await request.get('/nope/');
   expect(r.status()).toBe(404);
   expect(await r.text()).toContain("That page isn't here.");
+});
+
+test('Spot the Gap scores a round', async ({ page }) => {
+  await page.goto('/spot-the-gap/');
+  const round = page.locator('[data-round]').first();
+  const rows = round.locator('tbody tr');
+  const n = await rows.count();
+  let fails = 0;
+  for (let i = 0; i < n; i++) if ((await rows.nth(i).getAttribute('data-fails')) === '1') { fails++; await rows.nth(i).locator('.pick').click(); }
+  await round.locator('[data-check]').click();
+  await expect(round.locator('.result')).toContainText(`All ${fails} found`);
+  await expect(round.locator('details')).toHaveAttribute('open', '');
+});
+
+test('no Claim File anywhere, and no empty placeholder numbers', async ({ page }) => {
+  for (const url of PAGES) {
+    await page.goto(url);
+    const text = await page.locator('body').innerText();
+    expect(text, url).not.toMatch(/Claim File/i);
+    expect(text, url).not.toMatch(/\?%/);
+  }
+});
+
+test('articles carry a docket number and a person byline', async ({ page }) => {
+  await page.goto('/articles/why-coi-journal/');
+  await expect(page.locator('.stamp')).toContainText('COIJ-26-0001');
+  await expect(page.locator('.byl a[href="/people/zach-servideo/"]')).toHaveCount(1);
+  const ld = JSON.parse(await page.locator('script[type="application/ld+json"]').textContent());
+  expect(ld['@graph'].some((n) => n['@type'] === 'Person' && n.name === 'Zach Servideo')).toBe(true);
+});
+
+test('dictionary pages carry DefinedTerm markup', async ({ page }) => {
+  await page.goto('/dictionary/additional-insured/');
+  const ld = JSON.parse(await page.locator('script[type="application/ld+json"]').textContent());
+  expect(ld['@graph'].some((n) => n['@type'] === 'DefinedTerm' && n.termCode.includes('CG 20 10'))).toBe(true);
 });

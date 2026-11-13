@@ -5,7 +5,10 @@
   "dek": "Contractor certificates of insurance decide who pays when a job goes wrong. Almost nobody reports on them. We're going to.",
   "date": "2026-11-13T09:00:00-05:00",
   "section": "From the editors",
-  "byline": "The editors",
+  "byline": "Zach Servideo",
+  "author": "zach-servideo",
+  "docket": "COIJ-26-0001",
+  "sheet": "A-001",
   "takeaways": [
     "COI Journal covers construction insurance compliance: contractor COIs, endorsements, project requirements and what happens when coverage fails.",
     "It is published by Forsured, which makes COI compliance software. We say so on every page and every email.",
@@ -21,11 +24,11 @@ That gap is our beat.
 
 ## What we'll publish
 
-- **The news desk.** Carrier, state and court changes that change what a general contractor or broker has to check.
-- **COI 101.** Short explainers on one term at a time: additional insured, primary and noncontributory, waiver of subrogation, per project aggregate.
-- **COI Watch.** A running log of rating changes, new endorsement forms, rule changes and large project awards.
-- **The Claim File.** One case a month from public records: what the COI said, what the policy said, and who paid.
-- **The COI Gap Index.** Our flagship research: what share of contractor COIs fail project requirements, and why. It launches once the sample is big enough to be honest. Our [methodology](/methodology/) explains the rules.
+- **The data desk.** The COI Gap Index, our flagship research on what share of contractor COIs fail project requirements and why. It launches once the sample is big enough to be honest; our [methodology](/methodology/) explains the rules. Until then, **The Number** runs one sourced figure at a time, with the arithmetic behind it and our read on who produced it.
+- **[The COI Dictionary](/dictionary/).** One term at a time, with the form numbers: additional insured, primary and noncontributory, waiver of subrogation, per project aggregate.
+- **[Spot the Gap](/spot-the-gap/).** A specimen certificate next to a set of project requirements. Find what fails before we tell you.
+- **COI Watch.** A running log of new endorsement forms, state rule changes and carrier rating moves, in The COI Digest.
+- **Plain Speak.** Short videos with [Steve Massei](/people/steve-massei/), a general contractor who explains one insurance idea at a time in plain English.
 
 ## Who publishes it
 
@@ -35,4 +38,4 @@ Because we sell software in this category, we hold ourselves to a few rules. We 
 
 ## How to take part
 
-Get [The COI Digest](/digest/), our weekly email, on Tuesday mornings. Send us a gap that bit you through [Gap of the Month](/gap-of-the-month/). And if you're a broker or a risk lead with something to say, write to us. Contributors keep their own bylines.
+Get [The COI Digest](/digest/), our weekly email, on Tuesday mornings. Send us a gap that bit you through [Gap of the Month](/gap-of-the-month/). And if you're a broker or a risk lead with something to say, write to us. Contributors keep their own bylines. You can meet the people who make COI Journal on our [masthead](/masthead/).
