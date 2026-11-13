@@ -1,5 +1,65 @@
 [
   {
+    "title": "Insurance Marketplace Realities 2027: Construction",
+    "url": "https://www.wtwco.com/en-us/insights/2026/10/insurance-marketplace-realities-2027-construction",
+    "publisher": "WTW",
+    "author": "",
+    "date": "2026-10-01",
+    "picked": "2026-11-13",
+    "summary": "WTW's 2027 forecast sees general liability flat to up 10%, auto and umbrella or excess up 5% to 15%, and workers' comp flat to up 5%. Workers' comp stays profitable while auto and excess face severity and nuclear verdicts. Data center megaprojects raise execution risk, and demand for subcontractor default insurance keeps outpacing market growth.",
+    "why": "When excess gets expensive, trades buy less of it. Check umbrella limits against the project requirements at every renewal, not just at award."
+  },
+  {
+    "title": "A Better Tech Stack for the Trades",
+    "url": "https://suffolktech.com/a-better-tech-stack-for-the-trades/",
+    "publisher": "Suffolk Technologies",
+    "author": "",
+    "date": "2026-11-03",
+    "picked": "2026-11-13",
+    "summary": "Suffolk's venture arm maps technology for the trades by labor workflow, against a labor gap some put at 600,000 U.S. workers. It notes more than $500 million in recent workforce commitments from large companies and profiles tools for hiring, operations and payment. Suffolk marks its own portfolio companies.",
+    "why": "Insurance compliance shows up on the map under getting paid. On a jobsite it belongs at the start, before a crew walks on."
+  },
+  {
+    "title": "Suffolk to embed AI engineers within construction projects",
+    "url": "https://www.constructiondive.com/news/suffolk-jobsite-of-the-future-ai-engineers/823162/",
+    "publisher": "Construction Dive",
+    "author": "Matthew Thibault",
+    "date": "2026-06-17",
+    "picked": "2026-11-13",
+    "summary": "Suffolk's Jobsite of the Future program puts AI engineers in project meetings to work on design, schedule and process problems. Early tools spot drawing conflicts, track procurement and deliveries, and run an AI requisition process on a large Midwest project. Suffolk says its data lake holds about 293 terabytes of structured construction data.",
+    "why": "Large GCs are wiring AI into project paperwork. Certificates and endorsements are paperwork too, and they need the same rigor about who checks the output."
+  },
+  {
+    "title": "US Construction Industry Update and Market Outlook: Mid-Year 2026",
+    "url": "https://www.ajg.com/news-and-insights/us-construction-industry-update-market-outlook-mid-year-2026/",
+    "publisher": "Gallagher",
+    "author": "",
+    "date": "2026-08-12",
+    "picked": "2026-11-13",
+    "summary": "Gallagher says infrastructure, data center, manufacturing and energy work keep construction busy despite labor shortages and rising claim severity. Its report cites AGC finding over 80% of contractors struggle to fill craft jobs. It puts typical excess liability increases at 5% to 30%, with builders risk renewals mostly flat outside catastrophe zones.",
+    "why": "Short crews mean more new trades and more first-time certificates. That's when gaps slip in."
+  },
+  {
+    "title": "US and Canadian construction insurance are moving apart at the coverage level",
+    "url": "https://www.insurancebusinessmag.com/us/news/construction/us-and-canadian-construction-insurance-are-moving-apart-at-the-coverage-level-582142.aspx",
+    "publisher": "Insurance Business",
+    "author": "Jhoanna Hines",
+    "date": "2026-07-13",
+    "picked": "2026-11-13",
+    "summary": "U.S. builders risk insurers have swapped the LEG3 defect clause for their own wordings with stricter defect definitions, higher deductibles and sublimits, while Canada keeps LEG3. Citing Marsh, the piece says well-managed U.S. projects saw 5% to 8% cuts late in 2025, even as U.S. casualty rates rose 9% in early 2026.",
+    "why": "Same coverage name, different wording. Read the form, not the line on the certificate."
+  },
+  {
+    "title": "As Construction Booms, Insurers Draw Sharper Lines Between Good Risks and Bad",
+    "url": "https://riskandinsurance.com/as-construction-booms-insurers-draw-sharper-lines-between-good-risks-and-bad/",
+    "publisher": "Risk & Insurance",
+    "author": "",
+    "date": "2026-05-29",
+    "picked": "2026-11-13",
+    "summary": "Drawing on Aon's 2026 construction and surety report, the piece says terms favor well-managed risks and tighten for complex or catastrophe-exposed projects. Nuclear verdicts are shrinking excess capacity, with lead excess limits on large civil jobs down to about $5 million from $8 million to $10 million a year or two earlier.",
+    "why": "Smaller excess layers mean more layers, and more policies to check for additional insured wording."
+  },
+  {
     "title": "Seven Charged in $100 Million Workers' Comp Fraud in Florida",
     "url": "https://www.insurancejournal.com/magazines/mag-features/2026/09/07/883922.htm",
     "publisher": "Insurance Journal",
