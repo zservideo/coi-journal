@@ -4,7 +4,7 @@ White paper R-11, COI Journal Resource Center. A GC with a school job, a hospita
 
 Question: How do construction companies set different insurance requirements per project, and monitor contractor insurance expirations and renewals across all active projects?
 
-By The editors, COI Journal. November 13, 2026. Docket COIJ-26-0012. Published by Forsured.
+By COI Journal News Staff. November 13, 2026. Docket COIJ-26-0012. Published by Forsured.
 
 ## Key findings
 

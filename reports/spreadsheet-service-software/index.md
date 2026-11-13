@@ -4,7 +4,7 @@ White paper R-09, COI Journal Resource Center. There are three ways to run a cer
 
 Question: Is it better to manage contractor COIs in a spreadsheet, outsource COI tracking, or use software?
 
-By The editors, COI Journal. November 13, 2026. Docket COIJ-26-0010. Published by Forsured.
+By COI Journal News Staff. November 13, 2026. Docket COIJ-26-0010. Published by Forsured.
 
 ## Key findings
 

@@ -4,7 +4,7 @@ Analyst brief R-18, COI Journal Resource Center. In case after case, the pattern
 
 Question: How does workers' comp premium fraud by contractors work, and how can a GC spot the risk?
 
-By The editors, COI Journal. November 13, 2026. Docket COIJ-26-0019. Published by Forsured.
+By COI Journal News Staff. November 13, 2026. Docket COIJ-26-0019. Published by Forsured.
 
 ## Key findings
 

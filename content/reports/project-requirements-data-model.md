@@ -9,7 +9,7 @@
   "kind": "White paper",
   "number": "R-39",
   "date": "2026-11-23T06:30:00-05:00",
-  "byline": "The editors",
+  "byline": "COI Journal News Staff",
   "docket": "COIJ-26-0040",
   "about": [
     "certificate-of-insurance",
@@ -45,7 +45,7 @@
       "a": "No. A spreadsheet with one tab per project, one row per coverage line and a source column is a big step up from a folder of PDF exhibits. Pick the structure first, so every reviewer reads requirements the same way. The tool can come later and inherit the structure."
     }
   ],
-  "method": "A proposed structure from the editors, based on the public owner requirements and ISO and NCCI forms reviewed in our earlier reports. It's a starting point, not a standard. General information, not legal or insurance advice.",
+  "method": "A proposed structure from COI Journal News Staff, based on the public owner requirements and ISO and NCCI forms reviewed in our earlier reports. It's a starting point, not a standard. General information, not legal or insurance advice.",
   "sources": [
     {
       "title": "One set of rules per project",

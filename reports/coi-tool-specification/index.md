@@ -4,7 +4,7 @@ White paper R-13, COI Journal Resource Center. We don't rank software. But we ca
 
 Question: What should a general contractor look for in COI tracking software, and which checks matter most when choosing one?
 
-By The editors, COI Journal. November 13, 2026. Docket COIJ-26-0014. Published by Forsured.
+By COI Journal News Staff. November 13, 2026. Docket COIJ-26-0014. Published by Forsured.
 
 ## Key findings
 

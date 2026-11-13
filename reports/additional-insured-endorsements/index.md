@@ -4,7 +4,7 @@ White paper R-05, COI Journal Resource Center. Additional insured status is the 
 
 Question: What is an additional insured endorsement like CG 20 10, and why does a construction project need it?
 
-By The editors, COI Journal. November 13, 2026. Docket COIJ-26-0006. Published by Forsured.
+By COI Journal News Staff. November 13, 2026. Docket COIJ-26-0006. Published by Forsured.
 
 ## Key findings
 

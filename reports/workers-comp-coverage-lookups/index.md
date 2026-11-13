@@ -4,7 +4,7 @@ Analyst brief R-17, COI Journal Resource Center. Several states let anyone look 
 
 Question: How can a general contractor verify that a trade contractor's workers' comp coverage is actually in force?
 
-By The editors, COI Journal. November 13, 2026. Docket COIJ-26-0018. Published by Forsured.
+By COI Journal News Staff. November 13, 2026. Docket COIJ-26-0018. Published by Forsured.
 
 ## Key findings
 

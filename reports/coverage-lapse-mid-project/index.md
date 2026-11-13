@@ -4,7 +4,7 @@ White paper R-06, COI Journal Resource Center. Policies expire, get cancelled fo
 
 Question: What happens to a general contractor if a trade contractor's insurance lapses in the middle of a project?
 
-By The editors, COI Journal. November 13, 2026. Docket COIJ-26-0007. Published by Forsured.
+By COI Journal News Staff. November 13, 2026. Docket COIJ-26-0007. Published by Forsured.
 
 ## Key findings
 

@@ -4,7 +4,7 @@ White paper R-12, COI Journal Resource Center. Most coverage gaps take weeks to 
 
 Question: How can brokers and general contractors fix contractor coverage gaps faster, without endless email back-and-forth?
 
-By The editors, COI Journal. November 13, 2026. Docket COIJ-26-0013. Published by Forsured.
+By COI Journal News Staff. November 13, 2026. Docket COIJ-26-0013. Published by Forsured.
 
 ## Key findings
 

@@ -9,7 +9,7 @@
   "kind": "White paper",
   "number": "R-41",
   "date": "2026-11-25T06:30:00-05:00",
-  "byline": "The editors",
+  "byline": "COI Journal News Staff",
   "docket": "COIJ-26-0042",
   "about": [
     "certificate-of-insurance",
@@ -45,7 +45,7 @@
       "a": "The common breaks are requirements that live in one person's head, endorsements filed apart from certificates, renewals tracked in someone's calendar, and exceptions granted by phone with nothing written down. Each one means the next reviewer can't see what was decided, so the same gap opens again on the next project."
     }
   ],
-  "method": "A practical plan from the editors, drawing on guidance from Munich Re Specialty (2025), EPIC (2026) and ABC Carolinas (2026), and on our earlier reports. Timing will vary with the number of active projects and trades. General information, not legal or insurance advice.",
+  "method": "A practical plan from COI Journal News Staff, drawing on guidance from Munich Re Specialty (2025), EPIC (2026) and ABC Carolinas (2026), and on our earlier reports. Timing will vary with the number of active projects and trades. General information, not legal or insurance advice.",
   "sources": [
     {
       "title": "Proactively evaluating subcontractors: a key to mitigating risk",

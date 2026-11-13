@@ -4,7 +4,7 @@ Analyst brief R-14, COI Journal Resource Center. The newest edition of the stand
 
 Question: What changed on the ACORD 25 certificate of liability insurance in the 2025/12 edition?
 
-By The editors, COI Journal. November 13, 2026. Docket COIJ-26-0015. Published by Forsured.
+By COI Journal News Staff. November 13, 2026. Docket COIJ-26-0015. Published by Forsured.
 
 ## Key findings
 

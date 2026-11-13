@@ -4,7 +4,7 @@ White paper R-10, COI Journal Resource Center. AI is good at reading documents a
 
 Question: Can AI accurately review certificates of insurance and endorsements against project insurance requirements?
 
-By The editors, COI Journal. November 13, 2026. Docket COIJ-26-0011. Published by Forsured.
+By COI Journal News Staff. November 13, 2026. Docket COIJ-26-0011. Published by Forsured.
 
 ## Key findings
 

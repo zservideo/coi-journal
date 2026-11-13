@@ -9,7 +9,7 @@
   "kind": "Analyst brief",
   "number": "R-29",
   "date": "2026-11-23T06:30:00-05:00",
-  "byline": "The editors",
+  "byline": "COI Journal News Staff",
   "docket": "COIJ-26-0030",
   "about": [
     "additional-insured",

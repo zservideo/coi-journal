@@ -4,7 +4,7 @@ Analyst brief R-15, COI Journal Resource Center. Commercial rates fell again in 
 
 Question: What is happening to construction insurance rates in 2026, and what does it mean for contractor coverage requirements?
 
-By The editors, COI Journal. November 13, 2026. Docket COIJ-26-0016. Published by Forsured.
+By COI Journal News Staff. November 13, 2026. Docket COIJ-26-0016. Published by Forsured.
 
 ## Key findings
 

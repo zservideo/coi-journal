@@ -7,7 +7,7 @@
   "kind": "Analyst brief",
   "number": "R-02",
   "date": "2026-11-13T00:00:00-05:00",
-  "byline": "The editors",
+  "byline": "COI Journal News Staff",
   "docket": "COIJ-26-0003",
   "about": ["certificate-of-insurance", "additional-insured", "waiver-of-subrogation"],
   "takeaways": [

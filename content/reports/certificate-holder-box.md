@@ -9,7 +9,7 @@
   "kind": "Analyst brief",
   "number": "R-33",
   "date": "2026-12-01T06:30:00-05:00",
-  "byline": "The editors",
+  "byline": "COI Journal News Staff",
   "docket": "COIJ-26-0034",
   "about": [
     "certificate-of-insurance",

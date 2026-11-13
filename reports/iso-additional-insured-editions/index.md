@@ -4,7 +4,7 @@ Analyst brief R-19, COI Journal Resource Center. An endorsement's edition date i
 
 Question: How have ISO additional insured endorsements like CG 20 10 and CG 20 37 changed, and why does the edition date matter?
 
-By The editors, COI Journal. November 13, 2026. Docket COIJ-26-0020. Published by Forsured.
+By COI Journal News Staff. November 13, 2026. Docket COIJ-26-0020. Published by Forsured.
 
 ## Key findings
 

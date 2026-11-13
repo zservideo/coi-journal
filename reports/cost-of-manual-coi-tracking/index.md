@@ -4,7 +4,7 @@ Analyst brief R-23, COI Journal Resource Center. Ask what COI compliance costs a
 
 Question: How much does it cost a construction company to track contractor COIs manually, and how should it build its own estimate?
 
-By The editors, COI Journal. November 13, 2026. Docket COIJ-26-0024. Published by Forsured.
+By COI Journal News Staff. November 13, 2026. Docket COIJ-26-0024. Published by Forsured.
 
 ## Key findings
 
