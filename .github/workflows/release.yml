@@ -23,7 +23,8 @@ jobs:
         with:
           node-version: 22
       - name: Move the release date to today (Eastern)
-        run: echo "{ \"through\": \"$(TZ=America/New_York date +%F)\" }" > content/release.json
+        run: |
+          echo "{ \"through\": \"$(TZ=America/New_York date +%F)\" }" > content/release.json
       - run: node tools/build.js
       - name: Commit if anything was released
         run: |
