@@ -213,8 +213,13 @@ const articles = () =>
 const pages = () => readDir('pages', ['title', 'description', 'dek', 'url']);
 // Reports: the Resource Center's long-form analyst reports and white papers. Qualitative and sourced; no
 // survey numbers until a sample clears the methodology rules. Each carries a report number and a docket.
-const reports = () =>
-  readDir('reports', ['title', 'short', 'description', 'dek', 'kind', 'number', 'date', 'byline', 'docket', 'takeaways', 'method', 'sources'])
+const reports = () => {
+  const all = readDir('reports', ['title', 'short', 'description', 'dek', 'kind', 'number', 'date', 'byline', 'docket', 'takeaways', 'method', 'sources']);
+  // A released report may link to one still in the queue. Until that one goes out, show the link text only.
+  const held = new Set(all.filter((r) => r.date.slice(0, 10) > RELEASE).map((r) => r.slug));
+  const unlink = (body) => body.replace(/\[([^\]]+)\]\(\/reports\/([a-z0-9-]+)\/\)/g, (m, t, slug) => (held.has(slug) ? t : m));
+  return all
+    .map((r) => ({ ...r, body: unlink(r.body) }))
     .map((r) => {
       const words = r.body.split(/\s+/).length;
       const toc = [...r.body.matchAll(/^## (.+)$/gm)].map((m) => m[1]);
@@ -222,6 +227,7 @@ const reports = () =>
     })
     .filter((r) => r.date.slice(0, 10) <= RELEASE)
     .sort((a, b) => (a.number < b.number ? 1 : -1));
+};
 // Worth Reading: curated picks from other outlets. Each one is a short summary in our words, one line of
 // commentary and a link to the full story. Never republished, never sponsored, never a vendor blog.
 const picks = () => {
@@ -244,7 +250,7 @@ const sources = () => {
 };
 
 // ---------- a small Markdown subset (same as forsured.ai's blog) ----------
-// Blocks: ## and ### headings, paragraphs, - and 1. lists, > quotes. Inline: **bold**, *italic*, [text](url), `code`.
+// Blocks: ## and ### headings, paragraphs, - and 1. lists, > quotes, | tables | (header row, then |---|). Inline: **bold**, *italic*, [text](url), `code`.
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const inline = (s) =>
@@ -264,7 +270,11 @@ function markdown(md) {
     if ((h = lines[0].match(/^(#{2,3}) (.+)$/))) out.push(`<h${h[1].length} id="${slugify(h[2])}">${inline(h[2])}</h${h[1].length}>`);
     else if (lines.every((l) => /^- /.test(l))) out.push('<ul>' + lines.map((l) => `<li>${inline(l.slice(2))}</li>`).join('') + '</ul>');
     else if (lines.every((l) => /^\d+\. /.test(l))) out.push('<ol>' + lines.map((l) => `<li>${inline(l.replace(/^\d+\. /, ''))}</li>`).join('') + '</ol>');
-    else if (lines.every((l) => /^>/.test(l))) out.push(`<blockquote><p>${inline(lines.map((l) => l.replace(/^> ?/, '')).join(' '))}</p></blockquote>`);
+    else if (lines.length > 2 && lines.every((l) => /^\|.*\|$/.test(l)) && /^\|[\s:|-]+\|$/.test(lines[1])) {
+      const cells = (l) => l.slice(1, -1).split('|').map((c) => c.trim());
+      const head = cells(lines[0]);
+      out.push(`<div class="tbl" tabindex="0" role="region" aria-label="${esc(plain(head.join(', ')))}"><table><thead><tr>${head.map((c) => `<th scope="col">${inline(c)}</th>`).join('')}</tr></thead><tbody>${lines.slice(2).map((l) => `<tr>${cells(l).map((c) => `<td>${inline(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`);
+    } else if (lines.every((l) => /^>/.test(l))) out.push(`<blockquote><p>${inline(lines.map((l) => l.replace(/^> ?/, '')).join(' '))}</p></blockquote>`);
     else out.push(`<p>${inline(lines.join(' '))}</p>`);
   }
   return out.join('\n');
@@ -514,6 +524,10 @@ p,li{text-wrap:pretty}
 .sec h3{font-family:var(--serif);font-weight:600;font-size:18px;line-height:1.25}
 .sec h3 a{text-decoration:none}.sec h3 a:hover{text-decoration:underline;text-decoration-color:var(--cy2)}
 .sec p{font-size:14px;color:var(--ink2);margin-top:8px}
+.tbl{overflow-x:auto;margin:22px 0}
+.tbl table{width:100%;border-collapse:collapse;font-size:15px;line-height:1.45;min-width:480px}
+.tbl th{text-align:left;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2);border-bottom:2px solid var(--ink);padding:8px 10px}
+.tbl td{border-bottom:1px solid var(--rule);padding:9px 10px;vertical-align:top}
 .lib{columns:2;column-gap:48px;margin-top:18px;list-style:none}
 .lib li{break-inside:avoid;padding:12px 0;border-bottom:1px solid var(--rule)}
 .src-why{margin:4px 0 0;font-size:14px;color:var(--ink2)}
@@ -1424,7 +1438,7 @@ function reportsIndex(list, y) {
 function sourcesPage(list, y) {
   const groups = [...new Set(list.map((k) => k.group))];
   return shell({
-    title: 'Sources we watch: analysts, GCs, regulators and trade press | COI Journal',
+    title: 'Sources we watch: analysts, GCs and trade press | COI Journal',
     description: 'The analyst firms, broker market reports, enterprise general contractors, standards bodies and trade press the COI Journal editors read every week.',
     url: '/resources/sources/',
     campaign: 'sources',
