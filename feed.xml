@@ -6,7 +6,23 @@
   <atom:link href="https://coijournal.com/feed.xml" rel="self" type="application/rss+xml"/>
   <description>Construction insurance compliance, reported. Published by Forsured.</description>
   <language>en-us</language>
-  <lastBuildDate>Fri, 13 Nov 2026 14:00:00 GMT</lastBuildDate>
+  <lastBuildDate>Fri, 13 Nov 2026 17:30:00 GMT</lastBuildDate>
+  <item>
+    <title>Rented, falsified, excluded: what 2026's cases say about trusting a contractor COI</title>
+    <link>https://coijournal.com/reports/rented-falsified-excluded/</link>
+    <guid isPermaLink="true">https://coijournal.com/reports/rented-falsified-excluded/</guid>
+    <pubDate>Fri, 13 Nov 2026 17:30:00 GMT</pubDate>
+    <category>Analyst brief</category>
+    <description>A COI Journal analyst brief on four 2026 fraud and coverage cases, what a certificate could and couldn't have shown in each, and the checks that matter.</description>
+  </item>
+  <item>
+    <title>A certificate is not coverage: six ways contractor COIs fail project requirements</title>
+    <link>https://coijournal.com/reports/certificate-is-not-coverage/</link>
+    <guid isPermaLink="true">https://coijournal.com/reports/certificate-is-not-coverage/</guid>
+    <pubDate>Fri, 13 Nov 2026 17:00:00 GMT</pubDate>
+    <category>White paper</category>
+    <description>A COI Journal white paper on why contractor certificates of insurance pass a glance and still fail the project, and the six failure modes worth checking.</description>
+  </item>
   <item>
     <title>Why we're starting COI Journal</title>
     <link>https://coijournal.com/articles/why-coi-journal/</link>
