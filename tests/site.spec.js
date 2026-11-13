@@ -7,7 +7,8 @@ const AxeBuilder = require('@axe-core/playwright').default;
 
 const ROOT = path.resolve(__dirname, '..');
 const { PEOPLE, TERMS } = require('../tools/desk');
-const PAGES = ['/', '/articles/why-coi-journal/', '/about/', '/principles/', '/methodology/', '/digest/', '/gap-of-the-month/', '/masthead/', ...PEOPLE.map((p) => `/people/${p.slug}/`), '/dictionary/', ...TERMS.map((t) => `/dictionary/${t.slug}/`), '/spot-the-gap/', '/worth-reading/', '/digest/issue-0/'];
+const REPORTS = fs.readdirSync(path.join(ROOT, 'content', 'reports')).filter((f) => f.endsWith('.md')).map((f) => f.replace(/\.md$/, ''));
+const PAGES = ['/', '/articles/why-coi-journal/', '/about/', '/principles/', '/methodology/', '/digest/', '/gap-of-the-month/', '/masthead/', ...PEOPLE.map((p) => `/people/${p.slug}/`), '/dictionary/', ...TERMS.map((t) => `/dictionary/${t.slug}/`), '/spot-the-gap/', '/worth-reading/', '/digest/issue-0/', '/resources/', '/resources/agents/', '/reports/', ...REPORTS.map((r) => `/reports/${r}/`)];
 
 test('built files match the content (run node tools/build.js)', () => {
   execFileSync('node', ['tools/build.js', '--check'], { cwd: ROOT, stdio: 'pipe' });
@@ -84,9 +85,8 @@ for (const url of PAGES) {
     });
 
     test('passes axe accessibility checks', async ({ page }) => {
-      // .btn.f is the Forsured orange button (#FB612A, white text). Zach chose the exact brand orange over
-      // contrast on forsured.ai (forsured-site tests/brand.json lists the same exception), so it's excluded here.
-      const r = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa']).exclude('.btn.f').analyze();
+      // Every button is ochre with ink text now, so nothing is excluded.
+      const r = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa']).analyze();
       expect(r.violations.map((v) => `${v.id}: ${v.nodes.map((n) => n.target).join(' ')}`)).toEqual([]);
     });
   });
@@ -160,4 +160,37 @@ test('dictionary pages carry DefinedTerm markup', async ({ page }) => {
   await page.goto('/dictionary/additional-insured/');
   const ld = JSON.parse(await page.locator('script[type="application/ld+json"]').textContent());
   expect(ld['@graph'].some((n) => n['@type'] === 'DefinedTerm' && n.termCode.includes('CG 20 10'))).toBe(true);
+});
+
+test('reports carry Report markup, a docket, key findings and sources', async ({ page }) => {
+  for (const r of REPORTS) {
+    await page.goto(`/reports/${r}/`);
+    const ld = JSON.parse(await page.locator('script[type="application/ld+json"]').textContent())['@graph'];
+    const rep = ld.find((x) => x['@type'] === 'Report');
+    expect(rep.identifier).toMatch(/^COIJ-26-\d{4}$/);
+    expect(rep.reportNumber).toMatch(/^R-\d{2}$/);
+    expect(rep.citation.length).toBeGreaterThan(0);
+    await expect(page.locator('.findings li').first()).toBeVisible();
+    await expect(page.locator('.sources li').first()).toBeVisible();
+    await expect(page.locator('.toc a').first()).toBeVisible();
+  }
+});
+
+test('no data desk framing and no Forsured orange outside the F mark', async ({ page }) => {
+  for (const url of ['/', '/spot-the-gap/', '/resources/', `/reports/${REPORTS[0]}/`]) {
+    await page.goto(url);
+    expect((await page.locator('body').innerText()).toLowerCase()).not.toContain('data desk');
+    const orange = await page.evaluate(() => {
+      const hits = [];
+      for (const el of document.querySelectorAll('body *')) {
+        if (el.classList.contains('fmark')) continue;
+        const cs = getComputedStyle(el);
+        for (const k of ['color', 'backgroundColor', 'borderTopColor', 'borderLeftColor', 'fill', 'stroke']) {
+          if (/rgb\(251, 97, 42\)|rgb\(180, 70, 26\)/.test(cs[k]) && cs.display !== 'none') hits.push(el.className || el.tagName);
+        }
+      }
+      return hits;
+    });
+    expect(orange).toEqual([]);
+  }
 });
