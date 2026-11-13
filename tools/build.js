@@ -592,6 +592,7 @@ const NAV = [
   ['/worth-reading/', 'Worth Reading'],
   ['/spot-the-gap/', 'Spot the Gap'],
   ['/dictionary/', 'The Dictionary'],
+  ['/worth-reading/', 'Worth Reading'],
   ['/methodology/', 'Data desk'],
   ['/digest/', 'The COI Digest'],
   ['/masthead/', 'Masthead'],
