@@ -7,7 +7,7 @@ const AxeBuilder = require('@axe-core/playwright').default;
 
 const ROOT = path.resolve(__dirname, '..');
 const { PEOPLE, TERMS } = require('../tools/desk');
-const PAGES = ['/', '/articles/why-coi-journal/', '/about/', '/principles/', '/methodology/', '/digest/', '/gap-of-the-month/', '/masthead/', ...PEOPLE.map((p) => `/people/${p.slug}/`), '/dictionary/', ...TERMS.map((t) => `/dictionary/${t.slug}/`), '/spot-the-gap/', '/worth-reading/'];
+const PAGES = ['/', '/articles/why-coi-journal/', '/about/', '/principles/', '/methodology/', '/digest/', '/gap-of-the-month/', '/masthead/', ...PEOPLE.map((p) => `/people/${p.slug}/`), '/dictionary/', ...TERMS.map((t) => `/dictionary/${t.slug}/`), '/spot-the-gap/', '/worth-reading/', '/digest/issue-0/'];
 
 test('built files match the content (run node tools/build.js)', () => {
   execFileSync('node', ['tools/build.js', '--check'], { cwd: ROOT, stdio: 'pipe' });
