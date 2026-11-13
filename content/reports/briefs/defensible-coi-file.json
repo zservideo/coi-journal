@@ -1,0 +1,58 @@
+{
+  "slug": "defensible-coi-file",
+  "type": "evergreen",
+  "reader": "GC risk and compliance manager",
+  "questions": [
+    "What records should a general contractor keep to prove it verified a trade contractor's insurance if a claim or dispute comes up later?"
+  ],
+  "target_keywords": [
+    "COI records retention",
+    "how long to keep certificates of insurance",
+    "COI audit trail",
+    "certificate of insurance documentation",
+    "defensible COI file",
+    "COI tracking records"
+  ],
+  "competing_sources": [
+    {
+      "url": "https://cafe.cfma.org/discussion/certicate-of-insurance",
+      "title": "Certificate of insurance retention discussion (CFMA)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://acuity.com/the-focus/agent/key-tips-for-managing-subcontractors-certificates-of-insurance",
+      "title": "Key tips for managing certificates of insurance (Acuity)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://btlaw.com/insights/blogs/four-more-things-to-know-about-certificates-of-insurance",
+      "title": "Four more things to know about certificates of insurance (Barnes & Thornburg)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://www.acuity.com/the-focus/contractor/best-practices-to-managing-certificates-of-insurance-cois",
+      "title": "Best practices for managing COIs (Acuity)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://beancount.io/blog/2026/09/09/collecting-certificates-of-insurance-subcontractor-coi-audit-guide",
+      "title": "Collecting certificates of insurance: audit guide (Beancount)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    }
+  ],
+  "adds": "Maps each record to the question it answers after a claim.",
+  "plan": {
+    "table": "Questions and the records that answer them",
+    "internal_links": [
+      "/reports/per-project-requirements-and-renewals/",
+      "/reports/fixing-gaps-brokers-gcs/",
+      "/dictionary/completed-operations/",
+      "/reports/federal-contracts-far-insurance/"
+    ],
+    "external_links": [
+      "https://irmi.com/articles/expert-commentary/tackling-subcontractor-performance-issues-from-the-ground-up",
+      "https://abccarolinas.org/",
+      "https://www.acquisition.gov/far/52.228-5"
+    ]
+  }
+}

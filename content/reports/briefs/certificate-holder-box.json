@@ -1,0 +1,57 @@
+{
+  "slug": "certificate-holder-box",
+  "type": "evergreen",
+  "reader": "GC project manager or compliance lead",
+  "questions": [
+    "What does being the certificate holder on an ACORD 25 mean, and is it the same as being an additional insured?"
+  ],
+  "target_keywords": [
+    "certificate holder",
+    "certificate holder vs additional insured",
+    "ACORD 25 certificate holder",
+    "certificate holder rights",
+    "certificate holder box",
+    "is certificate holder additional insured"
+  ],
+  "competing_sources": [
+    {
+      "url": "https://billyforinsurance.com/resources/certificate-holder-vs-additional-insured/",
+      "title": "Certificate holder vs additional insured (Billy)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://getbcs.com/blog/policyholders-certificate-holders-and-additional-insureds-whats-the-difference",
+      "title": "Certificate holders and additional insureds: what's the difference (BCS)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://www.thecontractormatrix.com/proof-of-insurance/certificate-holder",
+      "title": "Certificate holder (The Contractor Matrix)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://totalcsr.com/?p=1511",
+      "title": "How to complete the ACORD 25 (Total CSR)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://getjones.com/blog/additional-insured-vs-additional-interest-whats-the-difference/",
+      "title": "Additional insured vs additional interest (Jones)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    }
+  ],
+  "adds": "Reads the form's own wording and lists the naming errors that matter for a GC file.",
+  "plan": {
+    "table": "Holder vs additional insured",
+    "internal_links": [
+      "/reports/certificate-is-not-coverage/",
+      "/dictionary/additional-insured/",
+      "/dictionary/notice-of-cancellation/"
+    ],
+    "external_links": [
+      "https://www.dfs.ny.gov/system/files/documents/2025/12/acord-25-2025-12-liability.pdf",
+      "https://insurancexdate.com/insurance-forms/CG/CG-20-37/",
+      "https://www.irmi.com/articles/expert-commentary/the-insurance-certificate-looked-fine"
+    ]
+  }
+}

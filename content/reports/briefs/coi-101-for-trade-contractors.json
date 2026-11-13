@@ -1,0 +1,59 @@
+{
+  "slug": "coi-101-for-trade-contractors",
+  "type": "evergreen",
+  "reader": "Trade contractor office manager or owner",
+  "questions": [
+    "As a trade contractor, how do I get my insurance approved quickly by a general contractor and avoid payment holds over certificates?"
+  ],
+  "target_keywords": [
+    "certificate of insurance for subcontractors",
+    "how to get a certificate of insurance",
+    "subcontractor COI requirements",
+    "COI approved by general contractor",
+    "additional insured endorsement for subcontractors",
+    "insurance packet for GC"
+  ],
+  "competing_sources": [
+    {
+      "url": "https://blog.central-insurance.com/certificate-of-insurance-construction-job/",
+      "title": "Certificate of insurance for a construction job (Central Insurance)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://www.progressivecommercial.com/business-insurance/certificate-of-insurance-for-contractors/",
+      "title": "What is a certificate of insurance for contractors? (Progressive Commercial)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://www.ccisbonds.com/blog/how-to-get-a-certificate-of-insurance",
+      "title": "How to get a certificate of insurance (CCIS)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://www.biberk.com/articles/subcontractors-need-liability-insurance",
+      "title": "Subcontractors need liability insurance (biBERK)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://fitsmallbusiness.com/finance/construction-coi-why-it-matters-how-to-get-one/",
+      "title": "Construction COI: why it matters (Fit Small Business)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    }
+  ],
+  "adds": "Written for the trade contractor's side: what to send once, and the common holds with fixes.",
+  "plan": {
+    "table": "Common holds and fixes",
+    "internal_links": [
+      "/reports/why-contractors-send-certificates/",
+      "/dictionary/additional-insured/",
+      "/dictionary/primary-and-noncontributory/",
+      "/dictionary/waiver-of-subrogation/",
+      "/reports/monopolistic-workers-comp-states/"
+    ],
+    "external_links": [
+      "https://www.munichre.com/",
+      "https://www.epicbrokers.com/insights/aligning-subcontractor-risk/",
+      "https://www.dfs.ny.gov/system/files/documents/2025/12/acord-25-2025-12-liability.pdf"
+    ]
+  }
+}

@@ -26,6 +26,25 @@ Article front matter: `title`, `description` (70 to 170 chars), `dek`, `date` (I
 - Forsured Terms and Privacy in every footer and under every form.
 - No em dashes.
 
+## AEO checklist (enforced by the build)
+
+`tools/aeo.js` is Warren Brown's AEO checklist (Nov 2026), adapted for the Journal. `node tools/build.js` refuses to
+build when any gated report misses, including reports still held by `content/release.json`, so a queued report
+can't fail on its release morning. A report is gated when it has a brief or is dated 2026-11-16 or later.
+
+- A brief at `content/reports/briefs/<slug>.json`: 1 to 3 reader questions, 5 to 10 `target_keywords`,
+  `competing_sources` (url and title each).
+- `answer` in front matter: 40 to 60 words, shown first under the byline.
+- H2s phrased as questions (except The short version, Common questions, Sources); sections open on the noun.
+- At least one table with a `Table: <caption>` line above it.
+- `faq`: 5 to 8 entries, 40 to 80 word answers; the FAQPage JSON-LD is built from the same text.
+- 3 to 8 internal and 3 to 8 external body links (forsured.ai and coidigest.com don't count as external),
+  descriptive anchor text, no bare URLs or emails.
+- Minified JSON-LD, no HTML comments, `dateModified` equal to the visible Updated date.
+- Copy rules W1 to W6 (also run on Worth Reading picks) and the not-advice line.
+- Not carried over: word and keyword counts, the Forsured paragraph and ranking rules. The byline stays
+  "The editors" until the editor approves their name and title.
+
 ## Wiring
 
 - Forms post to Web3Forms (emails the team). Set `MAKE_WEBHOOK` in tools/build.js once the Make scenario

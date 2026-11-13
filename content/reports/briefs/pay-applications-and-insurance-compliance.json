@@ -1,0 +1,59 @@
+{
+  "slug": "pay-applications-and-insurance-compliance",
+  "type": "evergreen",
+  "reader": "GC project manager or compliance desk",
+  "questions": [
+    "Can a general contractor hold payment to a trade contractor until its insurance is compliant, and how do GCs build that into the pay application process?"
+  ],
+  "target_keywords": [
+    "withhold payment subcontractor insurance",
+    "pay application insurance compliance",
+    "prompt payment laws",
+    "condition of payment insurance",
+    "subcontractor payment hold",
+    "pay app compliance check"
+  ],
+  "competing_sources": [
+    {
+      "url": "https://smartcompliance.co/?p=4957",
+      "title": "The right way to withhold payment from non-compliant vendors (SmartCompliance)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://www.levelset.com/blog/why-the-general-contractor-isnt-paying-you/",
+      "title": "Why the general contractor isn't paying you (Levelset)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://www.agc.org/sites/default/files/users/user22628/AGC Best Practices - Preventing Sub Default FINAL.pdf",
+      "title": "Best practices: preventing subcontractor default (AGC)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://www.sage.com/en-us/blog/dont-risk-6-tips-manage-subcontractor-compliance/",
+      "title": "Six tips to manage subcontractor compliance (Sage)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://www.irmi.com/articles/expert-commentary/pay-when-paid-clauses-and-prompt-payment-acts",
+      "title": "Pay-when-paid clauses and prompt payment acts (IRMI)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    }
+  ],
+  "adds": "A four-step monthly cycle and fairness rules for holds.",
+  "plan": {
+    "table": "Monthly pay app check",
+    "internal_links": [
+      "/reports/reading-a-coi-against-requirements/",
+      "/dictionary/completed-operations/",
+      "/reports/fixing-gaps-brokers-gcs/",
+      "/reports/defensible-coi-file/"
+    ],
+    "external_links": [
+      "https://www.epicbrokers.com/insights/aligning-subcontractor-risk/",
+      "https://agc.org/prompt-payment-state-state-map",
+      "https://www.irmi.com/articles/expert-commentary/pay-when-paid-clauses-and-prompt-payment-acts",
+      "https://irmi.com/articles/expert-commentary/tackling-subcontractor-performance-issues-from-the-ground-up"
+    ]
+  }
+}

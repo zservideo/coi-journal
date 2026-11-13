@@ -1,0 +1,58 @@
+{
+  "slug": "california-anti-indemnity-additional-insured",
+  "type": "evergreen",
+  "reader": "GC risk manager or counsel on California projects",
+  "questions": [
+    "How do California Civil Code 2782 and Insurance Code 11580.04 limit indemnity and additional insured coverage on construction projects?"
+  ],
+  "target_keywords": [
+    "California Civil Code 2782",
+    "Civil Code 2782.05",
+    "Insurance Code 11580.04",
+    "California anti-indemnity",
+    "additional insured California",
+    "Type I indemnity California"
+  ],
+  "competing_sources": [
+    {
+      "url": "https://www.wshblaw.com/type-i-indemnity-prohibited-in-commercial-contracts-post-january-1-2013/",
+      "title": "Type I indemnity prohibited in commercial contracts post January 1, 2013 (Wood Smith Henning & Berman)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://pillsburylaw.com/en/news-and-insights/shifting-of-liability-nixed-by-new-california-contractor-s-law.html",
+      "title": "Shifting of liability nixed by new California contractor's law (Pillsbury)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://mondaq.com/unitedstates/construction--planning/241646/californias-new-subcontractor-defense-regime-for-non-residential-projects-creating-order-or-chaos",
+      "title": "California's new subcontractor defense regime (Mondaq)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://law.justia.com/codes/california/code-civ/division-3/part-4/title-12/section-2782-05",
+      "title": "Civil Code 2782.05 (Justia)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://california.public.law/codes/ca_civ_code_section_2782.05",
+      "title": "Civil Code section 2782.05 (California.Public.Law)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    }
+  ],
+  "adds": "Connects the indemnity statute to the insurance code and to what a GC collects.",
+  "plan": {
+    "table": "California provisions and their effect",
+    "internal_links": [
+      "/dictionary/additional-insured/",
+      "/dictionary/completed-operations/",
+      "/reports/additional-insured-endorsements/",
+      "/reports/texas-anti-indemnity-additional-insured/"
+    ],
+    "external_links": [
+      "https://www.constructiondefectjournal.com/archives/inside-issue/2012/01/ever-growing-thicket-california-civil-code-section-2782",
+      "https://california.public.law/codes/ca_civ_code_section_2782.05",
+      "https://california.public.law/codes/ca_ins_code_section_11580.04"
+    ]
+  }
+}

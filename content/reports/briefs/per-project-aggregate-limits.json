@@ -1,0 +1,58 @@
+{
+  "slug": "per-project-aggregate-limits",
+  "type": "evergreen",
+  "reader": "GC risk and compliance manager",
+  "questions": [
+    "What is a per project aggregate endorsement, and how can a GC tell whether a trade contractor's general liability limit is shared across every job?"
+  ],
+  "target_keywords": [
+    "per project aggregate",
+    "per project aggregate endorsement",
+    "CG 25 03",
+    "designated construction project general aggregate",
+    "general aggregate limit",
+    "per location aggregate"
+  ],
+  "competing_sources": [
+    {
+      "url": "https://www.insureon.com/small-business-insurance/general-liability/per-project-aggregate-endorsement",
+      "title": "Per project aggregate endorsement (Insureon)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://irmi.com/term/insurance-definitions/designated-construction-project-general-aggregate-limit-endorsement",
+      "title": "Designated construction project general aggregate limit endorsement (IRMI)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://insurancexdate.com/insurance-forms/CG/CG-25-03/",
+      "title": "CG 25 03 (InsuranceXDate)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://www.intrans.iastate.edu/wp-content/uploads/sites/15/2018/08/InsuranceForms.pdf",
+      "title": "Insurance forms (Iowa State InTrans)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://open-exam-prep.com/study-guides/ky-property-casualty/national-pc-cgl-2/pcnat-11-cgl-limits-aggregates",
+      "title": "CGL limits of insurance and aggregates (Open Exam Prep)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    }
+  ],
+  "adds": "A with and without table, and the completed operations limit the endorsement leaves shared.",
+  "plan": {
+    "table": "What CG 25 03 changes",
+    "internal_links": [
+      "/dictionary/per-project-aggregate/",
+      "/dictionary/completed-operations/",
+      "/dictionary/certificate-of-insurance/",
+      "/reports/per-project-requirements-and-renewals/"
+    ],
+    "external_links": [
+      "https://insurancexdate.com/insurance-forms/CG/CG-25-03/",
+      "https://www.irmi.com/term/insurance-definitions/designated-construction-project-general-aggregate-limit-endorsement",
+      "https://insurancexdate.com/insurance-forms/CG/CG-25-04/"
+    ]
+  }
+}

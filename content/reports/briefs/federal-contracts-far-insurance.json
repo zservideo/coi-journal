@@ -1,0 +1,58 @@
+{
+  "slug": "federal-contracts-far-insurance",
+  "type": "evergreen",
+  "reader": "GC compliance manager on federal work",
+  "questions": [
+    "What insurance does the federal government require on construction work at a government installation, and what has to flow down to subcontractors?"
+  ],
+  "target_keywords": [
+    "FAR 52.228-5",
+    "FAR 28.307-2",
+    "insurance work on a government installation",
+    "federal contract insurance requirements",
+    "FAR insurance flow down",
+    "notice of cancellation endorsement"
+  ],
+  "competing_sources": [
+    {
+      "url": "https://samsearch.co/far-navigator/52-228-5-insurance-work-on-a-government-installation",
+      "title": "52.228-5 Insurance, Work on a Government Installation (SAM Search)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://www.cleat.ai/free-govcon-tools/far-navigator/52-solicitation-provisions-and-contract-clauses/52-2-text-of-provisions-and-clauses/52-228-reserved/52-228-5-insurance-work-on-a-government-installation",
+      "title": "52.228-5 (Cleat FAR Navigator)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://www.law.cornell.edu/cfr/text/48/52.228-5",
+      "title": "48 CFR 52.228-5 (Cornell LII)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://samsearch.co/far-navigator/28-307-2-liability",
+      "title": "28.307-2 Liability (SAM Search)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://www.acquisition.gov/far/subpart-28.3",
+      "title": "FAR Subpart 28.3 (Acquisition.gov)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    }
+  ],
+  "adds": "Turns the clause into a GC checklist and separates the notice endorsement from the certificate.",
+  "plan": {
+    "table": "FAR 28.307-2 minimums",
+    "internal_links": [
+      "/dictionary/notice-of-cancellation/",
+      "/reports/acord-25-limits-wording/",
+      "/reports/monopolistic-workers-comp-states/",
+      "/reports/per-project-requirements-and-renewals/"
+    ],
+    "external_links": [
+      "https://www.acquisition.gov/far/subpart-28.3",
+      "https://www.acquisition.gov/far/52.228-5",
+      "https://www.law.cornell.edu/cfr/text/48/52.228-5"
+    ]
+  }
+}

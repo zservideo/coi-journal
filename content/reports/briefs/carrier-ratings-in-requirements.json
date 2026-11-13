@@ -1,0 +1,57 @@
+{
+  "slug": "carrier-ratings-in-requirements",
+  "type": "evergreen",
+  "reader": "GC compliance lead or risk manager",
+  "questions": [
+    "What does a carrier rating requirement like A- VII mean in a subcontract, and how does a GC confirm a trade's insurer meets it?"
+  ],
+  "target_keywords": [
+    "A- VII rating",
+    "AM Best rating requirement",
+    "AM Best financial size category",
+    "insurer rating subcontract",
+    "carrier rating certificate of insurance",
+    "AM Best A- VII meaning"
+  ],
+  "competing_sources": [
+    {
+      "url": "https://psfinc.com/articles/am-best-ratings-what-do-they-mean-and-how-do-i-evaluate-them",
+      "title": "AM Best ratings: what do they mean and how do I evaluate them (PSF)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://trustlayer.io/resources/why-does-your-insurance-companys-rating-matter",
+      "title": "Why does your insurance company's rating matter (TrustLayer)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://clearvaluelending.com/answers/am-best-rating-explained",
+      "title": "AM Best ratings explained: what does an 'A VII' rating mean",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://lawinsider.com/clause/financial-rating",
+      "title": "Financial rating sample clauses (Law Insider)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://www.berxi.com/?p=2120",
+      "title": "Guide to understanding the ratings given to insurance companies (Berxi)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    }
+  ],
+  "adds": "Connects the rating clause to what the certificate does and does not show, with a check procedure.",
+  "plan": {
+    "table": "Two parts of A- VII",
+    "internal_links": [
+      "/reports/public-owner-requirements-compared/",
+      "/reports/monopolistic-workers-comp-states/",
+      "/reports/surplus-lines-carriers-on-certificates/"
+    ],
+    "external_links": [
+      "https://totalcsr.com/insurance-glossary/a-m-best-company-rating-insurance/",
+      "https://content.naic.org/index.php/cis_consumer_information.htm",
+      "https://www.bankrate.com/insurance/am-best/"
+    ]
+  }
+}

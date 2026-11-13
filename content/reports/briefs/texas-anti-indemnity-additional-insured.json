@@ -1,0 +1,59 @@
+{
+  "slug": "texas-anti-indemnity-additional-insured",
+  "type": "evergreen",
+  "reader": "GC risk manager or counsel on Texas projects",
+  "questions": [
+    "How does Texas Insurance Code Chapter 151 limit indemnity and additional insured requirements in construction contracts?"
+  ],
+  "target_keywords": [
+    "Texas anti-indemnity act",
+    "Texas Insurance Code Chapter 151",
+    "section 151.104",
+    "Texas additional insured",
+    "construction anti-indemnity Texas",
+    "employee exception 151.103"
+  ],
+  "competing_sources": [
+    {
+      "url": "https://www.mondaq.com/unitedstates/insurance-laws-and-products/1599566/the-texas-anti-indemnity-act-restrictions-on-indemnity-in-texas-second-edition",
+      "title": "The Texas anti-indemnity act: restrictions on indemnity in Texas (Mondaq)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://www.thompsoncoe.com/resources/publications/new-legislation-affects-risk-shifting-in-certain-construction-contracts/",
+      "title": "New legislation affects risk shifting in certain construction contracts (Thompson Coe)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://www.porterhedges.com/texas-construction-law/the-sweeping-application-of-the-texas-construction-anti-indemnity-act",
+      "title": "The sweeping application of the Texas construction anti-indemnity act (Porter Hedges)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://statutes.capitol.texas.gov/Docs/IN/htm/IN.151.htm",
+      "title": "Insurance Code Chapter 151 (Texas Legislature)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://www.wshblaw.com/experience-who-is-an-employee-under-texas-anti-indemnity-act",
+      "title": "Who is an employee under the Texas anti-indemnity act (WSHB)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    }
+  ],
+  "adds": "A section-by-section table tied to what GCs collect.",
+  "plan": {
+    "table": "Chapter 151 at a glance",
+    "internal_links": [
+      "/dictionary/additional-insured/",
+      "/reports/wrap-ups-and-cois/",
+      "/reports/additional-insured-endorsements/",
+      "/reports/california-anti-indemnity-additional-insured/"
+    ],
+    "external_links": [
+      "https://statutes.capitol.texas.gov/Docs/IN/htm/IN.151.htm",
+      "https://www.porterhedges.com/texas-construction-law/the-sweeping-application-of-the-texas-construction-anti-indemnity-act",
+      "https://codes.findlaw.com/tx/insurance-code/ins-sect-151-104/",
+      "https://codes.findlaw.com/tx/insurance-code/ins-sect-151-103/"
+    ]
+  }
+}

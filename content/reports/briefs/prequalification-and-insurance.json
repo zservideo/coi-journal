@@ -1,0 +1,58 @@
+{
+  "slug": "prequalification-and-insurance",
+  "type": "evergreen",
+  "reader": "GC risk manager or preconstruction lead",
+  "questions": [
+    "What insurance checks belong in a general contractor's trade prequalification process, and which belong after award?"
+  ],
+  "target_keywords": [
+    "subcontractor prequalification",
+    "contractor prequalification insurance",
+    "prequalification checklist",
+    "trade prequalification",
+    "insurance requirements before award",
+    "experience modification rate"
+  ],
+  "competing_sources": [
+    {
+      "url": "https://www.cna.com/sites/default/files/assets/04e28d61-f36a-4d05-a93b-255264df7142/CNA-RC-SubPrequal-Guide.pdf",
+      "title": "Subcontractor prequalification guide (CNA)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://acuity.com/the-focus/contractor/4-tips-to-help-prequalify-a-subcontractor",
+      "title": "4 tips to help prequalify a subcontractor (Acuity)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://www.petefowler.com/blog/2017/8/7/contractor-pre-qualification-checklist",
+      "title": "Contractor prequalification checklist (Pete Fowler)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://projul.com/blog/construction-prequalification-guide/",
+      "title": "Construction prequalification guide (Projul)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://www.sitevetter.com/blog/subcontractor-prequalification-checklist/",
+      "title": "Subcontractor prequalification checklist (SiteVetter)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    }
+  ],
+  "adds": "A before-award and after-award split for insurance proof.",
+  "plan": {
+    "table": "Insurance checks before and after award",
+    "internal_links": [
+      "/dictionary/additional-insured/",
+      "/dictionary/completed-operations/",
+      "/reports/reading-a-coi-against-requirements/",
+      "/reports/carrier-ratings-in-requirements/"
+    ],
+    "external_links": [
+      "https://www.munichre.com/",
+      "https://www.epicbrokers.com/insights/aligning-subcontractor-risk/",
+      "https://abccarolinas.org/"
+    ]
+  }
+}

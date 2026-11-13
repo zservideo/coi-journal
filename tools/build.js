@@ -40,6 +40,7 @@ const LAUNCH = 'Launching December 2026';
 // The edition line. No. 0 is the pre-launch issue; No. 1 is the first issue of The COI Digest.
 const EDITION = 'Vol. 1 · No. 0';
 const { PEOPLE, TERMS, ROUNDS, THE_NUMBER } = require('./desk');
+const aeo = require('./aeo');
 const person = (slug) => PEOPLE.find((p) => p.slug === slug) || null;
 const term = (slug) => TERMS.find((t) => t.slug === slug);
 
@@ -213,21 +214,33 @@ const articles = () =>
 const pages = () => readDir('pages', ['title', 'description', 'dek', 'url']);
 // Reports: the Resource Center's long-form analyst reports and white papers. Qualitative and sourced; no
 // survey numbers until a sample clears the methodology rules. Each carries a report number and a docket.
-const reports = () => {
+const allReports = () => {
   const all = readDir('reports', ['title', 'short', 'description', 'dek', 'kind', 'number', 'date', 'byline', 'docket', 'takeaways', 'method', 'sources']);
   // A released report may link to one still in the queue. Until that one goes out, show the link text only.
   const held = new Set(all.filter((r) => r.date.slice(0, 10) > RELEASE).map((r) => r.slug));
   const unlink = (body) => body.replace(/\[([^\]]+)\]\(\/reports\/([a-z0-9-]+)\/\)/g, (m, t, slug) => (held.has(slug) ? t : m));
   return all
-    .map((r) => ({ ...r, body: unlink(r.body) }))
+    .map((r) => ({ ...r, rawBody: r.body, body: unlink(r.body), held: held.has(r.slug) }))
     .map((r) => {
       const words = r.body.split(/\s+/).length;
       const toc = [...r.body.matchAll(/^## (.+)$/gm)].map((m) => m[1]);
       return { ...r, url: `/reports/${r.slug}/`, updated: r.updated || r.date, section: r.kind, words, minutes: Math.max(1, Math.round(words / 230)), toc };
     })
-    .filter((r) => r.date.slice(0, 10) <= RELEASE)
     .sort((a, b) => (a.number < b.number ? 1 : -1));
 };
+const reports = () => allReports().filter((r) => !r.held);
+
+// The AEO gate (tools/aeo.js): every gated report, released or still queued, must pass before anything builds.
+function aeoGate(all, y) {
+  const fails = [];
+  for (const r of all) {
+    const brief = aeo.readBrief(r.slug);
+    if (!aeo.gated(r, brief)) continue;
+    const html = reportPage(r, all, y);
+    for (const f of aeo.check({ ...r, body: r.rawBody }, brief, html)) fails.push(`reports/${r.slug}: ${f}`);
+  }
+  if (fails.length) throw new Error(`AEO checklist (tools/aeo.js) failed:\n  ${fails.join('\n  ')}`);
+}
 // Worth Reading: curated picks from other outlets. Each one is a short summary in our words, one line of
 // commentary and a link to the full story. Never republished, never sponsored, never a vendor blog.
 const picks = () => {
@@ -237,6 +250,8 @@ const picks = () => {
     const words = k.summary.split(/\s+/).length;
     if (words > 60) throw new Error(`worth-reading.json: "${k.title}" summary is ${words} words, keep it to 60`);
     if (/\/spons\//.test(k.url)) throw new Error(`worth-reading.json: "${k.title}" is sponsored content`);
+    const copy = aeo.copyMisses(`${k.summary}\n${k.why}`);
+    if (copy.length) throw new Error(`worth-reading.json: "${k.title}": ${copy.join('; ')}`);
   }
   return list.sort((a, b) => (a.picked < b.picked ? 1 : a.picked > b.picked ? -1 : a.date < b.date ? 1 : -1));
 };
@@ -262,6 +277,14 @@ const inline = (s) =>
 const slugify = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const plain = (md) => md.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').replace(/[*`]/g, '');
 
+// A table block, optionally led by a "Table: <caption>" line (AEO S5: every report table has a caption).
+function tableBlock(lines) {
+  const caption = /^Table: /.test(lines[0]) ? lines[0].slice(7).trim() : null;
+  const rows = caption ? lines.slice(1) : lines;
+  if (rows.length > 2 && rows.every((l) => /^\|.*\|$/.test(l)) && /^\|[\s:|-]+\|$/.test(rows[1])) return { caption, rows };
+  return null;
+}
+
 function markdown(md) {
   const out = [];
   for (const block of md.split(/\n\s*\n/)) {
@@ -270,10 +293,11 @@ function markdown(md) {
     if ((h = lines[0].match(/^(#{2,3}) (.+)$/))) out.push(`<h${h[1].length} id="${slugify(h[2])}">${inline(h[2])}</h${h[1].length}>`);
     else if (lines.every((l) => /^- /.test(l))) out.push('<ul>' + lines.map((l) => `<li>${inline(l.slice(2))}</li>`).join('') + '</ul>');
     else if (lines.every((l) => /^\d+\. /.test(l))) out.push('<ol>' + lines.map((l) => `<li>${inline(l.replace(/^\d+\. /, ''))}</li>`).join('') + '</ol>');
-    else if (lines.length > 2 && lines.every((l) => /^\|.*\|$/.test(l)) && /^\|[\s:|-]+\|$/.test(lines[1])) {
+    else if ((h = tableBlock(lines))) {
+      const { caption, rows } = h;
       const cells = (l) => l.slice(1, -1).split('|').map((c) => c.trim());
-      const head = cells(lines[0]);
-      out.push(`<div class="tbl" tabindex="0" role="region" aria-label="${esc(plain(head.join(', ')))}"><table><thead><tr>${head.map((c) => `<th scope="col">${inline(c)}</th>`).join('')}</tr></thead><tbody>${lines.slice(2).map((l) => `<tr>${cells(l).map((c) => `<td>${inline(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`);
+      const head = cells(rows[0]);
+      out.push(`<div class="tbl" tabindex="0" role="region" aria-label="${esc(caption ? plain(caption) : plain(head.join(', ')))}"><table>${caption ? `<caption>${inline(caption)}</caption>` : ''}<thead><tr>${head.map((c) => `<th scope="col">${inline(c)}</th>`).join('')}</tr></thead><tbody>${rows.slice(2).map((l) => `<tr>${cells(l).map((c) => `<td>${inline(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`);
     } else if (lines.every((l) => /^>/.test(l))) out.push(`<blockquote><p>${inline(lines.map((l) => l.replace(/^> ?/, '')).join(' '))}</p></blockquote>`);
     else out.push(`<p>${inline(lines.join(' '))}</p>`);
   }
@@ -291,8 +315,9 @@ const year = (iso) => iso.slice(0, 4);
 
 // ---------- shared page parts ----------
 
-const GTAG = `<!-- Google tag (GTM-P6PXX2JM), shared with forsured.ai. Keep it first in <head>, once per page. -->
-<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-P6PXX2JM"></script>
+// Google tag (GTM-P6PXX2JM), shared with forsured.ai. Keep it first in <head>, once per page. No HTML
+// comments in published pages (AEO J6): the source is public.
+const GTAG = `<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-P6PXX2JM"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -449,6 +474,11 @@ p,li{text-wrap:pretty}
   .hx-key{grid-template-columns:minmax(0,1fr);gap:14px}
 }
 /* Report lists */
+.answer{font-family:var(--serif);font-size:19px;line-height:1.5;margin-top:18px}
+.faqs{margin-top:34px}.faqs h2{margin-bottom:8px}
+.faq{border-top:1px solid var(--rule);padding:12px 0}.faq:last-child{border-bottom:1px solid var(--rule)}
+.faq summary{cursor:pointer;font-weight:600;font-size:16px}.faq p{margin-top:8px;color:var(--ink2)}
+.tbl caption{caption-side:top;text-align:left;font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2);padding:0 0 8px}
 .rq{margin-top:22px;padding:14px 18px;border:1px solid var(--rule);border-left:4px solid var(--ink);background:var(--card);border-radius:4px;font-family:var(--serif);font-size:19px;line-height:1.45}
 .rq b{display:block;font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--cy2);margin-bottom:4px}
 .rrows{list-style:none;margin-top:14px;border-top:1px solid var(--rule)}
@@ -763,9 +793,7 @@ ${published ? `<meta property="article:published_time" content="${published}"/>\
 <meta name="twitter:title" content="${esc(title)}"/>
 <meta name="twitter:description" content="${esc(description)}"/>
 <meta name="twitter:image" content="${SITE}/assets/og.png"/>
-<script type="application/ld+json">
-${JSON.stringify({ '@context': 'https://schema.org', '@graph': jsonld }, null, 2)}
-</script>
+<script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@graph': jsonld })}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link rel="stylesheet" href="${FONTS}"/>
@@ -1379,11 +1407,14 @@ const reportLd = (r) => ({
   ...(r.about ? { about: r.about.map((t) => ({ '@id': `${SITE}/dictionary/${t}/#term` })) } : {}),
   citation: r.sources.map((s) => ({ '@type': 'CreativeWork', name: s.title, url: s.url })),
 });
+// Visible FAQ and FAQPage JSON-LD come from the same list, so they match word for word (AEO S6).
+const faqLd = (r) => ({ '@type': 'FAQPage', '@id': `${SITE}${r.url}#faq`, mainEntity: r.faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: plain(f.a) } })) });
+const faqHtml = (r) => `<section class="faqs" aria-labelledby="faq-h"><h2 id="faq-h">Common questions</h2>${r.faq.map((f) => `<details class="faq"><summary>${esc(f.q)}</summary><p>${inline(f.a)}</p></details>`).join('')}</section>`;
 
 function reportPage(r, all, y) {
   const overlap = (x) => (x.about || []).filter((t) => (r.about || []).includes(t)).length + (x.kind !== r.kind ? 0.5 : 0);
   const others = all.filter((x) => x !== r).sort((a, b) => overlap(b) - overlap(a) || (a.number < b.number ? 1 : -1)).slice(0, 3);
-  return `${head({ title: `${r.short}: ${r.kind} | COI Journal`, description: r.description, url: r.url, type: 'article', jsonld: [reportLd(r), PUBLISHER, WEBSITE, crumbs([['Resource Center', '/resources/'], ['Reports', '/reports/'], [r.short, r.url]])], published: r.date, modified: r.updated, md: true })}
+  return `${head({ title: `${r.short}: ${r.kind} | COI Journal`, description: r.description, url: r.url, type: 'article', jsonld: [reportLd(r), ...(r.faq && r.faq.length ? [faqLd(r)] : []), PUBLISHER, WEBSITE, crumbs([['Resource Center', '/resources/'], ['Reports', '/reports/'], [r.short, r.url]])], published: r.date, modified: r.updated, md: true })}
 ${masthead(r.url, true)}
 <main id="main" class="wrap">
   <article class="art">
@@ -1391,12 +1422,14 @@ ${masthead(r.url, true)}
       <p class="eyebrow"><a href="/resources/">Resource Center</a> · <a href="/reports/">Reports</a></p>
       <div style="margin-top:14px">${rcover(r, { h: 'h1', link: false })}</div>
       <p class="byl">By ${esc(r.byline)}, COI Journal · <time datetime="${r.date}">${human(r.date)}</time>${r.updated !== r.date ? ` · Updated <time datetime="${r.updated}">${human(r.updated)}</time>` : ''}</p>
+      ${r.answer ? `<p class="answer">${inline(r.answer)}</p>` : ''}
       ${r.question ? `<p class="rq"><b>The question</b>${esc(r.question)}</p>` : ''}
       <section class="findings" aria-labelledby="kf-h"><h2 id="kf-h">Key findings</h2><ol>${r.takeaways.map((t) => `<li>${inline(t)}</li>`).join('')}</ol></section>
       <nav class="toc" aria-labelledby="toc-h"><h2 id="toc-h">In this ${esc(r.kind.toLowerCase())}</h2><ol>${r.toc.map((t) => `<li><a href="#${slugify(t)}">${inline(t)}</a></li>`).join('')}</ol></nav>
       <div class="prose">
 ${markdown(r.body)}
       </div>
+      ${r.faq && r.faq.length ? faqHtml(r) : ''}
       <section class="method" aria-labelledby="m-h"><h2 id="m-h">How we wrote this</h2><p>${inline(r.method)}</p></section>
       <section class="sources" aria-labelledby="src-h"><h2 id="src-h">Sources</h2><ol>${r.sources.map((s) => `<li><a href="${esc(s.url)}">${esc(s.title)}</a>${s.publisher ? `, ${esc(s.publisher)}` : ''}${s.date ? `, ${esc(s.date)}` : ''}</li>`).join('')}</ol></section>
       <p class="disclose" data-disclosure>General information, not legal or insurance advice. Read your contracts and policies with your broker or attorney. COI Journal is published by Forsured, which sells construction insurance compliance software. <a href="/principles/">How we keep editorial separate</a>.</p>
@@ -1525,7 +1558,7 @@ function llms(arts, pgs, reps) {
   return `# COI Journal\n\n> A publication about construction insurance compliance: contractor certificates of insurance (COIs), endorsements, project requirements and who pays when coverage fails. Published by Forsured (${FORSURED}), a construction insurance compliance software company. COI Journal does not rank or review software vendors.\n\n## Articles\n\n${arts.map((a) => `- [${a.title}](${SITE}${a.url}index.md): ${a.description}`).join('\n')}\n\n## Reports and white papers (Resource Center, ${SITE}/resources/)\n\n${reps.map((r) => `- [${r.number}: ${r.title}](${SITE}${r.url}index.md): ${r.description}`).join('\n')}\n\n## About the publication\n\n${pgs.map((p) => `- [${p.title}](${SITE}${p.url}): ${p.description}`).join('\n')}\n\n## The COI Dictionary\n\n${TERMS.map((t) => `- [${t.term}](${SITE}/dictionary/${t.slug}/index.md): ${t.def}`).join('\n')}\n\n## Masthead\n\n${PEOPLE.map((p) => `- [${p.name}](${SITE}/people/${p.slug}/), ${p.role}. ${p.disclose}`).join('\n')}\n\n## For AI agents\n\n- [COI review skill (SKILL.md)](${SITE}/resources/agents/skill/coi-review/SKILL.md): teaches an agent to check a contractor COI and endorsements against project requirements. Zip: ${SITE}/resources/agents/skill/coi-review.zip\n\n## Reference explainers (on the publisher's site)\n\n${LIBRARY.map(([p, t]) => `- [${t}](${FORSURED}${p})`).join('\n')}\n`;
 }
 
-const reportMd = (r) => `# ${r.title}\n\n${r.kind} ${r.number}, COI Journal Resource Center. ${r.dek}\n\n${r.question ? `Question: ${r.question}\n\n` : ''}By ${r.byline}, COI Journal. ${human(r.date)}. Docket ${r.docket}. Published by Forsured.\n\n## Key findings\n\n${r.takeaways.map((t) => `- ${plain(t)}`).join('\n')}\n\n${r.body.replace(/\]\(\//g, `](${SITE}/`)}\n\n## How we wrote this\n\n${r.method}\n\n## Sources\n\n${r.sources.map((s) => `- [${s.title}](${s.url})${s.publisher ? `, ${s.publisher}` : ''}${s.date ? `, ${s.date}` : ''}`).join('\n')}\n`;
+const reportMd = (r) => `# ${r.title}\n\n${r.kind} ${r.number}, COI Journal Resource Center. ${r.dek}\n\n${r.answer ? `${plain(r.answer)}\n\n` : ''}${r.question ? `Question: ${r.question}\n\n` : ''}By ${r.byline}, COI Journal. ${human(r.date)}. Docket ${r.docket}. Published by Forsured.\n\n## Key findings\n\n${r.takeaways.map((t) => `- ${plain(t)}`).join('\n')}\n\n${r.body.replace(/^Table: (.+)$/gm, '*$1*').replace(/\]\(\//g, `](${SITE}/`)}\n\n${r.faq && r.faq.length ? `## Common questions\n\n${r.faq.map((f) => `### ${f.q}\n\n${f.a.replace(/\]\(\//g, `](${SITE}/`)}`).join('\n\n')}\n\n` : ''}## How we wrote this\n\n${r.method}\n\n## Sources\n\n${r.sources.map((s) => `- [${s.title}](${s.url})${s.publisher ? `, ${s.publisher}` : ''}${s.date ? `, ${s.date}` : ''}`).join('\n')}\n`;
 const termMd = (t) => `# ${t.term}\n\nCOI Journal, The COI Dictionary. Published by Forsured. Reference only, not legal or insurance advice.\n\nForms: ${t.forms.join(', ')}\n\n## Definition\n\n${t.def}\n\n${t.sections.map(([h, b]) => `## ${h}\n\n${b}`).join('\n\n')}\n\n## Related\n\n${t.related.map((r) => `- [${term(r).term}](${SITE}/dictionary/${r}/index.md)`).join('\n')}\n\nSource page: ${SITE}/dictionary/${t.slug}/\n`;
 
 // The COI review skill pack: an Agent Skills folder (SKILL.md plus reference files) that teaches an AI
@@ -1696,9 +1729,11 @@ function build() {
   const arts = articles();
   const pgs = pages();
   const reading = picks();
-  const reps = reports();
+  const every = allReports();
+  const reps = every.filter((r) => !r.held);
   if (!arts.length) throw new Error('need at least one article');
   const y = year(arts[0].updated);
+  aeoGate(every, y);
   binaries = {};
   const files = {
     'index.html': frontPage(arts, reading, reps),
