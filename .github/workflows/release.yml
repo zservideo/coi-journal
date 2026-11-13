@@ -1,0 +1,35 @@
+name: Release queued reports
+
+# Each weekday at 6:30 AM Eastern (11:30 UTC; 6:30 or 7:30 depending on daylight time), move the release
+# date to today, rebuild, and commit. Reports dated today or earlier go live; later ones stay queued.
+on:
+  schedule:
+    - cron: '30 11 * * 1-5'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Move the release date to today (Eastern)
+        run: echo "{ \"through\": \"$(TZ=America/New_York date +%F)\" }" > content/release.json
+      - run: node tools/build.js
+      - name: Commit if anything was released
+        run: |
+          git config user.name "COI Journal release"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ -z "$(git status --porcelain -- . ':!content/release.json')" ]; then echo "Nothing to release today."; exit 0; fi
+          git add -A
+          git commit -m "Release queued reports through $(TZ=America/New_York date +%F)"
+          git push

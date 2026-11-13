@@ -26,6 +26,10 @@ const CHECK = process.argv.includes('--check');
 
 // Where readers write to. Swap for editors@coijournal.com once that mailbox forwards somewhere.
 const CONTACT = 'hello@forsured.ai';
+// Release gate: reports dated after content/release.json "through" (YYYY-MM-DD, Eastern) are written but held.
+// The scheduled Release workflow bumps "through" each weekday morning, rebuilds and commits, so the queue
+// goes out on a steady drip instead of all at once. Builds stay reproducible because the date is committed.
+const RELEASE = JSON.parse(fs.readFileSync(path.join(ROOT, 'content', 'release.json'), 'utf8')).through;
 // Web3Forms emails the team on every signup (same key as forsured.ai).
 const WEB3FORMS_KEY = '9f256d7f-4b10-4b26-8502-bf23abe8455d';
 // Make webhook for "COI Journal: Digest signups" (Attio list coi_digest_subscribers + welcome email).
@@ -216,6 +220,7 @@ const reports = () =>
       const toc = [...r.body.matchAll(/^## (.+)$/gm)].map((m) => m[1]);
       return { ...r, url: `/reports/${r.slug}/`, updated: r.updated || r.date, section: r.kind, words, minutes: Math.max(1, Math.round(words / 230)), toc };
     })
+    .filter((r) => r.date.slice(0, 10) <= RELEASE)
     .sort((a, b) => (a.number < b.number ? 1 : -1));
 // Worth Reading: curated picks from other outlets. Each one is a short summary in our words, one line of
 // commentary and a link to the full story. Never republished, never sponsored, never a vendor blog.
@@ -228,6 +233,14 @@ const picks = () => {
     if (/\/spons\//.test(k.url)) throw new Error(`worth-reading.json: "${k.title}" is sponsored content`);
   }
   return list.sort((a, b) => (a.picked < b.picked ? 1 : a.picked > b.picked ? -1 : a.date < b.date ? 1 : -1));
+};
+
+// Sources we watch: the analyst, market, GC, standards and trade press sources the editors read. No COI
+// software vendor blogs: we don't rank or promote vendors, ours included.
+const sources = () => {
+  const list = JSON.parse(fs.readFileSync(path.join(ROOT, 'content', 'sources.json'), 'utf8'));
+  for (const k of list) for (const f of ['group', 'name', 'publisher', 'url', 'why']) if (!k[f]) throw new Error(`sources.json: "${k.name || '?'}" needs "${f}"`);
+  return list;
 };
 
 // ---------- a small Markdown subset (same as forsured.ai's blog) ----------
@@ -503,6 +516,7 @@ p,li{text-wrap:pretty}
 .sec p{font-size:14px;color:var(--ink2);margin-top:8px}
 .lib{columns:2;column-gap:48px;margin-top:18px;list-style:none}
 .lib li{break-inside:avoid;padding:12px 0;border-bottom:1px solid var(--rule)}
+.src-why{margin:4px 0 0;font-size:14px;color:var(--ink2)}
 .lib a{font-family:var(--serif);font-size:18px;line-height:1.35;text-decoration:none}
 .lib a:hover{text-decoration:underline;text-decoration-color:var(--cy2);text-underline-offset:4px}
 .lib span{display:block;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-top:4px}
@@ -801,7 +815,7 @@ const FOOTER = (y) => `<footer><div class="wrap">
       <a class="fname" href="/">COI Journal</a>
       <p data-disclosure>Published by <a href="${fsLink('/', 'footer')}">Forsured</a>, a construction insurance compliance software company. We don't rank or review software vendors. <a href="/principles/">Our principles</a>.</p>
     </div>
-    <div><h2>Read</h2><nav aria-label="Footer, read"><a href="/">Front page</a><a href="/reports/">Reports</a><a href="/resources/">Resource Center</a><a href="/spot-the-gap/">Spot the Gap</a><a href="/dictionary/">The COI Dictionary</a><a href="/worth-reading/">Worth Reading</a><a href="/methodology/">The COI Gap Index</a><a href="/digest/">The COI Digest</a><a href="/feed.xml">RSS feed</a></nav></div>
+    <div><h2>Read</h2><nav aria-label="Footer, read"><a href="/">Front page</a><a href="/reports/">Reports</a><a href="/resources/">Resource Center</a><a href="/resources/sources/">Sources we watch</a><a href="/spot-the-gap/">Spot the Gap</a><a href="/dictionary/">The COI Dictionary</a><a href="/worth-reading/">Worth Reading</a><a href="/methodology/">The COI Gap Index</a><a href="/digest/">The COI Digest</a><a href="/feed.xml">RSS feed</a></nav></div>
     <div><h2>The Journal</h2><nav aria-label="Footer, the Journal"><a href="/about/">About</a><a href="/masthead/">Masthead</a><a href="/principles/">Publishing principles</a><a href="/gap-of-the-month/">Gap of the Month</a><a href="mailto:${CONTACT}">Contact</a></nav></div>
   </div>
   <div class="fbot">
@@ -1407,6 +1421,27 @@ function reportsIndex(list, y) {
   });
 }
 
+function sourcesPage(list, y) {
+  const groups = [...new Set(list.map((k) => k.group))];
+  return shell({
+    title: 'Sources we watch: analysts, GCs, regulators and trade press | COI Journal',
+    description: 'The analyst firms, broker market reports, enterprise general contractors, standards bodies and trade press the COI Journal editors read every week.',
+    url: '/resources/sources/',
+    campaign: 'sources',
+    y,
+    jsonld: [{ '@type': 'CollectionPage', '@id': `${SITE}/resources/sources/#webpage`, url: `${SITE}/resources/sources/`, name: 'Sources we watch', isPartOf: { '@id': WEBSITE['@id'] }, mainEntity: { '@type': 'ItemList', numberOfItems: list.length, itemListElement: list.map((k, i) => ({ '@type': 'ListItem', position: i + 1, item: { '@type': 'WebPage', name: k.name, url: k.url, publisher: { '@type': 'Organization', name: k.publisher } } })) } }, crumbs([['Resource Center', '/resources/'], ['Sources we watch', '/resources/sources/']])],
+    body: `  <article class="art">
+    <div class="col">
+      <span class="eyebrow">Resource Center · Sources</span>
+      <h1>Sources we watch</h1>
+      <p class="dek">The analysts, market reports, general contractors, standards bodies and trade press our editors read. Every report and Worth Reading pick starts somewhere on this list.</p>
+      <p>We list sources, not vendors. You won't find COI software company blogs here, ours included. Something missing? Tell us at <a href="mailto:${CONTACT}">${CONTACT}</a>.</p>
+    </div>
+    ${groups.map((g, gi) => `<section class="block" aria-labelledby="src-${gi}"><h2 id="src-${gi}">${esc(g)}</h2><ul class="lib">${list.filter((k) => k.group === g).map((k) => `<li><a href="${esc(k.url)}" rel="noopener">${esc(k.name)}</a><span>${esc(k.publisher)}</span><p class="src-why">${esc(k.why)}</p></li>`).join('')}</ul></section>`).join('\n    ')}
+  </article>`,
+  });
+}
+
 function resourcesPage(list, reading, y) {
   const tile = (h, eb, t, d, cta) => `<a class="rc-tile" href="${h}"><span class="eyebrow">${eb}</span><strong>${t}</strong><span>${d}</span><em>${cta} →</em></a>`;
   return shell({
@@ -1435,6 +1470,7 @@ function resourcesPage(list, reading, y) {
         ${tile('/#num-h', 'Research', 'The Number', `${esc(THE_NUMBER.figure)} ${esc(THE_NUMBER.unit)}: one sourced figure, with the arithmetic and our markup.`, 'See The Number')}
         ${reading.length ? tile('/worth-reading/', 'Column', 'Worth Reading', "The week's best construction insurance reporting from other outlets, summarized and linked.", "Read this week's picks") : ''}
         ${tile('/resources/agents/', 'For AI agents', 'COI reference in markdown', 'Our reports, Dictionary and articles as clean markdown, with an llms.txt index, for teams working with AI agents.', 'Get the files')}
+        ${tile('/resources/sources/', 'Sources', 'Sources we watch', 'The analysts, market reports, enterprise GCs, standards bodies and trade press our editors read.', 'See the list')}
         ${tile('/gap-of-the-month/', 'Reader submissions', 'Gap of the Month', 'Tell us about a coverage gap that caught you out. We explain the check that would have caught it.', 'Send us a gap')}
       </div>
     </section>
@@ -1465,7 +1501,7 @@ function feed(arts) {
 const DESK_URLS = ['/masthead/', ...PEOPLE.map((p) => `/people/${p.slug}/`), '/dictionary/', ...TERMS.map((t) => `/dictionary/${t.slug}/`), '/spot-the-gap/', '/worth-reading/', '/digest/issue-0/'];
 
 function sitemap(arts, pgs, reps) {
-  const urls = [['/', arts[0].updated], ...arts.map((a) => [a.url, a.updated]), ...reps.map((r) => [r.url, r.updated]), ...(reps.length ? [['/reports/', reps[0].updated]] : []), ['/resources/', arts[0].updated], ['/resources/agents/', arts[0].updated], ...pgs.map((p) => [p.url, p.updated || arts[0].updated]), ...DESK_URLS.map((u) => [u, arts[0].updated])];
+  const urls = [['/', arts[0].updated], ...arts.map((a) => [a.url, a.updated]), ...reps.map((r) => [r.url, r.updated]), ...(reps.length ? [['/reports/', reps[0].updated]] : []), ['/resources/', arts[0].updated], ['/resources/agents/', arts[0].updated], ['/resources/sources/', arts[0].updated], ...pgs.map((p) => [p.url, p.updated || arts[0].updated]), ...DESK_URLS.map((u) => [u, arts[0].updated])];
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(([u, d]) => `  <url><loc>${SITE}${u}</loc><lastmod>${d.slice(0, 10)}</lastmod></url>`).join('\n')}\n</urlset>\n`;
 }
 
@@ -1679,6 +1715,7 @@ function build() {
   if (reps.length) files['reports/index.html'] = reportsIndex(reps, y);
   files['resources/index.html'] = resourcesPage(reps, reading, y);
   files['resources/agents/index.html'] = agentsPage(reps, arts, y);
+  files['resources/sources/index.html'] = sourcesPage(sources(), y);
   const skill = skillFiles(reps);
   for (const [k, v] of Object.entries(skill)) files[`${SKILL_DIR}/${k}`] = v;
   binaries[`${SKILL_DIR}.zip`] = zip(Object.entries(skill).sort(([a], [b]) => (a < b ? -1 : 1)).map(([k, v]) => [`coi-review/${k}`, v]));

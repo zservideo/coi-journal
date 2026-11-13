@@ -7,11 +7,20 @@ const AxeBuilder = require('@axe-core/playwright').default;
 
 const ROOT = path.resolve(__dirname, '..');
 const { PEOPLE, TERMS } = require('../tools/desk');
-const REPORTS = fs.readdirSync(path.join(ROOT, 'content', 'reports')).filter((f) => f.endsWith('.md')).map((f) => f.replace(/\.md$/, ''));
-const PAGES = ['/', '/articles/why-coi-journal/', '/about/', '/principles/', '/methodology/', '/digest/', '/gap-of-the-month/', '/masthead/', ...PEOPLE.map((p) => `/people/${p.slug}/`), '/dictionary/', ...TERMS.map((t) => `/dictionary/${t.slug}/`), '/spot-the-gap/', '/worth-reading/', '/digest/issue-0/', '/resources/', '/resources/agents/', '/reports/', ...REPORTS.map((r) => `/reports/${r}/`)];
+// Only released reports are built; queued ones (dated after content/release.json) must not be.
+const RELEASE = JSON.parse(fs.readFileSync(path.join(ROOT, 'content', 'release.json'), 'utf8')).through;
+const reportDate = (f) => JSON.parse(fs.readFileSync(path.join(ROOT, 'content', 'reports', f), 'utf8').match(/^---\n([\s\S]*?)\n---/)[1]).date.slice(0, 10);
+const REPORT_FILES = fs.readdirSync(path.join(ROOT, 'content', 'reports')).filter((f) => f.endsWith('.md'));
+const REPORTS = REPORT_FILES.filter((f) => reportDate(f) <= RELEASE).map((f) => f.replace(/\.md$/, ''));
+const QUEUED = REPORT_FILES.filter((f) => reportDate(f) > RELEASE).map((f) => f.replace(/\.md$/, ''));
+const PAGES = ['/', '/articles/why-coi-journal/', '/about/', '/principles/', '/methodology/', '/digest/', '/gap-of-the-month/', '/masthead/', ...PEOPLE.map((p) => `/people/${p.slug}/`), '/dictionary/', ...TERMS.map((t) => `/dictionary/${t.slug}/`), '/spot-the-gap/', '/worth-reading/', '/digest/issue-0/', '/resources/', '/resources/agents/', '/resources/sources/', '/reports/', ...REPORTS.map((r) => `/reports/${r}/`)];
 
 test('built files match the content (run node tools/build.js)', () => {
   execFileSync('node', ['tools/build.js', '--check'], { cwd: ROOT, stdio: 'pipe' });
+});
+
+test('queued reports are not published yet', () => {
+  for (const r of QUEUED) expect(fs.existsSync(path.join(ROOT, 'reports', r, 'index.html'))).toBe(false);
 });
 
 test('CNAME is coijournal.com', () => {
