@@ -1,0 +1,59 @@
+{
+  "slug": "new-york-labor-law-240-insurance",
+  "type": "evergreen",
+  "reader": "GC risk and compliance manager working in New York",
+  "questions": [
+    "Why is construction liability insurance so expensive in New York?",
+    "What does Labor Law 240 mean for GCs collecting trade certificates in New York?"
+  ],
+  "target_keywords": [
+    "New York Scaffold Law",
+    "Labor Law 240",
+    "Labor Law 240 insurance",
+    "New York construction insurance costs",
+    "action over exclusion",
+    "labor law exclusion"
+  ],
+  "competing_sources": [
+    {
+      "url": "https://crcgroup.com/Tools-Intel/post/one-of-a-kind-labor-law-makes-insuring-new-york-construction-projects-a-challenge",
+      "title": "One-of-a-kind labor law makes insuring New York construction projects a challenge (CRC Group)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://rtspecialty.com/ecp/obscure-n-y-law-drives-up-construction-insurance-costs/",
+      "title": "Obscure N.Y. law drives up construction insurance costs (RT Specialty)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://cooperatornews.com/article/labor-law-240241-the-cost-of-liability-insurance-in-new-york",
+      "title": "Labor Law 240/241 and the cost of liability insurance in New York (The Cooperator)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://www.connerstrong.com/blog/insights-detail/latest-thinking/new-york-labor-law-3-ways-to-mitigate-risk/",
+      "title": "New York Labor Law: 3 ways to mitigate risk (Conner Strong & Buckelew)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://wtwco.com/en-us/insights/2023/07/the-state-of-the-new-york-insurance-market",
+      "title": "The state of the New York insurance market (WTW)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    }
+  ],
+  "adds": "A checklist for reading trade certificates and policies in New York, tied to the exclusions the market produces.",
+  "plan": {
+    "table": "Pennsylvania vs New York cost and deductible, as reported",
+    "internal_links": [
+      "/reports/surplus-lines-carriers-on-certificates/",
+      "/reports/rented-falsified-excluded/",
+      "/reports/primary-and-noncontributory-proof/",
+      "/reports/additional-insured-endorsements/"
+    ],
+    "external_links": [
+      "https://www.businessinsurance.com/labor-laws-escalate-insurance-costs-for-new-york-construction-projects/",
+      "https://nysenate.gov/legislation/laws/LAB/240",
+      "https://commercialobserver.com/2026/03/new-york-state-scaffold-law-problem/"
+    ]
+  }
+}

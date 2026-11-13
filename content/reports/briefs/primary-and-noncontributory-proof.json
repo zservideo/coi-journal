@@ -1,0 +1,58 @@
+{
+  "slug": "primary-and-noncontributory-proof",
+  "type": "evergreen",
+  "reader": "GC risk and compliance manager",
+  "questions": [
+    "What does primary and noncontributory mean on a construction project, and how does a GC confirm a trade's policy actually provides it?"
+  ],
+  "target_keywords": [
+    "primary and noncontributory",
+    "primary and noncontributory endorsement",
+    "CG 20 01",
+    "other insurance condition",
+    "primary and noncontributory on a COI",
+    "additional insured primary and noncontributory"
+  ],
+  "competing_sources": [
+    {
+      "url": "https://constructioncoverage.com/business/primary-and-noncontributory-endorsement",
+      "title": "Primary and noncontributory endorsement (Construction Coverage)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://www.insureon.com/insurance-glossary/primary-and-noncontributory-endorsement",
+      "title": "Primary and noncontributory endorsement (Insureon)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://www.iamagazine.com/?p=3083",
+      "title": "Insuring Contractors: When is Coverage Primary and Noncontributory? (IA Magazine)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://amp.insurancejournal.com/blogs/academy-journal/2016/03/29/403161.htm",
+      "title": "The 'Primary and Noncontributory' Tool (Insurance Journal)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://totalcsr.com/insurance-agency-blog/the-primary-and-non-contributory-endorsement-what-it-means-and-why-it-matters/",
+      "title": "The Primary and Noncontributory Endorsement (Total CSR)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    }
+  ],
+  "adds": "A document-by-document table of what proves primary and noncontributory status, and the umbrella and waiver distinctions.",
+  "plan": {
+    "table": "What each document proves",
+    "internal_links": [
+      "/dictionary/primary-and-noncontributory/",
+      "/dictionary/additional-insured/",
+      "/reports/additional-insured-endorsements/",
+      "/reports/waiver-of-subrogation-endorsements/"
+    ],
+    "external_links": [
+      "https://www.claimsjournal.com/news/national/2013/04/09/226615.htm",
+      "https://insurancexdate.com/insurance-forms/CG/CG-20-01/",
+      "https://www.irmi.com/articles/expert-commentary/subrogation-and-the-cgl-policy"
+    ]
+  }
+}

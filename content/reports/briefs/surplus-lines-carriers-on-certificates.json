@@ -1,0 +1,58 @@
+{
+  "slug": "surplus-lines-carriers-on-certificates",
+  "type": "evergreen",
+  "reader": "GC compliance lead reviewing trade certificates",
+  "questions": [
+    "Is it a problem when a trade contractor's certificate shows a surplus lines or non-admitted insurer, and what should a GC check?"
+  ],
+  "target_keywords": [
+    "surplus lines insurer",
+    "non-admitted carrier",
+    "surplus lines certificate of insurance",
+    "guaranty fund surplus lines",
+    "NAIC Quarterly Listing of Alien Insurers",
+    "admitted vs non-admitted insurance"
+  ],
+  "competing_sources": [
+    {
+      "url": "https://content.naic.org/insurance-topics/surplus-lines",
+      "title": "Surplus lines (NAIC)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://content.naic.org/index.php/cipr-topics/surplus-lines",
+      "title": "Surplus lines (NAIC Center for Insurance Policy and Research)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://www.inscipher.com/blog/guaranty-fund-disclosures",
+      "title": "Understanding guaranty fund disclosures (Inscipher)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://surplusmanual.lockelord.com/?p=163",
+      "title": "Surplus lines law manual, general information (Locke Lord)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://agencyheight.com/what-is-surplus-lines-insurance/",
+      "title": "What is surplus lines insurance (Agency Height)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    }
+  ],
+  "adds": "What a surplus lines carrier changes for a GC reading a trade certificate, with a checklist.",
+  "plan": {
+    "table": "Admitted vs surplus lines",
+    "internal_links": [
+      "/reports/carrier-ratings-in-requirements/",
+      "/reports/rented-falsified-excluded/",
+      "/dictionary/certificate-of-insurance/",
+      "/dictionary/additional-insured/"
+    ],
+    "external_links": [
+      "https://content.naic.org/insurance-topics/surplus-lines",
+      "https://www.bankrate.com/insurance/am-best/",
+      "https://content.naic.org/index.php/cis_consumer_information.htm"
+    ]
+  }
+}

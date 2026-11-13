@@ -1,0 +1,58 @@
+{
+  "slug": "waiver-of-subrogation-endorsements",
+  "type": "evergreen",
+  "reader": "GC risk and compliance manager",
+  "questions": [
+    "What is a waiver of subrogation endorsement, why do GCs require one from trade contractors, and how do you confirm it is on the policy?"
+  ],
+  "target_keywords": [
+    "waiver of subrogation",
+    "waiver of subrogation endorsement",
+    "CG 24 04",
+    "WC 00 03 13",
+    "blanket waiver of subrogation",
+    "waiver of subrogation on a COI"
+  ],
+  "competing_sources": [
+    {
+      "url": "https://totalcsr.com/insurance-agency-blog/cg-2404-endorsement-waiver-of-subrogation-explained/",
+      "title": "CG 24 04 endorsement: waiver of subrogation explained (Total CSR)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://www.independentagent.com/?p=8961",
+      "title": "Does additional insured status replace the need for a waiver of subrogation? (Big I)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://www.workerscompensation.com/?p=38195",
+      "title": "The inexplicable workers' compensation waiver of subrogation endorsement (WorkersCompensation.com)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://www.mynewmarkets.com/articles/101742/contractual-risk-transfer-and-endorsements-to-the-cgl?print=t",
+      "title": "Contractual risk transfer and endorsements to the CGL (MyNewMarkets)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://www.irmi.com/articles/expert-commentary/subrogation-and-the-cgl-policy",
+      "title": "Subrogation and the CGL policy (IRMI)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    }
+  ],
+  "adds": "A policy-by-policy table of waiver forms and the condition each depends on.",
+  "plan": {
+    "table": "Waiver wording by policy",
+    "internal_links": [
+      "/dictionary/waiver-of-subrogation/",
+      "/reports/monopolistic-workers-comp-states/",
+      "/reports/additional-insured-endorsements/",
+      "/reports/primary-and-noncontributory-proof/"
+    ],
+    "external_links": [
+      "https://www.irmi.com/articles/expert-commentary/subrogation-and-the-cgl-policy",
+      "https://insurancexdate.com/insurance-forms/CG/CG-24-04/",
+      "https://www.ncrb.org/"
+    ]
+  }
+}

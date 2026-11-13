@@ -1,0 +1,58 @@
+{
+  "slug": "monopolistic-workers-comp-states",
+  "type": "evergreen",
+  "reader": "GC compliance manager with projects in monopolistic states",
+  "questions": [
+    "How do workers comp and employer's liability requirements work for trades in Ohio, North Dakota, Washington and Wyoming?"
+  ],
+  "target_keywords": [
+    "monopolistic states",
+    "monopolistic workers comp states",
+    "stop gap coverage",
+    "employer's liability",
+    "state fund workers comp",
+    "stop gap endorsement"
+  ],
+  "competing_sources": [
+    {
+      "url": "https://insureon.com/small-business-insurance/workers-compensation/monopolistic-workers-comp-states",
+      "title": "Monopolistic workers comp states (Insureon)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://www.insureon.com/small-business-insurance/workers-compensation/stop-gap-coverage",
+      "title": "Stop gap coverage (Insureon)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://www.techinsurance.com/workers-compensation-insurance/monopolistic-states",
+      "title": "Monopolistic states (TechInsurance)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://www.hubinternational.com/insurance-glossary/s/stop-gap-coverage/",
+      "title": "What is stop gap coverage? (HUB International)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://www.progressivecommercial.com/business-resources/stop-gap-coverage/",
+      "title": "Stop gap coverage (Progressive Commercial)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    }
+  ],
+  "adds": "What the paperwork looks like for a GC, including multi-state trades and waivers.",
+  "plan": {
+    "table": "Proof in monopolistic states vs elsewhere",
+    "internal_links": [
+      "/dictionary/certificate-of-insurance/",
+      "/reports/workers-comp-coverage-lookups/",
+      "/reports/waiver-of-subrogation-endorsements/",
+      "/reports/federal-contracts-far-insurance/"
+    ],
+    "external_links": [
+      "https://www.irmi.com/articles/expert-commentary/navigating-the-workers-compensation-residual-market",
+      "https://www.thehartford.com/workers-compensation/monopolistic-states",
+      "https://www.acquisition.gov/far/subpart-28.3"
+    ]
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "slug": "coi-program-in-90-days",
+  "type": "evergreen",
+  "reader": "GC operations lead or controller with no formal COI process",
+  "questions": [
+    "How should a general contractor with no formal process set up a contractor COI compliance program, step by step?"
+  ],
+  "target_keywords": [
+    "COI compliance program",
+    "how to track subcontractor COIs",
+    "contractor COI management",
+    "COI tracking process",
+    "insurance compliance program construction",
+    "COI renewal tracking"
+  ],
+  "competing_sources": [
+    {
+      "url": "https://www.getbcs.com/blog/how-to-build-a-vendor-insurance-compliance-program-from-scratch",
+      "title": "How to build a vendor insurance compliance program from scratch (BCS)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://getjones.com/blog/how-to-manage-subcontractor-certificates-of-insurance-cois/",
+      "title": "How to manage subcontractor certificates of insurance (Jones)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://billyforinsurance.com/resources/managing-construction-cois/",
+      "title": "5 steps for managing COIs (Billy)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://blog.redteam.com/subcontractor-insurance-tracking-manage-cois-reduce-risk/",
+      "title": "How GCs track subcontractor COIs (RedTeam)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://www.getbcs.com/blog/certificates-of-insurance-best-practices-for-construction",
+      "title": "Certificates of insurance best practices for construction (BCS)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    }
+  ],
+  "adds": "A dated, vendor-neutral plan with outputs per phase and a self-baseline instead of industry gap rates.",
+  "plan": {
+    "table": "90-day plan at a glance",
+    "internal_links": [
+      "/reports/project-requirements-data-model/",
+      "/reports/coi-101-for-trade-contractors/",
+      "/reports/reading-a-coi-against-requirements/",
+      "/reports/lower-tier-trades-compliance/",
+      "/reports/fixing-gaps-brokers-gcs/",
+      "/reports/pay-applications-and-insurance-compliance/",
+      "/reports/onboarding-a-new-trade/",
+      "/methodology/"
+    ],
+    "external_links": [
+      "https://www.epicbrokers.com/insights/aligning-subcontractor-risk/",
+      "https://www.munichre.com/specialty/north-america/en/insights/construction-and-engineering/proactively-evaluating-subcontractors-a-key-to-mitigating-risk.html",
+      "https://abccarolinas.org/subcontractor-management-strategic-risk-and-competitive-advantage-for-carolinas-commercial-contractors-in-2026/"
+    ]
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "slug": "lower-tier-trades-compliance",
+  "type": "evergreen",
+  "reader": "GC compliance lead or project manager",
+  "questions": [
+    "How should a general contractor make sure the sub-subcontractors hired by its trade contractors carry the right insurance?"
+  ],
+  "target_keywords": [
+    "sub-subcontractor insurance",
+    "lower-tier subcontractor insurance",
+    "insurance flow-down clause",
+    "sub-subcontractor certificate of insurance",
+    "flow down insurance requirements",
+    "tiered subcontractor compliance"
+  ],
+  "competing_sources": [
+    {
+      "url": "https://www.rmmagazine.com/articles/article/2019/05/01/-Avoiding-Subcontractor-Insurance-Pitfalls-",
+      "title": "Avoiding subcontractor insurance pitfalls (Risk Management magazine)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://www.trustlayer.io/resources/tiered-subcontractors-conditional-access-a-practical-model",
+      "title": "Tiered subcontractors and conditional access (TrustLayer)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://lawinsider.com/clause/sub-subcontractor-insurance",
+      "title": "Sub-subcontractor insurance sample clauses (Law Insider)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://gritinsurance.com/blog/subcontractor-insurance-gaps-general-contractor",
+      "title": "Subcontractor insurance gaps (Grit Insurance)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://billyforinsurance.com/resources/subcontractor-insurance-requirements-by-trade/",
+      "title": "Subcontractor insurance requirements by trade (Billy)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    }
+  ],
+  "adds": "Duties by tier, the federal flow-down rule, and a pay application trigger for new lower tiers.",
+  "plan": {
+    "table": "Duties by tier",
+    "internal_links": [
+      "/reports/federal-contracts-far-insurance/",
+      "/dictionary/additional-insured/",
+      "/dictionary/waiver-of-subrogation/",
+      "/reports/pay-applications-and-insurance-compliance/"
+    ],
+    "external_links": [
+      "https://www.munichre.com/specialty/north-america/en/insights/construction-and-engineering/proactively-evaluating-subcontractors-a-key-to-mitigating-risk.html",
+      "https://abccarolinas.org/subcontractor-management-strategic-risk-and-competitive-advantage-for-carolinas-commercial-contractors-in-2026/",
+      "https://www.law.cornell.edu/cfr/text/48/52.228-5"
+    ]
+  }
+}

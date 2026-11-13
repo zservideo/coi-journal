@@ -1,0 +1,59 @@
+{
+  "slug": "closeout-completed-operations",
+  "type": "evergreen",
+  "reader": "GC project manager or compliance lead at closeout",
+  "questions": [
+    "What insurance proof should a general contractor collect from trade contractors at closeout, and how long does completed operations coverage need to last?"
+  ],
+  "target_keywords": [
+    "completed operations coverage",
+    "completed operations additional insured",
+    "CG 20 37",
+    "closeout insurance",
+    "completed operations duration",
+    "CG 20 10 vs CG 20 37"
+  ],
+  "competing_sources": [
+    {
+      "url": "https://billyforinsurance.com/resources/cg-20-37-completed-operations/",
+      "title": "CG 20 37: why completed operations coverage is the endorsement GCs forget (Billy)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://www.vertikalrms.com/article/completed-operations-coverage-explained/",
+      "title": "Completed operations coverage: CG 2010 vs CG 2037 explained (Vertikal RMS)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://www.randrmagonline.com/articles/83705-additional-insured-endorsement-considerations-for-gcs",
+      "title": "Additional insured endorsement considerations for GCs (R&R)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://insurancexdate.com/insurance-forms/CG/CG-20-37/",
+      "title": "CG 20 37 (InsuranceXDate)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://www.lawinsider.com/clause/completed-operations-coverage",
+      "title": "Completed operations coverage sample clauses (Law Insider)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    }
+  ],
+  "adds": "Ties completed operations proof to the closeout and final payment step, with a post-closeout diary.",
+  "plan": {
+    "table": "Ongoing vs completed operations",
+    "internal_links": [
+      "/dictionary/completed-operations/",
+      "/reports/additional-insured-endorsements/",
+      "/reports/per-project-aggregate-limits/",
+      "/reports/defensible-coi-file/"
+    ],
+    "external_links": [
+      "https://insurancexdate.com/insurance-forms/CG/CG-20-37/",
+      "https://www.irmi.com/articles/expert-commentary/subrogation-and-the-cgl-policy",
+      "https://abccarolinas.org/subcontractor-management-strategic-risk-and-competitive-advantage-for-carolinas-commercial-contractors-in-2026/",
+      "https://sonomacounty.gov/administrative-support-and-fiscal-services/human-resources/divisions-and-units/liability-and-insurance/insurance/insurance-requirements-for-contracts-and-agreements/view-all-insurance-requirement-templates/template-1"
+    ]
+  }
+}

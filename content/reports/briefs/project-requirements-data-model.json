@@ -1,0 +1,59 @@
+{
+  "slug": "project-requirements-data-model",
+  "type": "evergreen",
+  "reader": "GC compliance lead or operations manager",
+  "questions": [
+    "How should a general contractor structure project insurance requirements as data so certificates can be checked against them consistently, by people or software?"
+  ],
+  "target_keywords": [
+    "insurance requirements matrix",
+    "project insurance requirements",
+    "insurance requirements by trade",
+    "COI requirements spreadsheet",
+    "coverage line requirements",
+    "insurance requirements template"
+  ],
+  "competing_sources": [
+    {
+      "url": "https://www.tc.columbia.edu/media/administration/office-of-controller/19784_TradesServicesInsuranceRequirementsMatrix.pdf",
+      "title": "Trades and services insurance requirements matrix (Teachers College, Columbia)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://risk.ucmerced.edu/sites/g/files/ufvvjh1571/f/documents/constructionlimits.pdf",
+      "title": "Construction insurance limits (UC Merced)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://www.irmi.com/articles/expert-commentary/minimum-insurance-requirements",
+      "title": "Minimum insurance requirements (IRMI)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://www.oregon.gov/das/Risk/Documents/CRAT_Tool_Instructions.pdf",
+      "title": "Contract risk assessment tool instructions (Oregon DAS)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://www.acrisure.com/blog/subcontractors-insurance-by-trade",
+      "title": "Subcontractors insurance by trade (Acrisure)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    }
+  ],
+  "adds": "A field-level data model and the required vs shown separation.",
+  "plan": {
+    "table": "Coverage line record",
+    "internal_links": [
+      "/dictionary/additional-insured/",
+      "/reports/public-owner-requirements-compared/",
+      "/reports/per-project-requirements-and-renewals/",
+      "/resources/agents/"
+    ],
+    "external_links": [
+      "https://sonomacounty.gov/",
+      "https://www.dfs.ny.gov/system/files/documents/2025/12/acord-25-2025-12-liability.pdf",
+      "https://content.naic.org/index.php/cis_consumer_information.htm",
+      "https://www.bankrate.com/insurance/am-best/"
+    ]
+  }
+}

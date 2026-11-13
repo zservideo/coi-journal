@@ -1,0 +1,59 @@
+{
+  "slug": "onboarding-a-new-trade",
+  "type": "evergreen",
+  "reader": "Project manager or compliance desk",
+  "questions": [
+    "What insurance and compliance documents should a general contractor collect before a new trade contractor starts work on site?"
+  ],
+  "target_keywords": [
+    "subcontractor onboarding checklist",
+    "subcontractor documents",
+    "onboarding a new subcontractor",
+    "certificate of insurance before work starts",
+    "subcontractor compliance documents",
+    "trade contractor onboarding"
+  ],
+  "competing_sources": [
+    {
+      "url": "https://onetrace.com/journal/subcontractor-documents",
+      "title": "Subcontractor documents checklist: 7 must-have documents (OneTrace)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://www.powerconstruction.net/sites/default/files/docs/Subcontractor%20Onboarding%20Checklist.pdf",
+      "title": "Subcontractor onboarding checklist (Power Construction)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://relayfi.com/blog/hiring-subcontractors/",
+      "title": "Hiring subcontractors (Relay)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://fitsmallbusiness.com/finance/construction-coi-why-it-matters-how-to-get-one/",
+      "title": "Construction COI: why it matters (Fit Small Business)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    },
+    {
+      "url": "https://www.plexapro.com/blog/subcontractor-onboarding-checklist",
+      "title": "Subcontractor onboarding checklist (Plexa Pro)",
+      "notes": "Collected from search results Nov 13, 2026; read for coverage, not quoted."
+    }
+  ],
+  "adds": "Ties each onboarding document to the endorsement condition it satisfies, plus an ownership table.",
+  "plan": {
+    "table": "Who owns each piece",
+    "internal_links": [
+      "/reports/primary-and-noncontributory-proof/",
+      "/reports/waiver-of-subrogation-endorsements/",
+      "/reports/reading-a-coi-against-requirements/",
+      "/reports/monopolistic-workers-comp-states/",
+      "/reports/workers-comp-coverage-lookups/"
+    ],
+    "external_links": [
+      "https://www.epicbrokers.com/insights/aligning-subcontractor-risk/",
+      "https://www.forconstructionpros.com/",
+      "https://www.munichre.com/"
+    ]
+  }
+}
