@@ -55,10 +55,10 @@ const LIBRARY = [
 
 // [desk, what it publishes, where it lives today]
 const SECTIONS = [
+  ['Worth Reading', 'Our weekly column: the best construction insurance reporting from other outlets, summarized and linked.', '/worth-reading/'],
   ['The data desk', 'The COI Gap Index and The Number: how often contractor COIs fail, and what it costs.', '/methodology/'],
   ['The Dictionary', 'One term at a time, with the form numbers: additional insured, waiver of subrogation, per project aggregate.', '/dictionary/'],
   ['Spot the Gap', 'A specimen certificate and a set of project requirements. Find what fails before we tell you.', '/spot-the-gap/'],
-  ['Worth Reading', 'The best construction insurance reporting from other outlets, summarized in a few lines and linked to the full story.', '/worth-reading/'],
   ['Plain Speak', 'Steve Massei, a GC owner, explains one insurance idea at a time in plain English, on video.', '/people/steve-massei/'],
 ];
 
@@ -90,15 +90,15 @@ function specimen(round = ROUNDS[0], { caption = true } = {}) {
 const stamp = (docket, date) => `<span class="stamp" aria-label="Docket ${esc(docket)}"><b>Docket</b>${esc(docket)}${date ? `<i>Filed ${human(date)}</i>` : ''}</span>`;
 
 // Cyanotype monogram: our stand-in for headshots until we have photography.
-const monogram = (p, size = 72) => `<svg class="mono" width="${size}" height="${size}" viewBox="0 0 72 72" role="img" aria-label="${esc(p.name)} monogram"><circle cx="36" cy="36" r="35" fill="#16365F"/><circle cx="36" cy="36" r="29" fill="none" stroke="#9DB8D9" stroke-width=".8" stroke-dasharray="2 3"/><path d="M8 52h56M12 58h48" stroke="#2C5A8E" stroke-width=".8"/><text x="36" y="44" text-anchor="middle" font-family="Roboto Serif,Georgia,serif" font-weight="600" font-size="24" fill="#F4F7FB" letter-spacing="1">${esc(p.initials)}</text></svg>`;
+const monogram = (p, size = 72) => `<svg class="mono" width="${size}" height="${size}" viewBox="0 0 72 72" role="img" aria-label="${esc(p.name)} monogram"><circle cx="36" cy="36" r="35" fill="#1F201C"/><circle cx="36" cy="36" r="29" fill="none" stroke="#D9A227" stroke-width="1" stroke-dasharray="2 3"/><path d="M8 52h56M12 58h48" stroke="#3A3B35" stroke-width=".8"/><text x="36" y="44" text-anchor="middle" font-family="Roboto Serif,Georgia,serif" font-weight="600" font-size="24" fill="#F4F0E8" letter-spacing="1">${esc(p.initials)}</text></svg>`;
 
 // Original blueprint art: a certificate and the policy behind it, drawn on a cyanotype sheet with a
 // title block, the way a set of construction drawings is. The orange dimension line is the gap.
 function blueprint({ sheet, title, docket, date, motif = 'gap' }) {
-  const grid = `<defs><pattern id="g-${sheet}" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#2C5A8E" stroke-width=".6"/></pattern><pattern id="G-${sheet}" width="120" height="120" patternUnits="userSpaceOnUse"><path d="M120 0H0V120" fill="none" stroke="#3B6CA3" stroke-width="1"/></pattern></defs><rect width="960" height="440" fill="#16365F"/><rect width="960" height="440" fill="url(#g-${sheet})"/><rect width="960" height="440" fill="url(#G-${sheet})"/>`;
-  const line = 'fill="none" stroke="#DCE7F4" stroke-width="1.6"';
-  const thin = 'fill="none" stroke="#9DB8D9" stroke-width="1"';
-  const lab = (x, y, t, anchor = 'start', fill = '#DCE7F4') => `<text x="${x}" y="${y}" text-anchor="${anchor}" font-family="JetBrains Mono,ui-monospace,monospace" font-size="11" letter-spacing="1.5" fill="${fill}">${t}</text>`;
+  const grid = `<defs><pattern id="g-${sheet}" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#2C2D27" stroke-width=".6"/></pattern><pattern id="G-${sheet}" width="120" height="120" patternUnits="userSpaceOnUse"><path d="M120 0H0V120" fill="none" stroke="#383932" stroke-width="1"/></pattern></defs><rect width="960" height="440" fill="#1F201C"/><rect width="960" height="440" fill="url(#g-${sheet})"/><rect width="960" height="440" fill="url(#G-${sheet})"/>`;
+  const line = 'fill="none" stroke="#E9E4DA" stroke-width="1.6"';
+  const thin = 'fill="none" stroke="#9A8C66" stroke-width="1"';
+  const lab = (x, y, t, anchor = 'start', fill = '#E9E4DA') => `<text x="${x}" y="${y}" text-anchor="${anchor}" font-family="JetBrains Mono,ui-monospace,monospace" font-size="11" letter-spacing="1.5" fill="${fill}">${t}</text>`;
   const ruled = (x, y, w, n, gap = 18) => Array.from({ length: n }, (_, i) => `<path d="M${x} ${y + i * gap}h${w - (i % 3 === 2 ? 60 : 0)}" ${thin}/>`).join('');
   const drawings = {
     gap: `
@@ -109,16 +109,16 @@ function blueprint({ sheet, title, docket, date, motif = 'gap' }) {
     <path d="M320 278H430" stroke="#FB612A" stroke-width="2"/><path d="M320 270v16M430 270v16" stroke="#FB612A" stroke-width="2"/>${lab(375, 262, 'THE GAP', 'middle', '#FFB08F')}
     ${lab(195, 404, 'WHAT IT SAYS', 'middle')}${lab(555, 404, 'WHAT IT COVERS', 'middle')}`,
     stack: `
-    ${[0, 1, 2, 3].map((i) => `<rect x="${90 + i * 26}" y="${60 + i * 22}" width="230" height="290" fill="#16365F" ${line}/>`).join('')}${ruled(184, 200, 180, 6)}
+    ${[0, 1, 2, 3].map((i) => `<rect x="${90 + i * 26}" y="${60 + i * 22}" width="230" height="290" fill="#1F201C" ${line}/>`).join('')}${ruled(184, 200, 180, 6)}
     ${lab(206, 182, 'COI · TRADE 04')}<path d="M440 120h220M440 160h220M440 200h220M440 240h220" ${thin}/>
-    ${['GL', 'AI', 'UMB', 'WC'].map((t, i) => `${lab(440, 112 + i * 40, t)}<circle cx="${i === 1 || i === 3 ? 652 : 652}" cy="${108 + i * 40}" r="5" fill="${i === 1 || i === 3 ? '#FB612A' : '#9DB8D9'}"/>`).join('')}
+    ${['GL', 'AI', 'UMB', 'WC'].map((t, i) => `${lab(440, 112 + i * 40, t)}<circle cx="${i === 1 || i === 3 ? 652 : 652}" cy="${108 + i * 40}" r="5" fill="${i === 1 || i === 3 ? '#FB612A' : '#9A8C66'}"/>`).join('')}
     <path d="M440 300h220" stroke="#FB612A" stroke-width="2"/><path d="M440 292v16M660 292v16" stroke="#FB612A" stroke-width="2"/>${lab(550, 330, '2 OF 4 FAIL', 'middle', '#FFB08F')}`,
   };
   return `<figure class="bp">
   <svg viewBox="0 0 960 440" role="img" aria-label="Blueprint-style drawing: ${esc(title)}">${grid}
-    <rect x="12" y="12" width="936" height="416" fill="none" stroke="#9DB8D9" stroke-width="1"/>${drawings[motif]}
-    <g transform="translate(696 296)"><rect width="240" height="120" fill="#16365F" stroke="#DCE7F4" stroke-width="1.2"/><path d="M0 34h240M0 64h240M0 92h240M110 92v28" stroke="#9DB8D9"/>
-      <text x="12" y="23" font-family="Roboto Serif,Georgia,serif" font-weight="600" font-size="17" fill="#F4F7FB">COI Journal</text>
+    <rect x="12" y="12" width="936" height="416" fill="none" stroke="#9A8C66" stroke-width="1"/>${drawings[motif]}
+    <g transform="translate(696 296)"><rect width="240" height="120" fill="#1F201C" stroke="#E9E4DA" stroke-width="1.2"/><path d="M0 34h240M0 64h240M0 92h240M110 92v28" stroke="#9A8C66"/>
+      <text x="12" y="23" font-family="Roboto Serif,Georgia,serif" font-weight="600" font-size="17" fill="#D9A227">COI Journal</text>
       ${lab(12, 54, 'DATA DESK · ' + EDITION.toUpperCase().replace('·', '/'))}${lab(12, 83, 'DOCKET ' + docket)}${lab(12, 111, 'SHEET ' + sheet)}${lab(122, 111, date ? human(date).toUpperCase().replace(',', '').replace(/^(\w{3})\w*/, '$1') : '')}</g>
   </svg>
 </figure>`;
@@ -233,7 +233,7 @@ const GTAG = `<!-- Google tag (GTM-P6PXX2JM), shared with forsured.ai. Keep it f
 </script>
 `;
 const FONTS = 'https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wght@8..144,400;8..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap';
-const FAVICON = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%231F201C'/%3E%3Ctext x='16' y='23' text-anchor='middle' font-family='Georgia,serif' font-weight='700' font-size='19' fill='%23F7F4EE'%3EJ%3C/text%3E%3Crect x='6' y='26' width='20' height='2' fill='%23FB612A'/%3E%3C/svg%3E";
+const FAVICON = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%231F201C'/%3E%3Ctext x='16' y='23' text-anchor='middle' font-family='Georgia,serif' font-weight='700' font-size='19' fill='%23F7F4EE'%3EJ%3C/text%3E%3Crect x='6' y='26' width='20' height='2' fill='%23D9A227'/%3E%3C/svg%3E";
 
 const FORSURED_ORG = { '@type': 'Organization', '@id': `${FORSURED}/#organization`, name: 'Forsured', url: FORSURED };
 const PUBLISHER = {
@@ -255,46 +255,47 @@ const WEBSITE = { '@type': 'WebSite', '@id': `${SITE}/#website`, name: 'COI Jour
 
 const CSS = `
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--paper:#F7F4EE;--card:#FFFDF9;--ink:#1F201C;--ink2:#4A4843;--mute:#67635B;--rule:#D9D3C7;--rule2:#BDB5A6;--f:#FB612A;--fdk:#B4461A;--cy:#16365F;--cy2:#1F4F86;--cylt:#DCE7F4;--cymid:#9DB8D9;--serif:'Roboto Serif',Georgia,'Times New Roman',serif;--sans:'Inter',Arial,sans-serif;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace}
+:root{--paper:#F7F4EE;--card:#FFFDF9;--ink:#1F201C;--ink2:#4A4843;--mute:#67635B;--rule:#D9D3C7;--rule2:#BDB5A6;--f:#FB612A;--fdk:#B4461A;--cy:#1F201C;--cy2:#7E5B0C;--cylt:#E9E4DA;--cymid:#8C7A4F;--o:#D9A227;--odk:#C48F1C;--otint:#F6EBCB;--serif:'Roboto Serif',Georgia,'Times New Roman',serif;--sans:'Inter',Arial,sans-serif;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace}
 html{scroll-behavior:smooth}
 body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit}
-a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--f);outline-offset:2px}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--o);outline-offset:2px}
 .skip{position:absolute;left:-9999px}.skip:focus{left:16px;top:8px;z-index:10;background:var(--card);padding:8px 12px}
 .wrap{max-width:1160px;margin:0 auto;padding:0 32px}
 .col{max-width:700px;margin:0 auto}
 .eyebrow{font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--cy2)}
 /* Top strip: the ownership line, on every page */
-.strip{background:var(--ink);color:#E9E4DA;font-size:12.5px}
+.strip{background:#151612;color:#E9E4DA;font-size:12.5px}
 .strip .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:36px}
 .strip a{text-decoration:none;color:#fff}
 .strip a:hover{text-decoration:underline}
 .pub{display:inline-flex;align-items:center;gap:8px}
 .fmark{display:inline-grid;place-items:center;width:16px;height:16px;border-radius:3px;background:var(--f);color:#fff;font:700 11px/1 var(--sans)}
 /* Masthead: the cyanotype band, the one color that is COI Journal's alone */
-.band{background-color:var(--cy);background-image:linear-gradient(#2C5A8E 1px,transparent 1px),linear-gradient(90deg,#2C5A8E 1px,transparent 1px),linear-gradient(#24507F .5px,transparent .5px),linear-gradient(90deg,#24507F .5px,transparent .5px);background-size:120px 120px,120px 120px,24px 24px,24px 24px;color:var(--cylt);border-bottom:3px solid var(--f)}
+.band{background-color:var(--cy);background-image:linear-gradient(#2C2D27 1px,transparent 1px),linear-gradient(90deg,#2C2D27 1px,transparent 1px);background-size:24px 24px;color:var(--cylt);border-bottom:4px solid var(--o)}
 .mast{padding:30px 0 0;text-align:center}
-.mast .name{display:inline-block;font-family:var(--serif);font-variation-settings:'opsz' 144;font-weight:600;font-size:clamp(46px,8.4vw,92px);line-height:1;letter-spacing:-.025em;text-decoration:none;color:#F4F7FB}
-.mast .tag{font-family:var(--serif);font-style:italic;font-size:16px;color:#C9D8EA;margin-top:10px}
+.mast .name{display:inline-block;font-family:var(--serif);font-variation-settings:'opsz' 144;font-weight:600;font-size:clamp(46px,8.4vw,92px);line-height:1;letter-spacing:-.025em;text-decoration:none;color:#F4F0E8}
+.mast .name span{color:var(--o)}
+.mast .tag{font-family:var(--serif);font-style:italic;font-size:16px;color:#C9C3B8;margin-top:10px}
 .mast.small{padding:16px 0 0}
 .mast.small .name{font-size:clamp(34px,5vw,48px)}
 .mast.small .tag{display:none}
-.dateline{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:20px;padding:8px 0;border-top:1px solid var(--cymid);font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--cylt)}
-.dateline b{font-weight:500;color:#fff}
+.dateline{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:20px;padding:8px 0;border-top:1px solid var(--cymid);font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--o)}
+.dateline b{font-weight:500;color:var(--o)}
 .secnav{display:flex;justify-content:center;flex-wrap:wrap;gap:4px 28px;padding:10px 0;border-bottom:1px solid var(--rule)}
 .secnav a{font-size:14px;font-weight:500;text-decoration:none;color:var(--ink2);line-height:28px}
-.secnav a:hover,.secnav a[aria-current]{color:var(--ink);text-decoration:underline;text-decoration-color:var(--f);text-underline-offset:5px}
+.secnav a:hover,.secnav a[aria-current]{color:var(--ink);text-decoration:underline;text-decoration-color:var(--o);text-underline-offset:5px}
 /* Docket stamp, blueprint art, monograms */
-.stamp{display:inline-flex;flex-direction:column;gap:1px;padding:5px 10px 4px;border:2px solid var(--cy2);border-radius:3px;color:var(--cy2);font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.06em;transform:rotate(-1.5deg);background:rgba(220,231,244,.35)}
+.stamp{display:inline-flex;flex-direction:column;gap:1px;padding:5px 10px 4px;border:2px solid var(--cy2);border-radius:3px;color:var(--cy2);font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.06em;transform:rotate(-1.5deg);background:var(--otint)}
 .stamp b{font-size:9.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase}
-.stamp i{font-style:normal;font-size:10px;letter-spacing:.04em;opacity:.85}
+.stamp i{font-style:normal;font-size:10px;letter-spacing:.04em}
 .kick{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
 .bp{margin-top:24px}
 .bp svg{display:block;width:100%;height:auto;border-radius:4px}
 .mono{flex:none;display:block}
 .byl{display:flex;align-items:center;gap:10px;margin-top:16px;font-size:13.5px;color:var(--mute)}
 .byl a{color:var(--ink);font-weight:600;text-decoration:none}
-.byl a:hover{text-decoration:underline;text-decoration-color:var(--f)}
+.byl a:hover{text-decoration:underline;text-decoration-color:var(--o)}
 .formno{display:inline-block;font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.03em;padding:1px 7px;border:1px solid var(--cy2);border-radius:3px;color:var(--cy2);white-space:nowrap}
 /* Front page */
 .front{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:0;margin-top:32px}
@@ -302,31 +303,31 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 .front>:first-child{padding-right:32px}
 .lead h2{font-family:var(--serif);font-variation-settings:'opsz' 72;font-weight:400;font-size:clamp(32px,4.2vw,50px);line-height:1.08;letter-spacing:-.02em;margin-top:10px;text-wrap:balance}
 .lead h2 a{text-decoration:none}
-.lead h2 a:hover{text-decoration:underline;text-decoration-thickness:2px;text-decoration-color:var(--f);text-underline-offset:6px}
+.lead h2 a:hover{text-decoration:underline;text-decoration-thickness:2px;text-decoration-color:var(--o);text-underline-offset:6px}
 .lead .dek{font-family:var(--serif);font-size:20px;line-height:1.5;color:var(--ink2);margin-top:14px;max-width:620px}
 .by{font-size:13px;color:var(--mute);margin-top:14px}
 .lead ul{margin-top:22px;padding-top:18px;border-top:1px solid var(--rule);list-style:none}
 .lead li{position:relative;padding-left:18px;font-size:15.5px;line-height:1.55;margin-top:10px;color:var(--ink2)}
-.lead li::before{content:'';position:absolute;left:0;top:.62em;width:8px;height:2px;background:var(--f)}
-.more{display:inline-block;margin-top:20px;font-weight:600;font-size:15px;text-decoration:underline;text-decoration-color:var(--f);text-underline-offset:4px}
+.lead li::before{content:'';position:absolute;left:0;top:.62em;width:8px;height:2px;background:var(--o)}
+.more{display:inline-block;margin-top:20px;font-weight:600;font-size:15px;text-decoration:underline;text-decoration-color:var(--o);text-underline-offset:4px}
 .block{margin-top:56px;padding-top:14px;border-top:2px solid var(--ink)}
 .block>.eyebrow{display:block}
 .block>h2{font-family:var(--serif);font-weight:400;font-size:30px;line-height:1.2;letter-spacing:-.015em;margin-top:6px}
 .block>p{color:var(--ink2);margin-top:8px;max-width:68ch}
 .panel{margin-top:56px;background:var(--ink);color:#E9E4DA;border-radius:4px;padding:36px 36px 28px}
-.panel .eyebrow{color:#F59A6C}
+.panel .eyebrow{color:#D9A227}
 .panel h2{font-family:var(--serif);font-weight:400;font-size:clamp(26px,3vw,36px);line-height:1.15;letter-spacing:-.015em;color:#fff;margin-top:8px;max-width:22ch}
 .panel>p{font-size:15px;color:#C9C3B8;margin-top:10px;max-width:62ch}
-.panel>p a{color:#fff;text-decoration-color:var(--f)}
+.panel>p a{color:#fff;text-decoration-color:var(--o)}
 .nums{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:26px}
-.num{display:flex;flex-direction:column;gap:8px;padding:18px 20px;background:#2A2B26;border:1px solid #3A3B35;border-left:3px solid var(--f);border-radius:4px}
-.num .k{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:#F59A6C}
+.num{display:flex;flex-direction:column;gap:8px;padding:18px 20px;background:#2A2B26;border:1px solid #3A3B35;border-left:3px solid var(--o);border-radius:4px}
+.num .k{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:#D9A227}
 .num h3{font-family:var(--serif);font-weight:600;font-size:24px;line-height:1.15;color:#fff}
 .num p{font-size:14.5px;color:#D6D0C5}
 .num .src{margin-top:auto;padding-top:10px;border-top:1px solid #3A3B35;font-size:13px;color:#B5AFA4}
 .num .src b{display:block;font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#ADA79C;margin-bottom:2px}
 .chip{align-self:flex-start;display:inline-flex;align-items:center;gap:7px;padding:3px 9px;border:1px solid #4A4B45;border-radius:4px;font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:#E9E4DA}
-.chip::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--f)}
+.chip::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--o)}
 .gapline{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;margin-top:28px}
 .gapline span{display:flex;flex-direction:column;align-items:center;gap:8px}
 .gapline i{display:block;width:100%;height:2px;background:var(--f)}
@@ -353,31 +354,31 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 .spec-foot{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin-top:14px;font-family:var(--serif);font-style:italic;font-size:15px;color:var(--ink2)}
 .spec-score{font-family:var(--mono);font-style:normal;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;padding:5px 10px;background:var(--fdk);color:#fff;border-radius:3px}
 .spec figcaption{font-size:12.5px;color:var(--mute);margin-top:8px}
-.sec{border-top:2px solid var(--f)}
+.sec{border-top:2px solid var(--o)}
 .secs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0 16px;margin-top:22px}
 .sec{padding:14px 0 4px}
 .sec h3{font-family:var(--serif);font-weight:600;font-size:18px;line-height:1.25}
-.sec h3 a{text-decoration:none}.sec h3 a:hover{text-decoration:underline;text-decoration-color:var(--f)}
+.sec h3 a{text-decoration:none}.sec h3 a:hover{text-decoration:underline;text-decoration-color:var(--o)}
 .sec p{font-size:14px;color:var(--ink2);margin-top:8px}
 .lib{columns:2;column-gap:48px;margin-top:18px;list-style:none}
 .lib li{break-inside:avoid;padding:12px 0;border-bottom:1px solid var(--rule)}
 .lib a{font-family:var(--serif);font-size:18px;line-height:1.35;text-decoration:none}
-.lib a:hover{text-decoration:underline;text-decoration-color:var(--f);text-underline-offset:4px}
+.lib a:hover{text-decoration:underline;text-decoration-color:var(--o);text-underline-offset:4px}
 .lib span{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-top:4px}
 /* The Number */
 .number .num-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:32px;margin-top:10px;align-items:start}
-.big{font-family:var(--serif);font-variation-settings:'opsz' 144;font-weight:600;font-size:clamp(64px,10vw,116px);line-height:1;letter-spacing:-.03em;color:var(--f)}
+.big{font-family:var(--serif);font-variation-settings:'opsz' 144;font-weight:600;font-size:clamp(64px,10vw,116px);line-height:1;letter-spacing:-.03em;color:var(--o)}
 .big small{font-size:.28em;font-weight:400;letter-spacing:0;color:#E9E4DA}
 .what{font-family:var(--serif);font-size:19px;line-height:1.45;color:#fff;margin-top:12px;max-width:40ch}
 .math{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:20px}
-.math i{font-style:normal;color:var(--f)}
+.math i{font-style:normal;color:var(--o)}
 .chipbox{display:inline-flex;flex-direction:column;padding:6px 11px;border:1px solid #4A4B45;border-radius:4px;background:#2A2B26;font-size:12px;color:#C9C3B8}
 .chipbox b{font-family:var(--mono);font-size:15px;font-weight:500;color:#fff}
-.markup{padding:18px 20px;background:#2A2B26;border:1px solid #3A3B35;border-left:3px solid var(--f);border-radius:4px}
-.markup .k{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:#F59A6C}
+.markup{padding:18px 20px;background:#2A2B26;border:1px solid #3A3B35;border-left:3px solid var(--o);border-radius:4px}
+.markup .k{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:#D9A227}
 .markup p{font-size:14.5px;color:#D6D0C5;margin-top:8px}
 .markup .src{font-size:13px;color:#B5AFA4;border-top:1px solid #3A3B35;padding-top:10px}
-.markup a{color:#fff;text-decoration-color:var(--f)}
+.markup a{color:#fff;text-decoration-color:var(--o)}
 /* Two-up modules */
 .duo{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:40px;align-items:start}
 .duo h3{font-family:var(--serif);font-weight:400;font-size:28px;line-height:1.2;margin-top:6px}
@@ -391,22 +392,22 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 .terms strong{font-family:var(--serif);font-weight:600;font-size:18px;line-height:1.25}
 .terms span.d{font-size:14px;color:var(--ink2)}
 .terms .fs{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
-.defbox{margin-top:24px;padding:20px 22px;background:var(--cy);color:#F4F7FB;border-radius:4px;border-left:4px solid var(--f)}
-.defbox .k{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--cymid)}
-.defbox p{font-family:var(--serif);font-size:20px;line-height:1.5;margin-top:6px}
-.defbox .formno{color:#F4F7FB;border-color:var(--cymid);margin:12px 6px 0 0}
+.defbox{margin-top:24px;padding:20px 22px;background:var(--cy);color:#D9A227;border-radius:4px;border-left:4px solid var(--o)}
+.defbox .k{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--o)}
+.defbox{color:#F4F0E8}.defbox p{font-family:var(--serif);font-size:20px;line-height:1.5;margin-top:6px}
+.defbox .formno{color:var(--o);border-color:var(--cymid);margin:12px 6px 0 0}
 .trio{display:grid;gap:14px;margin-top:24px}
-.trio section{padding:16px 18px;border:1px solid var(--rule);border-left:3px solid var(--f);background:var(--card);border-radius:4px}
+.trio section{padding:16px 18px;border:1px solid var(--rule);border-left:3px solid var(--o);background:var(--card);border-radius:4px}
 .trio h2{font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--cy2)}
 .trio p{font-family:var(--serif);font-size:18px;line-height:1.6;margin-top:6px}
 .rel{margin-top:24px;font-size:15px}
-.rel a{font-weight:600;text-decoration-color:var(--f)}
+.rel a{font-weight:600;text-decoration-color:var(--o)}
 /* People */
 .people{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-top:24px}
 .card{display:flex;gap:16px;padding:18px;background:var(--card);border:1px solid var(--rule);border-radius:4px}
 .card h2,.card h3{font-family:var(--serif);font-weight:600;font-size:20px;line-height:1.2}
 .card h2 a,.card h3 a{text-decoration:none}
-.card h2 a:hover,.card h3 a:hover{text-decoration:underline;text-decoration-color:var(--f)}
+.card h2 a:hover,.card h3 a:hover{text-decoration:underline;text-decoration-color:var(--o)}
 .card .role{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--cy2);margin-top:4px}
 .card p{font-size:14px;color:var(--ink2);margin-top:6px}
 .who{display:flex;gap:20px;align-items:center;margin-top:20px}
@@ -420,22 +421,26 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 .pick[aria-pressed=true]{background:var(--fdk);border-color:var(--fdk);color:#fff}
 .round .spec tr.hit td:nth-child(3),.round .spec tr.miss td:nth-child(3){color:var(--fdk)}
 .result{margin-top:12px;font-size:15px;font-weight:600}
-.answers{margin-top:12px;padding:14px 16px;border:1px solid var(--rule);border-left:3px solid var(--f);background:var(--card);border-radius:4px}
+.answers{margin-top:12px;padding:14px 16px;border:1px solid var(--rule);border-left:3px solid var(--o);background:var(--card);border-radius:4px}
 .answers summary{cursor:pointer;font-weight:600}
 .answers ol{margin-top:10px;padding-left:20px;font-size:15px}
 .answers li+li{margin-top:8px}
-.answers a{font-weight:600;text-decoration-color:var(--f)}
+.answers a{font-weight:600;text-decoration-color:var(--o)}
 .tease .spec table{min-width:0}
 .pick-card{margin-top:18px;padding:18px 20px;background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--cy2);border-radius:4px}
 .pick-card h3{font-family:var(--serif);font-weight:600;font-size:21px;line-height:1.3;margin-top:6px}
-.pick-card h3 a{text-decoration:none}.pick-card h3 a:hover{text-decoration:underline;text-decoration-color:var(--f)}
+.pick-card h3 a{text-decoration:none}.pick-card h3 a:hover{text-decoration:underline;text-decoration-color:var(--o)}
 .pick-card p{font-size:15.5px;color:var(--ink2);margin-top:8px}
 .pick-card .src-line{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute)!important;margin-top:0!important}
 .outlet{color:var(--cy2);font-weight:500}
 .why{padding-top:8px;border-top:1px dashed var(--rule2)}
-.why b{display:block;font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--fdk);margin-bottom:2px}
-.out{display:inline-block;margin-top:10px;font-size:14px;font-weight:600;text-decoration-color:var(--f)}
+.why b{display:block;font-family:var(--mono);font-size:10.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--cy2);margin-bottom:2px}
+.out{display:inline-block;margin-top:10px;font-size:14px;font-weight:600;text-decoration-color:var(--o)}
 .week{margin-top:32px}
+.feature{border-top:4px solid var(--o)}
+.feat-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+.feat-head h2{font-family:var(--serif);font-variation-settings:'opsz' 72;font-weight:600;font-size:clamp(34px,4.4vw,48px);line-height:1.05;letter-spacing:-.02em;margin-top:6px}
+.feat-head p{color:var(--ink2);margin-top:8px;max-width:62ch}
 .picks3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
 .picks3 .pick-card{margin-top:18px}
 @media(max-width:860px){.picks3{grid-template-columns:1fr}}
@@ -450,12 +455,12 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 label{font-size:13px;font-weight:500;color:var(--ink2)}
 input[type=email],input[type=text],select,textarea{width:100%;min-height:44px;padding:10px 12px;border:1px solid var(--rule2);border-radius:6px;background:var(--card);font:inherit;font-size:15px;color:var(--ink)}
 textarea{min-height:140px;resize:vertical}
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 18px;border:1px solid var(--ink);border-radius:6px;background:var(--ink);color:#fff;font:inherit;font-size:15px;font-weight:600;text-decoration:none;cursor:pointer}
-.btn:hover{background:#000}
-.btn.o{background:transparent;color:var(--ink)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 18px;border:1px solid var(--o);border-radius:6px;background:var(--o);color:var(--ink);font:inherit;font-size:15px;font-weight:600;text-decoration:none;cursor:pointer}
+.btn:hover{background:var(--odk);border-color:var(--odk)}
+.btn.o{background:transparent;color:var(--ink);border-color:var(--ink)}
 .btn.o:hover{background:var(--card)}
-.btn.f{background:var(--f);border-color:var(--f)}
-.btn.f:hover{background:#D54E21;border-color:#D54E21}
+.btn.f{background:var(--o);border-color:var(--o);color:var(--ink)}
+.btn.f:hover{background:var(--odk);border-color:var(--odk)}
 .hp{display:none}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .fine{font-size:12.5px;line-height:1.5;color:var(--mute)}
@@ -471,9 +476,9 @@ textarea{min-height:140px;resize:vertical}
 .side .clip p{font-size:14.5px;color:var(--ink2);margin-top:6px}
 .side .clip a{font-size:14px;font-weight:600}
 /* Publisher's band: the one place the Journal sells, labeled as Forsured */
-.house{margin-top:64px;background:var(--ink);color:#E9E4DA;border-top:3px solid var(--f)}
+.house{margin-top:64px;background:var(--ink);color:#E9E4DA;border-top:3px solid var(--o)}
 .house .wrap{display:grid;grid-template-columns:1.4fr 1fr;gap:32px;align-items:center;padding-top:40px;padding-bottom:40px}
-.house .eyebrow{color:#F59A6C}
+.house .eyebrow{color:#D9A227}
 .house h2{font-family:var(--serif);font-weight:400;font-size:clamp(24px,2.8vw,32px);line-height:1.2;color:#fff;margin-top:8px}
 .house p{font-size:15px;margin-top:10px;max-width:58ch}
 .house .btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:flex-end}
@@ -484,8 +489,8 @@ textarea{min-height:140px;resize:vertical}
 .art h1{font-family:var(--serif);font-variation-settings:'opsz' 72;font-weight:400;font-size:clamp(34px,5vw,54px);line-height:1.08;letter-spacing:-.02em;margin-top:10px;text-wrap:balance}
 .art .dek{font-family:var(--serif);font-size:20px;line-height:1.5;color:var(--ink2);margin-top:14px}
 .art .by{padding-bottom:18px;border-bottom:1px solid var(--rule)}
-.tldr{margin-top:28px;padding:18px 20px;background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--f)}
-.tldr h2{font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--fdk)}
+.tldr{margin-top:28px;padding:18px 20px;background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--o)}
+.tldr h2{font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--cy2)}
 .tldr ul{margin-top:8px;padding-left:18px}
 .tldr li{font-size:15.5px;margin-top:6px}
 .prose{font-family:var(--serif);font-size:19px;line-height:1.7;margin-top:28px}
@@ -494,7 +499,7 @@ textarea{min-height:140px;resize:vertical}
 .prose h3{font-family:var(--sans);font-size:17px;font-weight:600;margin-top:28px}
 .prose ul,.prose ol{padding-left:24px}
 .prose li+li{margin-top:8px}
-.prose a{text-decoration:underline;text-decoration-color:var(--f);text-decoration-thickness:1px;text-underline-offset:3px}
+.prose a{text-decoration:underline;text-decoration-color:var(--o);text-decoration-thickness:1px;text-underline-offset:3px}
 .prose a:hover{text-decoration-thickness:2px}
 .prose strong{font-weight:600}
 .prose blockquote{border-left:3px solid var(--rule2);padding-left:18px;color:var(--ink2)}
@@ -578,15 +583,15 @@ ${JSON.stringify({ '@context': 'https://schema.org', '@graph': jsonld }, null, 2
 <a class="skip" href="#main">Skip to content</a>
 <div class="strip"><div class="wrap">
   <span class="pub" data-disclosure>Published by <a href="${fsLink('/', 'strip')}"><span class="fmark" aria-hidden="true">F</span> Forsured</a></span>
-  <a class="tuesday" href="/digest/">The COI Digest, every Tuesday</a>
+  <a class="tuesday" href="/digest/">Worth Reading in your inbox, every Tuesday</a>
 </div></div>`;
 }
 
 const NAV = [
   ['/', 'Front page'],
+  ['/worth-reading/', 'Worth Reading'],
   ['/spot-the-gap/', 'Spot the Gap'],
   ['/dictionary/', 'The Dictionary'],
-  ['/worth-reading/', 'Worth Reading'],
   ['/methodology/', 'Data desk'],
   ['/digest/', 'The COI Digest'],
   ['/masthead/', 'Masthead'],
@@ -597,7 +602,7 @@ function masthead(current, small) {
   return `<header>
   <div class="band"><div class="wrap">
     <div class="mast${small ? ' small' : ''}">
-      <a class="name" href="/"${current === '/' ? ' aria-current="page"' : ''}>COI Journal</a>
+      <a class="name" href="/"${current === '/' ? ' aria-current="page"' : ''}>COI <span>Journal</span></a>
       <p class="tag">Construction insurance compliance, reported. The data desk for contractor COIs.</p>
     </div>
     <div class="dateline"><span><b>${EDITION}</b></span><span>Contractor COIs · Endorsements · Project requirements</span><span>${LAUNCH}</span></div>
@@ -650,7 +655,7 @@ function signup(id, placement) {
   return `<section class="sub" aria-labelledby="${id}" data-form="digest" data-placement="${placement}">
   <span class="eyebrow">The weekly email</span>
   <h2 id="${id}">Get The COI Digest</h2>
-  <p>The week's construction insurance compliance news, one explainer and one gap worth knowing. Tuesday mornings, five minutes.</p>
+  <p>Worth Reading, our picks of the week's best construction insurance reporting, plus one term and one gap. Tuesday mornings, five minutes.</p>
   <form novalidate>
     <input class="hp" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true"/>
     <label for="${id}-email">Work email</label>
@@ -771,6 +776,15 @@ ${masthead('/')}
     </aside>
   </div>
 
+  ${reading.length ? `<section class="block feature" aria-labelledby="wr-h">
+    <div class="feat-head"><div><span class="eyebrow">Our weekly column · Picked the week of ${human(reading[0].picked)}</span>
+    <h2 id="wr-h">Worth Reading</h2>
+    <p>The best construction insurance reporting from everywhere else, read in full and boiled down to a few lines, with why it matters and a link to the original.</p></div>
+    <a class="btn" href="#sub-front">Get Worth Reading every Tuesday</a></div>
+    <div class="picks3">${reading.slice(0, 3).map(pickCard).join('')}</div>
+    <a class="more" href="/worth-reading/">All ${reading.length} picks this week</a>
+  </section>` : ''}
+
   ${theNumber()}
 
   <section class="block tease" aria-labelledby="spot-h">
@@ -786,12 +800,6 @@ ${masthead('/')}
     </div>
   </section>
 
-  ${reading.length ? `<section class="block" aria-labelledby="wr-h">
-    <span class="eyebrow">Worth Reading · Picked the week of ${human(reading[0].picked)}</span>
-    <h2 id="wr-h">The best COI reporting elsewhere this week</h2>
-    <div class="picks3">${reading.slice(0, 3).map(pickCard).join('')}</div>
-    <a class="more" href="/worth-reading/">All Worth Reading picks</a>
-  </section>` : ''}
 
   <section class="panel" aria-labelledby="nums-h">
     <span class="eyebrow">The COI Gap Index · First edition 2027</span>
@@ -1074,11 +1082,13 @@ function readingPage(list, y) {
     url: '/worth-reading/',
     campaign: 'worth-reading',
     y,
+    js: FORM_JS + '\n',
     jsonld: [{ '@type': 'CollectionPage', '@id': `${SITE}/worth-reading/#webpage`, url: `${SITE}/worth-reading/`, name: 'Worth Reading', isPartOf: { '@id': WEBSITE['@id'] }, citation: list.map((k) => ({ '@type': 'NewsArticle', headline: k.title, url: k.url, datePublished: k.date, publisher: { '@type': 'Organization', name: k.publisher }, ...(k.author ? { author: { '@type': 'Person', name: k.author } } : {}) })) }, crumbs([['Worth Reading', '/worth-reading/']])],
     body: `  <article class="col art">
     <span class="eyebrow">Worth Reading</span>
     <h1>The best COI reporting, wherever it runs</h1>
     <p class="dek">Each week we pick the construction insurance stories worth your time from other outlets. A few lines in our own words, why it matters, and a link to the full piece. Read theirs.</p>
+    <div class="boxed">${signup('sub-wr', 'worth-reading').replace('Get The COI Digest', 'Get Worth Reading every Tuesday').replace('The weekly email', 'In The COI Digest')}</div>
     ${weeks.map((w) => `<section class="week" aria-labelledby="w-${w}"><h2 id="w-${w}" class="eyebrow">Picked the week of ${human(w)}</h2>${list.filter((k) => k.picked === w).map(pickCard).join('')}</section>`).join('')}
     <p class="disclose">Summaries are COI Journal's own. We link to the original and don't republish it. We're not affiliated with these outlets, and we never take payment for a pick. Know a story we missed? <a href="mailto:${CONTACT}">Send it to us</a>.</p>
   </article>`,
@@ -1128,24 +1138,25 @@ function welcome() {
 <body style="margin:0;padding:0;background-color:#F7F4EE">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" bgcolor="#F7F4EE"><tr><td align="center" style="padding:24px 12px">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px" bgcolor="#FFFDF9">
-<tr><td bgcolor="#16365F" style="padding:28px 32px 18px;text-align:center;border-bottom:3px solid #FB612A">
-<div style="font:600 34px/1 Georgia,'Times New Roman',serif;color:#F4F7FB;letter-spacing:-.5px">The COI Digest</div>
-<div style="font:12px/1.4 'Courier New',monospace;color:#DCE7F4;margin-top:10px;text-transform:uppercase;letter-spacing:1.5px">From COI Journal · ${EDITION} · Published by Forsured</div>
+<tr><td bgcolor="#1F201C" style="padding:28px 32px 18px;text-align:center;border-bottom:4px solid #D9A227">
+<div style="font:600 34px/1 Georgia,'Times New Roman',serif;color:#F4F0E8;letter-spacing:-.5px">The COI <span style="color:#D9A227">Digest</span></div>
+<div style="font:12px/1.4 'Courier New',monospace;color:#D9A227;margin-top:10px;text-transform:uppercase;letter-spacing:1.5px">From COI Journal · ${EDITION} · Published by Forsured</div>
 </td></tr>
 <tr><td style="padding:28px 32px 8px">
 ${p('Thanks for subscribing.')}
 ${p('The COI Digest lands Tuesday mornings. Five minutes, four parts:')}
 <ul style="margin:0 0 16px;padding-left:20px;font:16px/1.6 Georgia,'Times New Roman',serif;color:#1F201C">
+<li><strong>Worth Reading.</strong> Our weekly column: the best construction insurance stories from other publications, summarized in a few lines, with a link to each full piece.</li>
 <li><strong>The week in COI.</strong> Rule, court and carrier changes that change what you check.</li>
-<li><strong>Worth reading.</strong> The best construction insurance stories of the week from other publications, summarized in a few lines, with a link to the full piece.</li>
 <li><strong>One term.</strong> An entry from the COI Dictionary, in plain English.</li>
 <li><strong>One gap.</strong> A new round of Spot the Gap.</li>
 </ul>
+${p(`This week's Worth Reading picks are already up: ${a(ut(`${SITE}/worth-reading/`), 'read them here')}.`)}
 ${p(`While you wait for the first issue, try ${a(ut(`${SITE}/spot-the-gap/`), 'Spot the Gap')}: a specimen certificate, a set of project requirements, and two rounds to find what fails. Or start with the ${a(ut(`${SITE}/dictionary/`), 'COI Dictionary')}.`)}
 ${p(`Had a coverage gap catch you out? ${a(ut(`${SITE}/gap-of-the-month/`), 'Tell us about it')}. We pick one each month.`)}
 </td></tr>
 <tr><td style="padding:8px 32px 28px">
-<table role="presentation" cellpadding="0" cellspacing="0"><tr><td bgcolor="#FB612A" style="border-radius:6px"><a href="${ut(`${FORSURED}/`)}#demo" style="display:inline-block;padding:12px 18px;font:600 15px/1 Arial,sans-serif;color:#ffffff;text-decoration:none">Get a free COI risk check from Forsured</a></td></tr></table>
+<table role="presentation" cellpadding="0" cellspacing="0"><tr><td bgcolor="#D9A227" style="border-radius:6px"><a href="${ut(`${FORSURED}/`)}#demo" style="display:inline-block;padding:12px 18px;font:600 15px/1 Arial,sans-serif;color:#1F201C;text-decoration:none">Get a free COI risk check from Forsured</a></td></tr></table>
 </td></tr>
 <tr><td style="padding:16px 32px 24px;border-top:1px solid #D9D3C7;font:12px/1.6 Arial,sans-serif;color:#67635B">
 COI Journal and The COI Digest are published by Forsured, a construction insurance compliance software company. Reply "stop" to unsubscribe. ${a('https://app.forsured.com/privacy', 'Privacy Policy')}
