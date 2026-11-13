@@ -378,8 +378,13 @@ p,li{text-wrap:pretty}
 .sec h3{font-family:var(--serif);font-weight:600;font-size:18px;line-height:1.25}
 .sec h3 a{text-decoration:none}.sec h3 a:hover{text-decoration:underline;text-decoration-color:var(--cy2)}
 .sec p{font-size:14px;color:var(--ink2);margin-top:8px}
+.tbl{overflow-x:auto;margin:22px 0}
+.tbl table{width:100%;border-collapse:collapse;font-size:15px;line-height:1.45;min-width:480px}
+.tbl th{text-align:left;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2);border-bottom:2px solid var(--ink);padding:8px 10px}
+.tbl td{border-bottom:1px solid var(--rule);padding:9px 10px;vertical-align:top}
 .lib{columns:2;column-gap:48px;margin-top:18px;list-style:none}
 .lib li{break-inside:avoid;padding:12px 0;border-bottom:1px solid var(--rule)}
+.src-why{margin:4px 0 0;font-size:14px;color:var(--ink2)}
 .lib a{font-family:var(--serif);font-size:18px;line-height:1.35;text-decoration:none}
 .lib a:hover{text-decoration:underline;text-decoration-color:var(--cy2);text-underline-offset:4px}
 .lib span{display:block;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-top:4px}
@@ -636,6 +641,7 @@ input[aria-invalid=true]{border-color:#B03A2E;box-shadow:0 0 0 1px #B03A2E}</sty
         <a class="rc-tile" href="/#num-h"><span class="eyebrow">Research</span><strong>The Number</strong><span>$36,400 a year: one sourced figure, with the arithmetic and our markup.</span><em>See The Number →</em></a>
         <a class="rc-tile" href="/worth-reading/"><span class="eyebrow">Column</span><strong>Worth Reading</strong><span>The week's best construction insurance reporting from other outlets, summarized and linked.</span><em>Read this week's picks →</em></a>
         <a class="rc-tile" href="/resources/agents/"><span class="eyebrow">For AI agents</span><strong>COI reference in markdown</strong><span>Our reports, Dictionary and articles as clean markdown, with an llms.txt index, for teams working with AI agents.</span><em>Get the files →</em></a>
+        <a class="rc-tile" href="/resources/sources/"><span class="eyebrow">Sources</span><strong>Sources we watch</strong><span>The analysts, market reports, enterprise GCs, standards bodies and trade press our editors read.</span><em>See the list →</em></a>
         <a class="rc-tile" href="/gap-of-the-month/"><span class="eyebrow">Reader submissions</span><strong>Gap of the Month</strong><span>Tell us about a coverage gap that caught you out. We explain the check that would have caught it.</span><em>Send us a gap →</em></a>
       </div>
     </section>
@@ -658,7 +664,7 @@ input[aria-invalid=true]{border-color:#B03A2E;box-shadow:0 0 0 1px #B03A2E}</sty
       <a class="fname" href="/">COI Journal</a>
       <p data-disclosure>Published by <a href="https://forsured.ai/?utm_source=coijournal&utm_medium=referral&utm_campaign=footer">Forsured</a>, a construction insurance compliance software company. We don't rank or review software vendors. <a href="/principles/">Our principles</a>.</p>
     </div>
-    <div><h2>Read</h2><nav aria-label="Footer, read"><a href="/">Front page</a><a href="/reports/">Reports</a><a href="/resources/">Resource Center</a><a href="/spot-the-gap/">Spot the Gap</a><a href="/dictionary/">The COI Dictionary</a><a href="/worth-reading/">Worth Reading</a><a href="/methodology/">The COI Gap Index</a><a href="/digest/">The COI Digest</a><a href="/feed.xml">RSS feed</a></nav></div>
+    <div><h2>Read</h2><nav aria-label="Footer, read"><a href="/">Front page</a><a href="/reports/">Reports</a><a href="/resources/">Resource Center</a><a href="/resources/sources/">Sources we watch</a><a href="/spot-the-gap/">Spot the Gap</a><a href="/dictionary/">The COI Dictionary</a><a href="/worth-reading/">Worth Reading</a><a href="/methodology/">The COI Gap Index</a><a href="/digest/">The COI Digest</a><a href="/feed.xml">RSS feed</a></nav></div>
     <div><h2>The Journal</h2><nav aria-label="Footer, the Journal"><a href="/about/">About</a><a href="/masthead/">Masthead</a><a href="/principles/">Publishing principles</a><a href="/gap-of-the-month/">Gap of the Month</a><a href="mailto:hello@forsured.ai">Contact</a></nav></div>
   </div>
   <div class="fbot">
