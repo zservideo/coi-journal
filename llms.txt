@@ -8,6 +8,8 @@
 
 ## Reports and white papers (Resource Center, https://coijournal.com/resources/)
 
+- [R-34: New York's Scaffold Law and the insurance market for trades working in the state](https://coijournal.com/reports/new-york-labor-law-240-insurance/index.md): A COI Journal white paper on New York Labor Law 240 and 241, what they do to liability insurance for contractors, and what GCs should check on trade COIs.
+- [R-24: Primary and noncontributory: what the words mean and what actually proves it](https://coijournal.com/reports/primary-and-noncontributory-proof/index.md): A COI Journal analyst brief on primary and noncontributory wording: what it does, the ISO CG 20 01 endorsement, its conditions, and how to confirm it.
 - [R-23: What does manual COI tracking cost? Reading the one published estimate](https://coijournal.com/reports/cost-of-manual-coi-tracking/index.md): A COI Journal analyst brief on the BCS estimate that manual COI tracking costs $36,400 a year: how it's built, what it leaves out, and how to build your own.
 - [R-22: Fake certificates and phantom insurers: what state regulators have warned](https://coijournal.com/reports/certificate-fraud-regulators/index.md): A COI Journal analyst brief on what New Jersey, Maryland, Texas and Florida regulators have said about false certificates, fake insurers and how to verify coverage.
 - [R-21: Wrap-ups and certificates: what changes for contractor COIs on an OCIP or CCIP](https://coijournal.com/reports/wrap-ups-and-cois/index.md): A COI Journal analyst brief on owner and contractor controlled insurance programs, what they cover and exclude, and which COIs a GC still has to collect.
