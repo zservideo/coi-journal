@@ -8,7 +8,7 @@
   "answer": "In Ohio, North Dakota, Washington and Wyoming, employers must buy workers comp from the state fund unless they're authorized to self-insure. State fund coverage doesn't include employer's liability, so trades there add stop gap coverage, often on their general liability policy. A GC should ask for state fund proof plus the stop gap endorsement.",
   "kind": "Analyst brief",
   "number": "R-28",
-  "date": "2026-11-20T06:30:00-05:00",
+  "date": "2026-11-24T06:30:00-05:00",
   "byline": "COI Journal News Staff",
   "docket": "COIJ-26-0029",
   "about": [

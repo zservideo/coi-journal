@@ -8,7 +8,7 @@
   "answer": "A trade contractor gets insurance approved fastest by reading the GC's insurance exhibit before signing, raising gaps at bid, and sending one complete packet: a certificate for the project plus every required endorsement and workers comp proof. Most payment holds come from missing endorsements, mismatched names, short limits or expired policies.",
   "kind": "White paper",
   "number": "R-40",
-  "date": "2026-11-24T06:30:00-05:00",
+  "date": "2026-12-03T06:30:00-05:00",
   "byline": "COI Journal News Staff",
   "docket": "COIJ-26-0041",
   "about": [

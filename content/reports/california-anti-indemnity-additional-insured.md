@@ -8,7 +8,7 @@
   "answer": "California Civil Code 2782 and 2782.05 void contract clauses that make a contractor indemnify, or insure, another party for that party's active negligence or for claims outside its scope, with many exclusions. Insurance Code 11580.04 limits additional insured endorsements for public agencies the same way, so additional insured coverage can't fill a gap the statute creates.",
   "kind": "Analyst brief",
   "number": "R-29",
-  "date": "2026-11-23T06:30:00-05:00",
+  "date": "2026-11-30T06:30:00-05:00",
   "byline": "COI Journal News Staff",
   "docket": "COIJ-26-0030",
   "about": [

@@ -8,7 +8,7 @@
   "answer": "A general contractor can usually hold payment until a trade's insurance is compliant if the subcontract makes current certificates and endorsements a condition of payment, subject to state prompt payment laws. The control works best as a routine check before each pay application is approved, with specific notices and fast release once the gap is fixed.",
   "kind": "White paper",
   "number": "R-38",
-  "date": "2026-11-20T06:30:00-05:00",
+  "date": "2026-11-25T06:30:00-05:00",
   "byline": "COI Journal News Staff",
   "docket": "COIJ-26-0039",
   "about": [

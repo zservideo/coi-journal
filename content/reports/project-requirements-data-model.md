@@ -8,7 +8,7 @@
   "answer": "Structure project insurance requirements as records: the project, every party that must be named, trade tiers, one record per coverage line with limits, endorsements, durations, carrier floor and source clause, and notice rules. Keep what's required apart from what each trade has shown, so every certificate is checked against the same interpretation.",
   "kind": "White paper",
   "number": "R-39",
-  "date": "2026-11-23T06:30:00-05:00",
+  "date": "2026-12-01T06:30:00-05:00",
   "byline": "COI Journal News Staff",
   "docket": "COIJ-26-0040",
   "about": [

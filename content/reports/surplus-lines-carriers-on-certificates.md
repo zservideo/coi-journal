@@ -8,7 +8,7 @@
   "answer": "A surplus lines carrier on a trade contractor's certificate isn't a red flag. Surplus lines insurers are non-admitted, specialized insurers that write risks the admitted market won't, and much construction risk lands there. The difference is that no state guaranty fund backs the policy, so the carrier's rating, eligibility and policy forms need a closer look.",
   "kind": "Analyst brief",
   "number": "R-31",
-  "date": "2026-11-25T06:30:00-05:00",
+  "date": "2026-12-04T06:30:00-05:00",
   "byline": "COI Journal News Staff",
   "docket": "COIJ-26-0032",
   "about": [

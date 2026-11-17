@@ -8,7 +8,7 @@
   "answer": "A GC reaches lower-tier trades by flowing its insurance requirements down through the subcontract: same coverage, same additional insureds, same waivers. The first-tier trade collects and keeps each lower tier's certificate and endorsements, and the GC can see them on request and before the lower tier starts. Pay applications are a good place to catch new names.",
   "kind": "White paper",
   "number": "R-43",
-  "date": "2026-12-01T06:30:00-05:00",
+  "date": "2026-12-11T06:30:00-05:00",
   "byline": "COI Journal News Staff",
   "docket": "COIJ-26-0044",
   "about": [

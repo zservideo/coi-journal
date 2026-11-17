@@ -36,9 +36,9 @@ const WEB3FORMS_KEY = '9f256d7f-4b10-4b26-8502-bf23abe8455d';
 // Empty until the Make scenario exists; the forms then post to Web3Forms only.
 // Scenario 7020965 in Make; posting here is harmless while the scenario is inactive.
 const MAKE_WEBHOOK = 'https://hook.us2.make.com/98whleoxclod0c7xauzmuxxgqmxo5mpp';
-const LAUNCH = 'Launching December 2026';
+const LAUNCH = 'Est. November 2026';
 // The edition line. No. 0 is the pre-launch issue; No. 1 is the first issue of The COI Digest.
-const EDITION = 'Vol. 1 · No. 0';
+const EDITION = 'Vol. 1';
 const { PEOPLE, TERMS, ROUNDS, THE_NUMBER } = require('./desk');
 const aeo = require('./aeo');
 const person = (slug) => PEOPLE.find((p) => p.slug === slug) || null;

@@ -8,7 +8,7 @@
   "answer": "A defensible COI file proves, without anyone's memory, what the project required, what the trade sent and when, what was checked, what failed, and what was done about it. It keeps every certificate and endorsement version, the review behind each one, every follow-up, every approved exception and the renewal diary.",
   "kind": "White paper",
   "number": "R-37",
-  "date": "2026-11-19T06:30:00-05:00",
+  "date": "2026-11-23T06:30:00-05:00",
   "byline": "COI Journal News Staff",
   "docket": "COIJ-26-0038",
   "about": [

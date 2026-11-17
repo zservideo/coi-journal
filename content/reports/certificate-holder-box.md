@@ -8,7 +8,7 @@
   "answer": "The certificate holder is the party an ACORD 25 was issued to, named in the box at the lower left. The form says the certificate is information only and confers no rights on the holder. Being the holder isn't being an additional insured; only an endorsement to the policy gives a GC rights under a trade's coverage.",
   "kind": "Analyst brief",
   "number": "R-33",
-  "date": "2026-12-01T06:30:00-05:00",
+  "date": "2026-12-10T06:30:00-05:00",
   "byline": "COI Journal News Staff",
   "docket": "COIJ-26-0034",
   "about": [

@@ -8,7 +8,7 @@
   "answer": "A GC can build a contractor COI program in about 90 days. Spend the first 30 writing requirements down by project and trade tier. Spend days 31 to 60 running every active trade through one intake and review. Use days 61 to 90 to close gaps, set a renewal diary, tie compliance to pay applications and report.",
   "kind": "White paper",
   "number": "R-41",
-  "date": "2026-11-25T06:30:00-05:00",
+  "date": "2026-12-07T06:30:00-05:00",
   "byline": "COI Journal News Staff",
   "docket": "COIJ-26-0042",
   "about": [

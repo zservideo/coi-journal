@@ -10,7 +10,7 @@ By COI Journal News Staff. November 13, 2026. Docket COIJ-26-0005. Published by 
 
 - Start from the contract, not the certificate. Write the requirements down per trade, then read the certificate against that list.
 - Check every box for three things: present, sufficient and current.
-- Since the 2025/12 edition, the ACORD 25 lets brokers show limits at the amount the holder requested, so a certificate may not show the full policy limit.
+- The 2025/12 ACORD 25 states that limits shown may reflect the amount the holder requested, which ACORD calls a clarification of existing practice. A certificate may not show the full policy limit.
 - The checkboxes for additional insured and waiver of subrogation are claims. Ask for the endorsements that back them.
 
 ## Start from the contract
@@ -45,7 +45,7 @@ For every line, ask three questions:
 
 **Limits.** Compare each limit with the contract. Check per occurrence, general aggregate, products and completed operations aggregate, and the umbrella. If the contract requires a [per project aggregate](https://coijournal.com/dictionary/per-project-aggregate/), look for it and ask for the endorsement.
 
-One recent change matters here. The 2025/12 edition of the ACORD 25 adds a sentence saying limits shown are inclusive of amounts requested by the certificate holder and may not reflect policy limits in excess of those requested, [Big I New York reported](https://www.biginy.org/news/ask-tim-news/acord-changes-limits-wording-on-certificate-of-insurance/). In practice, a certificate may now show the limit your contract asked for rather than the full policy limit. Big I New York and the national Big I still recommend that agencies show policy limits, according to [IIABA](https://www.independentagent.com/vu_resource/input-from-acord-regarding-recent-changes-to-the-acord-25/). Either way, a limit at or above your requirement passes your check. Just don't read it as the policy's ceiling.
+One recent change matters here. The 2025/12 edition of the ACORD 25 adds a sentence saying limits shown are inclusive of amounts requested by the certificate holder and may not reflect policy limits in excess of those requested, [Big I New York reported](https://www.biginy.org/news/ask-tim-news/acord-changes-limits-wording-on-certificate-of-insurance/). ACORD says the sentence clarifies existing practice rather than changing it. Either way, a certificate may show the limit your contract asked for rather than the full policy limit. Big I New York and the national Big I still recommend that agencies show policy limits, according to [IIABA](https://www.independentagent.com/vu_resource/input-from-acord-regarding-recent-changes-to-the-acord-25/). Either way, a limit at or above your requirement passes your check. Just don't read it as the policy's ceiling.
 
 ## The description box
 
@@ -63,7 +63,7 @@ For each requirement on your list, record: requirement, what the certificate sho
 
 ## How we wrote this
 
-This is a qualitative method paper built from the layout and text of the ACORD 25 (2025/12) and reporting on that edition by Big I New York and the Independent Insurance Agents & Brokers of America. General information, not legal or insurance advice.
+This is a qualitative method paper built from the layout and text of the ACORD 25 (2025/12) and reporting on that edition by Big I New York and the Independent Insurance Agents & Brokers of America. General information, not legal or insurance advice. Updated Nov 17, 2026: added ACORD's statement that the limits sentence clarifies existing practice.
 
 ## Sources
 
