@@ -43,7 +43,7 @@ The second condition is the one that bites. If the subcontract is unsigned, out 
 
 - **It doesn't create additional insured status.** The GC has to be an [additional insured](https://coijournal.com/dictionary/additional-insured/) through a separate endorsement, such as CG 20 10 for ongoing operations and CG 20 37 for completed operations. See our white paper on [additional insured endorsements](https://coijournal.com/reports/additional-insured-endorsements/).
 - **It doesn't reach the umbrella by itself.** Claims Journal noted it applies to the general liability policy, not an umbrella attached to it. If your requirements call for primary and noncontributory excess coverage, you need the excess policy's own wording.
-- **It doesn't waive subrogation.** [IRMI notes](https://www.irmi.com/articles/expert-commentary/subrogation-and-the-cgl-policy) that a waiver of subrogation endorsement doesn't create primary and noncontributory coverage, and the reverse is true too. They're separate requirements. See our brief on waivers of subrogation.
+- **It doesn't waive subrogation.** [IRMI notes](https://www.irmi.com/articles/expert-commentary/subrogation-and-the-cgl-policy) that a waiver of subrogation endorsement doesn't create primary and noncontributory coverage, and the reverse is true too. They're separate requirements. See our brief on [waivers of subrogation](https://coijournal.com/reports/waiver-of-subrogation-endorsements/).
 
 ## How does a GC confirm primary and noncontributory coverage?
 
