@@ -8,7 +8,7 @@
   "answer": "On a fixed-price federal construction contract with work on a government installation, FAR 52.228-5 requires the contractor to carry at least the FAR 28.307-2 minimums, to have policies endorsed so cancellation needs 30 days' notice to the contracting officer, and to flow the same clause down to every subcontractor working on the installation.",
   "kind": "Analyst brief",
   "number": "R-27",
-  "date": "2026-11-19T06:30:00-05:00",
+  "date": "2026-11-20T06:30:00-05:00",
   "byline": "COI Journal News Staff",
   "docket": "COIJ-26-0028",
   "about": [

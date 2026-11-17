@@ -8,7 +8,7 @@
   "answer": "Before final payment, a GC should collect a current certificate showing products and completed operations limits, the completed operations additional insured endorsement matched to the current policy, and confirmation the coverage will be kept for the required period. Requirements often set three to five years after completion, and the GC keeps collecting renewals until it ends.",
   "kind": "White paper",
   "number": "R-42",
-  "date": "2026-11-30T06:30:00-05:00",
+  "date": "2026-12-09T06:30:00-05:00",
   "byline": "COI Journal News Staff",
   "docket": "COIJ-26-0043",
   "about": [

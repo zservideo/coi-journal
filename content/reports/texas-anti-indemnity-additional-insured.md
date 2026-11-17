@@ -8,7 +8,7 @@
   "answer": "Texas Insurance Code Chapter 151 voids construction contract clauses that require indemnity for claims where the indemnitee is at fault, and section 151.104 voids additional insured requirements to the extent they provide the same prohibited coverage. Employee injury claims and wrap-up programs are excepted, and residential work like single family houses falls outside the act.",
   "kind": "Analyst brief",
   "number": "R-30",
-  "date": "2026-11-24T06:30:00-05:00",
+  "date": "2026-12-02T06:30:00-05:00",
   "byline": "COI Journal News Staff",
   "docket": "COIJ-26-0031",
   "about": [

@@ -1,6 +1,6 @@
 # Additional insured endorsements, explained: CG 20 10, CG 20 37 and the automatic forms
 
-White paper R-05, COI Journal Resource Center. Additional insured status is the single most requested, and most often missing, piece of a contractor's coverage. This is what the endorsements do, which ones matter on a construction job, and how to tell them apart.
+White paper R-05, COI Journal Resource Center. Additional insured status is one of the most commonly required pieces of a contractor's coverage, and a Y in a certificate's ADDL INSD column doesn't prove it. This is what the endorsements do, which ones matter on a construction job, and how to tell them apart.
 
 Question: What is an additional insured endorsement like CG 20 10, and why does a construction project need it?
 
@@ -62,7 +62,7 @@ See [additional insured](https://coijournal.com/dictionary/additional-insured/) 
 
 ## How we wrote this
 
-This paper draws on the ACORD 25 form and published analysis of ISO's additional insured endorsements by IRMI, the Independent Insurance Agents & Brokers of America and the Construction Defect Journal. Carriers also file their own forms, which can differ. General information, not legal or insurance advice.
+This paper draws on the ACORD 25 form and published analysis of ISO's additional insured endorsements by IRMI, the Independent Insurance Agents & Brokers of America and the Construction Defect Journal. Carriers also file their own forms, which can differ. General information, not legal or insurance advice. Updated Nov 17, 2026: removed an unsupported claim that additional insured status is the most often missing item.
 
 ## Sources
 

@@ -8,7 +8,7 @@
   "answer": "A- VII means the insurer needs an AM Best Financial Strength Rating of A- or better and a Financial Size Category of VII or larger. The letter grade is AM Best's opinion of the insurer's ability to pay claims; the numeral reflects surplus. The ACORD 25 shows neither, so a GC has to check each insurer at the source.",
   "kind": "Analyst brief",
   "number": "R-32",
-  "date": "2026-11-30T06:30:00-05:00",
+  "date": "2026-12-08T06:30:00-05:00",
   "byline": "COI Journal News Staff",
   "docket": "COIJ-26-0033",
   "about": [

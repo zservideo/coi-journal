@@ -1,6 +1,6 @@
 # The ACORD 25's new limits sentence: what changed in the 2025/12 edition, and what GCs should do
 
-Analyst brief R-14, COI Journal Resource Center. The newest edition of the standard certificate adds one sentence about limits. It means the number on a certificate may be the number you asked for, not what the policy carries.
+Analyst brief R-14, COI Journal Resource Center. The newest edition of the standard certificate adds one sentence about limits. ACORD calls it a clarification of existing practice. For a GC, it is a reminder that the number on a certificate may be the number you asked for, not what the policy carries.
 
 Question: What changed on the ACORD 25 certificate of liability insurance in the 2025/12 edition?
 
@@ -9,7 +9,7 @@ By COI Journal News Staff. November 13, 2026. Docket COIJ-26-0015. Published by 
 ## Key findings
 
 - The ACORD 25 (2025/12) adds a sentence saying limits shown are inclusive of amounts requested by the certificate holder and may not reflect policy limits above those amounts.
-- ACORD told IIABA the language is permissive, not mandatory, and was filed and approved where states require it. It doesn't apply in Wyoming.
+- ACORD told IIABA the sentence clarifies existing industry practice, is permissive rather than mandatory, and does not change any producer's standard of care. It doesn't apply in Wyoming.
 - Big I New York and the national Big I still recommend that agencies show the limits in the policy declarations.
 - For GCs: a limit at or above your requirement still passes. Just don't treat it as the policy's ceiling.
 
@@ -29,7 +29,7 @@ Big I New York called showing the policy limits, regardless of contract requirem
 
 ## What it means for general contractors
 
-In practice, two certificates for the same policy may now show different limits, depending on what each holder asked for and the issuing agency's practice.
+In practice, two certificates for the same policy can show different limits, depending on what each holder asked for and the issuing agency's practice.
 
 - **Your pass or fail doesn't change.** If the certificate shows a limit at or above your requirement, it meets your requirement on its face.
 - **The number may not be the ceiling.** Don't use certificate limits to judge how much coverage a trade carries overall, for example when weighing a trade for a larger job.
@@ -42,7 +42,7 @@ Pick one agency practice for limits on certificates, apply it consistently, and 
 
 ## How we wrote this
 
-Based on the ACORD 25 (2025/12) as posted by the New York State Department of Financial Services and reporting by Big I New York (March 10, 2026) and IIABA (July 7, 2026). We could not retrieve ACORD's own December 2025 forms notice. General information, not legal or insurance advice.
+Based on the ACORD 25 (2025/12) as posted by the New York State Department of Financial Services and reporting by Big I New York (March 10, 2026) and IIABA (July 7, 2026). We could not retrieve ACORD's own December 2025 forms notice. General information, not legal or insurance advice. Updated Nov 17, 2026: added ACORD's statement that the limits sentence clarifies existing practice.
 
 ## Sources
 

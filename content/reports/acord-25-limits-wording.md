@@ -3,21 +3,22 @@
   "title": "The ACORD 25's new limits sentence: what changed in the 2025/12 edition, and what GCs should do",
   "short": "The ACORD 25's new limits sentence",
   "question": "What changed on the ACORD 25 certificate of liability insurance in the 2025/12 edition?",
-  "description": "A COI Journal analyst brief on the ACORD 25 (2025/12) limits wording: certificates may now show requested limits rather than full policy limits.",
-  "dek": "The newest edition of the standard certificate adds one sentence about limits. It means the number on a certificate may be the number you asked for, not what the policy carries.",
+  "description": "A COI Journal analyst brief on the ACORD 25 (2025/12) limits wording: what the new limits sentence says, what ACORD says it does and why limits still need checking.",
+  "dek": "The newest edition of the standard certificate adds one sentence about limits. ACORD calls it a clarification of existing practice. For a GC, it is a reminder that the number on a certificate may be the number you asked for, not what the policy carries.",
   "kind": "Analyst brief",
   "number": "R-14",
   "date": "2026-11-13T00:00:00-05:00",
+  "updated": "2026-11-17T12:00:00-05:00",
   "byline": "COI Journal News Staff",
   "docket": "COIJ-26-0015",
   "about": ["certificate-of-insurance", "per-project-aggregate"],
   "takeaways": [
     "The ACORD 25 (2025/12) adds a sentence saying limits shown are inclusive of amounts requested by the certificate holder and may not reflect policy limits above those amounts.",
-    "ACORD told IIABA the language is permissive, not mandatory, and was filed and approved where states require it. It doesn't apply in Wyoming.",
+    "ACORD told IIABA the sentence clarifies existing industry practice, is permissive rather than mandatory, and does not change any producer's standard of care. It doesn't apply in Wyoming.",
     "Big I New York and the national Big I still recommend that agencies show the limits in the policy declarations.",
     "For GCs: a limit at or above your requirement still passes. Just don't treat it as the policy's ceiling."
   ],
-  "method": "Based on the ACORD 25 (2025/12) as posted by the New York State Department of Financial Services and reporting by Big I New York (March 10, 2026) and IIABA (July 7, 2026). We could not retrieve ACORD's own December 2025 forms notice. General information, not legal or insurance advice.",
+  "method": "Based on the ACORD 25 (2025/12) as posted by the New York State Department of Financial Services and reporting by Big I New York (March 10, 2026) and IIABA (July 7, 2026). We could not retrieve ACORD's own December 2025 forms notice. General information, not legal or insurance advice. Updated Nov 17, 2026: added ACORD's statement that the limits sentence clarifies existing practice.",
   "sources": [
     { "title": "ACORD Changes Limits Wording on Certificate of Insurance", "url": "https://www.biginy.org/news/ask-tim-news/acord-changes-limits-wording-on-certificate-of-insurance/", "publisher": "Big I New York, Timothy Dodge", "date": "March 10, 2026" },
     { "title": "Input from ACORD Regarding Recent Changes to the ACORD 25", "url": "https://www.independentagent.com/vu_resource/input-from-acord-regarding-recent-changes-to-the-acord-25/", "publisher": "Independent Insurance Agents & Brokers of America, Nancy Germond", "date": "July 7, 2026" },
@@ -41,7 +42,7 @@ Big I New York called showing the policy limits, regardless of contract requirem
 
 ## What it means for general contractors
 
-In practice, two certificates for the same policy may now show different limits, depending on what each holder asked for and the issuing agency's practice.
+In practice, two certificates for the same policy can show different limits, depending on what each holder asked for and the issuing agency's practice.
 
 - **Your pass or fail doesn't change.** If the certificate shows a limit at or above your requirement, it meets your requirement on its face.
 - **The number may not be the ceiling.** Don't use certificate limits to judge how much coverage a trade carries overall, for example when weighing a trade for a larger job.

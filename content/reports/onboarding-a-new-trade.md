@@ -8,7 +8,7 @@
   "answer": "Before a new trade contractor starts work, a GC should have a signed subcontract, a certificate for this project, the endorsements it relies on, workers comp proof, license and registration, a named owner for any open item, and a renewal diary. Without the signed contract, several endorsements may not apply at all.",
   "kind": "White paper",
   "number": "R-36",
-  "date": "2026-11-18T06:30:00-05:00",
+  "date": "2026-11-19T06:30:00-05:00",
   "byline": "COI Journal News Staff",
   "docket": "COIJ-26-0037",
   "about": [

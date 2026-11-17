@@ -5,7 +5,7 @@ description: Check a contractor certificate of insurance (ACORD 25) and its endo
 
 # COI review
 
-From COI Journal (https://coijournal.com), published by Forsured. Version Vol. 1 · No. 0. Reference only, not legal or insurance advice.
+From COI Journal (https://coijournal.com), published by Forsured. Version Vol. 1. Reference only, not legal or insurance advice.
 
 ## Your role
 

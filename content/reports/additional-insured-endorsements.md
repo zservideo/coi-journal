@@ -4,10 +4,11 @@
   "short": "Additional insured endorsements, explained",
   "question": "What is an additional insured endorsement like CG 20 10, and why does a construction project need it?",
   "description": "A COI Journal white paper on additional insured endorsements: what CG 20 10, CG 20 37, CG 20 38 and the automatic forms do, and how to check them.",
-  "dek": "Additional insured status is the single most requested, and most often missing, piece of a contractor's coverage. This is what the endorsements do, which ones matter on a construction job, and how to tell them apart.",
+  "dek": "Additional insured status is one of the most commonly required pieces of a contractor's coverage, and a Y in a certificate's ADDL INSD column doesn't prove it. This is what the endorsements do, which ones matter on a construction job, and how to tell them apart.",
   "kind": "White paper",
   "number": "R-05",
   "date": "2026-11-13T00:00:00-05:00",
+  "updated": "2026-11-17T12:00:00-05:00",
   "byline": "COI Journal News Staff",
   "docket": "COIJ-26-0006",
   "about": ["additional-insured", "completed-operations", "certificate-of-insurance"],
@@ -17,7 +18,7 @@
     "Automatic, or blanket, forms grant status to anyone the contractor agreed in a written contract to add, so the contract wording becomes part of the coverage.",
     "Since the 2013 ISO edition, additional insured coverage generally can't be broader than the contract requires. A weak requirement makes for weak coverage."
   ],
-  "method": "This paper draws on the ACORD 25 form and published analysis of ISO's additional insured endorsements by IRMI, the Independent Insurance Agents & Brokers of America and the Construction Defect Journal. Carriers also file their own forms, which can differ. General information, not legal or insurance advice.",
+  "method": "This paper draws on the ACORD 25 form and published analysis of ISO's additional insured endorsements by IRMI, the Independent Insurance Agents & Brokers of America and the Construction Defect Journal. Carriers also file their own forms, which can differ. General information, not legal or insurance advice. Updated Nov 17, 2026: removed an unsupported claim that additional insured status is the most often missing item.",
   "sources": [
     { "title": "Today's Additional Insured Endorsements: Revisiting the Impact of ISO Form Changes", "url": "https://www.irmi.com/articles/expert-commentary/todays-additional-insured-endorsements-revisiting-the-impact-of-iso-form-changes", "publisher": "IRMI, Gregory Podolak", "date": "March 1, 2015" },
     { "title": "Chris Boggs on the 2019 ISO additional insured endorsements", "url": "https://na.iiaba.net/vu/Insurance/Commercial-Lines/CGL/Endorsements/Boggs2019AIEndorsements.aspx", "publisher": "Independent Insurance Agents & Brokers of America, Chris Boggs", "date": "December 20, 2019" },
