@@ -961,7 +961,7 @@ const FORM_JS = `<script>
       if (HOOK) calls.push(fetch(HOOK, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...data, subject }) }).catch(() => null));
       Promise.all(calls)
         .then((r) => r[0].json())
-        .then((j) => { if (!j.success) throw new Error(); form.hidden = true; box.querySelector('.ok').hidden = false; })
+        .then((j) => { if (!j.success) throw new Error(); (window.dataLayer = window.dataLayer || []).push({ event: 'generate_lead', form_key: 'coi_' + kind, form_location: location.pathname }); form.hidden = true; box.querySelector('.ok').hidden = false; })
         .catch(() => fail('Something went wrong. Please try again.'));
     });
   }
