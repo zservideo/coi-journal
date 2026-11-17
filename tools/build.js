@@ -773,6 +773,7 @@ function head({ title, description, url, type = 'website', jsonld, published, mo
 <head>
 ${GTAG}<meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="google-site-verification" content="BAmXQcxT9k3YfOblGPhe-fBpThtLsjdl2DCmfg7m9-I"/>
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}"/>
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1"/>
