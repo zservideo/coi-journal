@@ -6,7 +6,15 @@
   <atom:link href="https://coijournal.com/feed.xml" rel="self" type="application/rss+xml"/>
   <description>Construction insurance compliance, reported. Published by Forsured.</description>
   <language>en-us</language>
-  <lastBuildDate>Tue, 17 Nov 2026 11:30:00 GMT</lastBuildDate>
+  <lastBuildDate>Wed, 18 Nov 2026 11:30:00 GMT</lastBuildDate>
+  <item>
+    <title>Per project aggregate limits: why owners ask for them and how CG 25 03 works</title>
+    <link>https://coijournal.com/reports/per-project-aggregate-limits/</link>
+    <guid isPermaLink="true">https://coijournal.com/reports/per-project-aggregate-limits/</guid>
+    <pubDate>Wed, 18 Nov 2026 11:30:00 GMT</pubDate>
+    <category>Analyst brief</category>
+    <description>A COI Journal analyst brief on per project aggregate limits: the ISO CG 25 03 endorsement, what it changes, what it leaves alone, and how to check it.</description>
+  </item>
   <item>
     <title>Waivers of subrogation on construction jobs: the endorsements, the limits, and the checks</title>
     <link>https://coijournal.com/reports/waiver-of-subrogation-endorsements/</link>
