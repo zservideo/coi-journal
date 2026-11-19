@@ -60,9 +60,9 @@
 
 - [Zach Servideo](https://coijournal.com/people/zach-servideo/), Publisher. Zach is an executive at Forsured, which publishes COI Journal.
 - [Colby Galipeau](https://coijournal.com/people/colby-galipeau/), Associate Editor. Colby works for Forsured, which publishes COI Journal.
-- [Steve Massei](https://coijournal.com/people/steve-massei/), Contributing editor, construction. Steve is part of the Forsured team. Massei Construction uses Forsured.
-- [Stephanie Massei](https://coijournal.com/people/stephanie-massei/), Contributing editor, operations. Stephanie is part of the Forsured team. Milestone Construction Group uses Forsured.
-- [Erik Wenstone](https://coijournal.com/people/erik-wenstone/), Contributing editor, brokerage. Erik is part of the Forsured team. CMR Risk & Insurance Services is a Forsured partner.
+- [Steve Massei](https://coijournal.com/people/steve-massei/), Contributing editor, construction. Steve is a founder and the Chief Construction Officer of Forsured, which publishes COI Journal. Massei Construction uses Forsured.
+- [Stephanie Massei](https://coijournal.com/people/stephanie-massei/), Contributing editor, operations. Stephanie is a founder and the Chief Financial Officer of Forsured, which publishes COI Journal. Milestone Construction Group uses Forsured.
+- [Erik Wenstone](https://coijournal.com/people/erik-wenstone/), Contributing editor, brokerage. Erik is a founder and the CEO of Forsured, which publishes COI Journal. CMR Risk & Insurance Services is a Forsured partner.
 
 ## For AI agents
 
