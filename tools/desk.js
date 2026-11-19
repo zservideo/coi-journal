@@ -1,8 +1,8 @@
 // Editorial data for COI Journal that isn't an article: the people on the masthead, the COI Dictionary,
 // the Spot the Gap rounds and The Number. tools/build.js turns these into pages.
 //
-// Rules: bios use only facts that are public or approved by the person. Forsured titles that are still
-// under embargo stay out until they're public. Every specimen is sample data, never a real contractor.
+// Rules: bios use only facts that are public or approved by the person. Forsured titles come from the
+// Nov 19, 2026 launch release (public since 8:00 AM ET that day). Every specimen is sample data, never a real contractor.
 // The Number shows only a sourced figure, with how it was built and who built it.
 
 // ---------- the masthead ----------
@@ -38,37 +38,37 @@ const PEOPLE = [
     name: 'Steve Massei',
     role: 'Contributing editor, construction',
     initials: 'SM',
-    line: 'Owner, Massei Construction',
+    line: 'Founder and Chief Construction Officer, Forsured · Owner, Massei Construction',
     bio: [
-      'Steve owns and runs Massei Construction, a general contractor in the San Francisco Bay Area. Steve is also an active pilot and reads a COI the way a pilot runs a preflight checklist: every line, every time.',
+      'Steve is a founder and the Chief Construction Officer of Forsured, the company that publishes COI Journal. Steve owns and runs Massei Construction, a general contractor in the San Francisco Bay Area. Steve is also an active pilot and reads a COI the way a pilot runs a preflight checklist: every line, every time.',
       'Steve hosts Plain Speak, our short video series that explains one insurance idea in sixth-grade English. The premise, in Steve\'s words: "I\'m a GC owner. I don\'t know what I\'m doing with insurance, so I surrounded myself with insurance experts and product nerds."',
     ],
     covers: ['The GC view', 'Plain Speak video', 'Jobsite practice'],
-    disclose: 'Steve is part of the Forsured team. Massei Construction uses Forsured.',
+    disclose: 'Steve is a founder and the Chief Construction Officer of Forsured, which publishes COI Journal. Massei Construction uses Forsured.',
   },
   {
     slug: 'stephanie-massei',
     name: 'Stephanie Massei',
     role: 'Contributing editor, operations',
     initials: 'SM',
-    line: 'Owner, Milestone Construction Group',
+    line: 'Founder and CFO, Forsured · Owner, Milestone Construction Group',
     bio: [
-      'Stephanie owns Milestone Construction Group and writes about the back office of compliance: collecting certificates from trade contractors, chasing endorsements and keeping a project file that holds up when someone asks for it.',
+      'Stephanie is a founder and the Chief Financial Officer of Forsured, the company that publishes COI Journal. Stephanie owns Milestone Construction Group and writes about the back office of compliance: collecting certificates from trade contractors, chasing endorsements and keeping a project file that holds up when someone asks for it.',
     ],
     covers: ['Contractor operations', 'Collecting COIs', 'Back-office practice'],
-    disclose: 'Stephanie is part of the Forsured team. Milestone Construction Group uses Forsured.',
+    disclose: 'Stephanie is a founder and the Chief Financial Officer of Forsured, which publishes COI Journal. Milestone Construction Group uses Forsured.',
   },
   {
     slug: 'erik-wenstone',
     name: 'Erik Wenstone',
     role: 'Contributing editor, brokerage',
     initials: 'EW',
-    line: 'Principal, CMR Risk & Insurance Services',
+    line: 'Founder and CEO, Forsured · Principal, CMR Risk & Insurance Services',
     bio: [
-      'Erik is a principal at CMR Risk & Insurance Services, a construction insurance brokerage, and sits on the board of RiskProNet, a network of independent brokers. Erik writes about the broker side of the certificate: what gets asked for, what gets issued and why the two drift apart.',
+      'Erik is a founder and the CEO of Forsured, the company that publishes COI Journal. Erik is also a principal at CMR Risk & Insurance Services, a construction insurance brokerage, and sits on the board of RiskProNet, a network of independent brokers. Erik writes about the broker side of the certificate: what gets asked for, what gets issued and why the two drift apart.',
     ],
     covers: ['The broker view', 'Endorsements', 'Program design'],
-    disclose: 'Erik is part of the Forsured team. CMR Risk & Insurance Services is a Forsured partner.',
+    disclose: 'Erik is a founder and the CEO of Forsured, which publishes COI Journal. CMR Risk & Insurance Services is a Forsured partner.',
   },
 ];
 
